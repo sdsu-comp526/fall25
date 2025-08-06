@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -695,8 +695,8 @@ This error becomes large (relative to <span class="math notranslate nohighlight"
 <section id="we-can-go-the-other-way">
 <h3>We can go the other way<a class="headerlink" href="#we-can-go-the-other-way" title="Link to this heading">#</a></h3>
 <p>We can differentiate a composition <span class="math notranslate nohighlight">\(h(g(f(x)))\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3f38bfe-18f8-4b06-bcf5-95b05ff6ee52">
-<span class="eqno">()<a class="headerlink" href="#equation-b3f38bfe-18f8-4b06-bcf5-95b05ff6ee52" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f5541eb0-20df-492e-8dd8-d5aa01279f6c">
+<span class="eqno">()<a class="headerlink" href="#equation-f5541eb0-20df-492e-8dd8-d5aa01279f6c" title="Permalink to this equation">#</a></span>\[\begin{align}
   \operatorname{d} h &amp;= h' \operatorname{d} g \\
   \operatorname{d} g &amp;= g' \operatorname{d} f \\
   \operatorname{d} f &amp;= f' \operatorname{d} x.
@@ -779,20 +779,6 @@ This error becomes large (relative to <span class="math notranslate nohighlight"
 <span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/.julia/environments/v1.10/Manifest.toml`
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">Precompiling</span> packages...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   2342.3 ms<span class=" -Color -Color-Green">  ✓ </span>RecursiveArrayTools → RecursiveArrayToolsZygoteExt
-  1 dependency successfully precompiled in 3 seconds. 82 already precompiled.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">Precompiling</span> packages...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   2166.0 ms<span class=" -Color -Color-Green">  ✓ </span>SciMLBase → SciMLBaseZygoteExt
-  1 dependency successfully precompiled in 2 seconds. 99 already precompiled.
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -816,7 +802,7 @@ This error becomes large (relative to <span class="math notranslate nohighlight"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:152 within `gradient`
-define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4925<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4762<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:153 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:94 within `pullback` @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:96
@@ -828,7 +814,7 @@ top:
         %1 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>= <span class=" -Color -Color-Bold">call</span> <span class=" -Color -Color-Cyan">double</span> @j_exp_4927<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>= <span class=" -Color -Color-Bold">call</span> <span class=" -Color -Color-Cyan">double</span> @j_exp_4764<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span>
 ; └└└└└└
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:154 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:97 within `#88`
@@ -861,7 +847,7 @@ top:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ In[12]:1 within `square`
-define <span class=" -Color -Color-Cyan">double</span> @julia_square_4949<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Cyan">double</span> @julia_square_4786<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ; ┌ @ intfuncs.jl:332 within `literal_pow`
 ; │┌ @ float.jl:411 within `*`
@@ -881,7 +867,7 @@ top:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:152 within `gradient`
-define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4953<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4790<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:154 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:97 within `#88`
@@ -966,7 +952,7 @@ u_{i+1} = u(x_i + \Delta x) \approx u(x_i) + \Delta x \partial_x u \bigg\rvert_i
 u_{i-1} = u(x_i - \Delta x) \approx u(x_i) - \Delta x \partial_x u \bigg\rvert_i + \frac{1}{2} \Delta x^2 \partial^2_x u \bigg\rvert_i - \frac{1}{6} \Delta x^3 \partial^3_x u \bigg\rvert_i + O(\Delta x^4)
 \]</div>
 <p>Consider a uniformly discretized domain (with uniform <span class="math notranslate nohighlight">\(h \equiv \Delta x\)</span> subintervals)</p>
-<p><img alt="1D uniformily discretized domain." src="img/1D_domain.png" /></p>
+<p><img alt="1D uniformily discretized domain." src="../_images/1D_domain.png" /></p>
 <p>We can define the first-order derivative at the point <span class="math notranslate nohighlight">\(x_i\)</span> using the <strong>forward difference</strong>:</p>
 <div class="math notranslate nohighlight">
 \[

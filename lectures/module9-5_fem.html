@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -474,7 +474,7 @@ global domain <span class="math notranslate nohighlight">\(\Omega\)</span>.</p><
 <div><p><a class="reference external" href="https://link.springer.com/article/10.1007/s10915-010-9396-8">Recommended Reading</a></p>
 </div></blockquote>
 <p>This effect typically limited the order of accuracy to at most quadratic, especially because quadratic finite element formulations are computationally advantageous in terms of floating point operations (FLOPS) per degree of freedom (DOF) despite the fast convergence and favorable stability properties offered by higher order discretizations (see below).</p>
-<p><img alt="Matrix-free cost" src="img/MatrixFreePerfPlot.PNG" /></p>
+<p><img alt="Matrix-free cost" src="../_images/MatrixFreePerfPlot.PNG" /></p>
 <p>In the figure above, we analyze and compare the theoretical costs, of different configurations: assembling the sparse matrix representing the action of the operator (labeled as <em>assembled</em>), non assembling the matrix and storing only the metric terms needed as an operator setup-phase (labeled as <em>tensor-qstore</em>) and non assembling  the matrix and computing the metric terms on the fly and storing a compact representation of the linearization at quadrature points (labeled as <em>tensor</em>). In the right panel, we show the cost in terms of FLOPS/DOF.</p>
 <ul class="simple">
 <li><p>This metric for computational efficiency made sense historically, when the performance was mostly limited by processors’ clockspeed.</p></li>

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -406,7 +406,7 @@ document.write(`
 \[
 -\frac{\partial^2 u}{\partial x^2} = f(x)
 \]</div>
-<p><img alt="1D uniformily discretized domain." src="img/1D_domain.png" /></p>
+<p><img alt="1D uniformily discretized domain." src="../_images/1D_domain.png" /></p>
 <p>on a 1D domain <span class="math notranslate nohighlight">\([a,b] = [-1,1]\)</span> discretized with <span class="math notranslate nohighlight">\(m+2\)</span> equispaced grid points (but we’re going to solve for the unknown only, i.e., for the <span class="math notranslate nohighlight">\(m\)</span> interior grid points), with right-hand side forcing function <span class="math notranslate nohighlight">\(f(x) =\pi^2 \sin(\pi x)\)</span>, and (homogeneous) Dirichelet boundary conditions:</p>
 <div class="math notranslate nohighlight">
 \[

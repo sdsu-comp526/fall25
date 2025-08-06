@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -649,15 +649,15 @@ e^A = X X^{-1} + X \Lambda X^{-1} + X \Lambda^2 X^{-1}/2 + \dots
 <ul class="simple">
 <li><p><strong>Asymptotically stable solution</strong>: <span class="math notranslate nohighlight">\(|| \hat y(t) - y(t)|| \rightarrow 0 \)</span> as <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span></p></li>
 </ul>
-<p><img alt="Asymptotically stable ODE." src="img/asymptotically_stable.png" /></p>
+<p><img alt="Asymptotically stable ODE." src="../_images/asymptotically_stable.png" /></p>
 <ul class="simple">
 <li><p><strong>Stable solution, but not asymptotically so</strong>:</p></li>
 </ul>
-<p><img alt="Stable ODE." src="img/stable.png" /></p>
+<p><img alt="Stable ODE." src="../_images/stable.png" /></p>
 <ul class="simple">
 <li><p><strong>Unstable solution</strong>:</p></li>
 </ul>
-<p><img alt="Unstable ODE." src="img/unstable.png" /></p>
+<p><img alt="Unstable ODE." src="../_images/unstable.png" /></p>
 <section id="determining-stability">
 <h4>Determining stability<a class="headerlink" href="#determining-stability" title="Link to this heading">#</a></h4>
 <p>To determine stability of an ODE, we think of the simpler case of a linear, homogenous system <span class="math notranslate nohighlight">\( y' = A y \)</span>, or even simpler, where we have only a constant <span class="math notranslate nohighlight">\(\lambda\)</span> multiplied by <span class="math notranslate nohighlight">\(y\)</span>. This is called a “test” equation:</p>
@@ -777,8 +777,8 @@ y^{n+1} = \left(1 + h \lambda \right)^{n+1} y^0 .
 \dot{\mathbf{y}} = A \mathbf{y}
 \]</div>
 <p>For example, a system of two first-order linear ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a753a734-e9ea-4604-9f1b-55607f9318ae">
-<span class="eqno">()<a class="headerlink" href="#equation-a753a734-e9ea-4604-9f1b-55607f9318ae" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-14ff6cb1-49c2-4c67-abd6-0b934b33d9e2">
+<span class="eqno">()<a class="headerlink" href="#equation-14ff6cb1-49c2-4c67-abd6-0b934b33d9e2" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_1' &amp;= y_2\\
 y_2' &amp;= - y_1\\
 \end{align}\]</div>

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -533,7 +533,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="Choosing the better of two Householder reflectors (Trefethen and Bau, 1999)." src="img/TB-Householder2reflectors.png" /></p>
+<p><img alt="Choosing the better of two Householder reflectors (Trefethen and Bau, 1999)." src="../_images/TB-Householder2reflectors.png" /></p>
 </section>
 <section id="recap-on-householder-qr">
 <h2>1. Recap on Householder QR<a class="headerlink" href="#recap-on-householder-qr" title="Link to this heading">#</a></h2>
@@ -800,8 +800,8 @@ norm(v) = 1.4245900685395503
 </section>
 <section id="composition-of-reflectors">
 <h2>2. Composition of reflectors<a class="headerlink" href="#composition-of-reflectors" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-09742a9b-fdd4-4fd6-8e32-d4eed56f5fed">
-<span class="eqno">()<a class="headerlink" href="#equation-09742a9b-fdd4-4fd6-8e32-d4eed56f5fed" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5b61e981-4a6d-4e15-acd9-02434c407229">
+<span class="eqno">()<a class="headerlink" href="#equation-5b61e981-4a6d-4e15-acd9-02434c407229" title="Permalink to this equation">#</a></span>\[\begin{align}
 (I - 2 v v^T) (I - 2 w w^T) &amp;= I - 2 v v^T - 2 w w^T + 4 v (v^T w) w^T \\
 &amp;= I - \Bigg[v \Bigg| w \Bigg] \begin{bmatrix} 2 &amp; -4 v^T w \\ 0 &amp; 2 \end{bmatrix} \begin{bmatrix} v^T \\ w^T \end{bmatrix}
 \end{align}\]</div>

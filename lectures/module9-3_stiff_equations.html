@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -675,15 +675,15 @@ e^A = X X^{-1} + X \Lambda X^{-1} + X \Lambda^2 X^{-1}/2 + \dots
 <ul class="simple">
 <li><p><strong>Asymptotically stable solution</strong>: <span class="math notranslate nohighlight">\(|| \hat y(t) - y(t)|| \rightarrow 0 \)</span> as <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span></p></li>
 </ul>
-<p><img alt="Asymptotically stable ODE." src="img/asymptotically_stable.png" /></p>
+<p><img alt="Asymptotically stable ODE." src="../_images/asymptotically_stable.png" /></p>
 <ul class="simple">
 <li><p><strong>Stable solution, but not asymptotically so</strong>:</p></li>
 </ul>
-<p><img alt="Stable ODE." src="img/stable.png" /></p>
+<p><img alt="Stable ODE." src="../_images/stable.png" /></p>
 <ul class="simple">
 <li><p><strong>Unstable solution</strong>:</p></li>
 </ul>
-<p><img alt="Unstable ODE." src="img/unstable.png" /></p>
+<p><img alt="Unstable ODE." src="../_images/unstable.png" /></p>
 <section id="determining-stability">
 <h4>Determining stability<a class="headerlink" href="#determining-stability" title="Link to this heading">#</a></h4>
 <p>To determine stability of an ODE, we think of the simpler case of a linear, homogenous system <span class="math notranslate nohighlight">\( y' = A y \)</span>, or even simpler, where we have only a constant <span class="math notranslate nohighlight">\(\lambda\)</span> multiplied by <span class="math notranslate nohighlight">\(y\)</span>. This is called a “test” equation:</p>
@@ -806,8 +806,8 @@ y^{n+1} = \left(1 + h \lambda \right)^{n+1} y^0 .
 \dot{\mathbf{y}} = A \mathbf{y}
 \]</div>
 <p>For example, a system of two first-order linear ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-42646786-bd30-4abf-ac3e-ef0b9e8fc2af">
-<span class="eqno">()<a class="headerlink" href="#equation-42646786-bd30-4abf-ac3e-ef0b9e8fc2af" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f4987c97-8dde-4b6b-9752-e94e03d85ff3">
+<span class="eqno">()<a class="headerlink" href="#equation-f4987c97-8dde-4b6b-9752-e94e03d85ff3" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_1' &amp;= y_2\\
 y_2' &amp;= - y_1\\
 \end{align}\]</div>
@@ -1387,7 +1387,7 @@ Evidently only <span class="math notranslate nohighlight">\(\theta=1\)</span> is
                     0.161 (x_0 - x_2)
                     \end{bmatrix} , \end{split}\]</div>
 <p>starting from the initial conditions <span class="math notranslate nohighlight">\(\mathbf x_0 = [1, 2, 3]^T\)</span>.</p>
-<p><img alt="Oregonator." src="img/oregonator.png" /></p>
+<p><img alt="Oregonator." src="../_images/oregonator.png" /></p>
 <p>For these systems, it is best to use <a class="reference external" href="https://en.wikipedia.org/wiki/Adaptive_step_size"><strong>adaptive step size</strong></a> for the time integrators or time-stepping scheme.</p>
 <ul class="simple">
 <li><p>Using an adaptive stepsize is of particular importance when there is a large variation in the size of the derivative.</p></li>

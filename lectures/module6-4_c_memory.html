@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -578,7 +578,7 @@ In<span class="w"> </span>the<span class="w"> </span>caller:
 <li><p><strong>stack</strong>: local variable storage (automatic, continuous memory).</p></li>
 <li><p><strong>heap</strong>: dynamic storage (large pool of memory, not allocated in contiguous order. Can be fragmented).</p></li>
 </ul>
-<p><img alt="" src="img/c_stack_memory.jpg" /></p>
+<p><img alt="" src="../_images/c_stack_memory.jpg" /></p>
 <section id="static-memory">
 <h3>Static memory<a class="headerlink" href="#static-memory" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -651,7 +651,7 @@ heap<span class="w"> </span>memory:<span class="w"> </span>m
 </pre></div>
 </div>
 <p>The variable <code class="docutils literal notranslate"><span class="pre">x</span></code> is <em>static</em> storage, because of its global nature. Both <code class="docutils literal notranslate"><span class="pre">y</span></code> and <code class="docutils literal notranslate"><span class="pre">str</span></code> are dynamic <em>stack</em> storage which is deallocated when the program ends. The function <code class="docutils literal notranslate"><span class="pre">malloc()</span></code> is used to allocate 100 pieces of of dynamic <em>heap</em> storage, each the size of char, to <code class="docutils literal notranslate"><span class="pre">str</span></code>. Conversely, the function <code class="docutils literal notranslate"><span class="pre">free()</span></code>, deallocates the memory associated with <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
-<p><img alt="" src="img/c_stack_memory_example.jpg" /></p>
+<p><img alt="" src="../_images/c_stack_memory_example.jpg" /></p>
 </section>
 <section id="reading-exercise">
 <h3>Reading exercise<a class="headerlink" href="#reading-exercise" title="Link to this heading">#</a></h3>

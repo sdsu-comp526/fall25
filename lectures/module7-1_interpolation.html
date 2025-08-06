@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -189,10 +189,7 @@
 
 
 <li class="toctree-l2"><a class="reference internal" href="module1-2_linux.html">2) The Linux Filesystem and commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="module1-3_functions_and_fpa.html">3) Functions</a></li>
-
-
-
+<li class="toctree-l2"><a class="reference internal" href="module2-1_intro_to_fortran.html">23) Introduction to Fortran</a></li>
 </ul>
 </details></li>
 </ul>
@@ -590,8 +587,8 @@ document.write(`
 \begin{bmatrix} y_0 \\ y_1 \\ \vdots \\ y_n \end{bmatrix}
 \end{split}\]</div>
 <p>which is the matrix form of the system of equations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cb51acb1-dd6e-4648-862b-f44e421b9676">
-<span class="eqno">()<a class="headerlink" href="#equation-cb51acb1-dd6e-4648-862b-f44e421b9676" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-aeb437dd-0e4e-454c-8cc3-e648bd642144">
+<span class="eqno">()<a class="headerlink" href="#equation-aeb437dd-0e4e-454c-8cc3-e648bd642144" title="Permalink to this equation">#</a></span>\[\begin{align}
 p(x_0) &amp;= a_0 + a_1 x_0 + a_2 x_0^2 + \ldots + a_n x_0^m = y_0\\
 p(x_1) &amp;= a_0 + a_1 x_1 + a_2 x_1^2 + \ldots + a_n x_1^m = y_1\\
 p(x_2) &amp;= a_0 + a_1 x_2 + a_2 x_2^2 + \ldots + a_n x_2^m = y_2\\ 
@@ -671,8 +668,8 @@ l_i(x)= \frac{(x-x_0)(x-x_1) \cdots (x-x_{i-1})(x-x_{i+1}) \cdots (x-x_m)}{(x_i-
 <section id="example">
 <h3>Example:<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
 <p>Find an interpolating polynomial for the data points <span class="math notranslate nohighlight">\((0, 1)\)</span>, <span class="math notranslate nohighlight">\((2, 2)\)</span>, and <span class="math notranslate nohighlight">\((3, 4)\)</span>. Substituting into Lagrange’s formula yields:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bfd7c2fa-4857-4b7a-a705-1c1ec113fdad">
-<span class="eqno">()<a class="headerlink" href="#equation-bfd7c2fa-4857-4b7a-a705-1c1ec113fdad" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c7c13ec0-a38c-4344-b81b-4ac2d7f5c18c">
+<span class="eqno">()<a class="headerlink" href="#equation-c7c13ec0-a38c-4344-b81b-4ac2d7f5c18c" title="Permalink to this equation">#</a></span>\[\begin{align}
 p_2(x) =&amp; 1 \frac{(x-2)(x-3)}{(0-2)(0-3)} +2 \frac{(x-0)(x-3)}{(2-0)(2-3)} +4\frac{(x-0)(x-2)}{(3-0)(3-2)} = \\
        =&amp; \frac{1}{6}(x^2 - 5x +6) +2\left(-\frac{1}{2} \right)(x^2 - 3x) +4\left( \frac{1}{3} \right) (x^2 -2x) = \\
        =&amp; \frac{x^2}{2} - \frac{x}{2} +1.
