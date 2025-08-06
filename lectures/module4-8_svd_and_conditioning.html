@@ -1,0 +1,1255 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>20) SVD Geometry &#8212; Computational Methods for Scientists</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/module4-8_svd_and_conditioning';</script>
+    <link rel="icon" href="../_static/SDSU-comp526_logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures.html">Lectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="module1-1_first_class.html">1) First Class: Reproducibility and Git</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="module1-2_linux.html">2) The Linux Filesystem and commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-3_functions_and_fpa.html">3) Functions</a></li>
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25/issues/new?title=Issue%20on%20page%20%2Flectures/module4-8_svd_and_conditioning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/module4-8_svd_and_conditioning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>20) SVD Geometry</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-on-matrix-norm-and-condition-number">1. Recap on matrix norm and condition number</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-norms-induced-by-vector-norms">Matrix norms induced by vector norms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condition-number-via-svd">2. Condition number via SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-conditioning-and-singular-values">2.1 Relationship between conditioning and singular values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition-for-solving-systems">3. Singular Value Decomposition for solving systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#costs-of-decompositions-seen">4. Costs of decompositions seen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-gram-schmidt">4.1 Cost of Gram-Schmidt?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-flops-is-a-bad-model">Counting flops is a bad model</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-matrix-matrix-mulitply-libraries">Dense matrix-matrix mulitply libraries</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-qr-by-householder">4.2 Cost of QR (by Householder)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-cholesky">4.3 Cost of Cholesky</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-svd">4.4 Cost of SVD</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#svd-gives-the-unique-minimum-norm-solution-when-a-is-rank-deficient">SVD gives the unique minimum norm solution when <span class="math notranslate nohighlight">\(A\)</span> is rank deficient</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observation">Observation:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-video-to-watch-at-home">Recommended video to watch at home:</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="svd-geometry">
+<h1>20) SVD Geometry<a class="headerlink" href="#svd-geometry" title="Link to this heading">#</a></h1>
+<section id="last-time">
+<h2>Last time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Condition number of a matrix</p></li>
+<li><p>Least squares and normal equations</p></li>
+<li><p>Intro to SVD</p></li>
+<li><p>Geometry of the Singular Value Decomposition</p></li>
+</ul>
+</section>
+<section id="today">
+<h2>Today<a class="headerlink" href="#today" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Recap on matrix norm and condition number</p></li>
+<li><p>Condition number via SVD<br />
+2.1. Relationship between conditioning and singular values</p></li>
+<li><p>Singular Value Decomposition for solving systems</p></li>
+<li><p>Costs of decompositions seen</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
+<span class="n">default</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">legendfontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">isnothing</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="w">        </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">k</span>
+<span class="w">        </span><span class="n">V</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">x</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">V</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">gram_schmidt_naive</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">            </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span>
+<span class="w">            </span><span class="n">v</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span>
+<span class="w">            </span><span class="n">R</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">gram_schmidt_classical</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">qr_householder</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="c"># list of reflectors</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">])</span>
+<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sign</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="c"># &lt;--- here we pick the sign of v so that moves it the largest distance</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normalize</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">]</span>
+<span class="w">        </span><span class="n">push!</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">qr_chol</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cholesky</span><span class="p">(</span><span class="n">A</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">U</span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">R</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">qr_chol2</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr_chol</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr_chol</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qr_chol2 (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recap-on-matrix-norm-and-condition-number">
+<h2>1. Recap on matrix norm and condition number<a class="headerlink" href="#recap-on-matrix-norm-and-condition-number" title="Link to this heading">#</a></h2>
+<p>The condition number of matrix-vector multiplication depends on the vector.  The condition number of the matrix is the worst case (maximum) of the condition number for any vector, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[ \kappa(A) = \max_{x \ne 0} \lVert A \rVert \frac{\lVert x \rVert}{\lVert A x \rVert} .\]</div>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> is <em>invertible</em>, then we can rephrase as</p>
+<div class="math notranslate nohighlight">
+\[ \kappa(A) = \max_{x \ne 0} \lVert A \rVert \frac{\lVert A^{-1} (A x) \rVert}{\lVert A x \rVert} =
+\max_{A x \ne 0} \lVert A \rVert \frac{\lVert A^{-1} (A x) \rVert}{\lVert A x \rVert} = \lVert A \rVert \lVert A^{-1} \rVert . \]</div>
+<p>Evidently multiplying by a matrix is just as ill-conditioned of an operation as solving a linear system using that matrix.</p>
+<section id="matrix-norms-induced-by-vector-norms">
+<h3>Matrix norms induced by vector norms<a class="headerlink" href="#matrix-norms-induced-by-vector-norms" title="Link to this heading">#</a></h3>
+<p>Recall</p>
+<div class="math notranslate nohighlight">
+\[ \lVert A \rVert = \max_{\lVert x \rVert = 1} \lVert A x \rVert . \]</div>
+</section>
+</section>
+<section id="condition-number-via-svd">
+<h2>2. Condition number via SVD<a class="headerlink" href="#condition-number-via-svd" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ \kappa(A) = \lVert A \rVert \ \lVert A^{-1} \rVert \]</div>
+<p>Or, in terms of the SVD</p>
+<div class="math notranslate nohighlight">
+\[ U \Sigma V^T = \texttt{svd}(A) \]</div>
+<p>where
+<div class="math notranslate nohighlight">
+\[\begin{split} \Sigma = \begin{bmatrix} \sigma_{\max} &amp;&amp; \\ &amp; \ddots &amp; \\ &amp;&amp; \sigma_{\min} \end{bmatrix}, \end{split}\]</div>
+</p>
+<p>where, <span class="math notranslate nohighlight">\((\sigma_{1}, \sigma_{2}, \ldots)\)</span> are the non-negative real numbers called <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value"><strong>singular values</strong></a> of <span class="math notranslate nohighlight">\(A\)</span> (usually listed in decreasing order).</p>
+<p>We have that the matrix condition number is given by:</p>
+<div class="math notranslate nohighlight">
+\[ \kappa(A) = \frac{\sigma_{\max}}{\sigma_{\min}} = \texttt{cond}(A) \]</div>
+</section>
+<section id="relationship-between-conditioning-and-singular-values">
+<h2>2.1 Relationship between conditioning and singular values<a class="headerlink" href="#relationship-between-conditioning-and-singular-values" title="Link to this heading">#</a></h2>
+<p>What makes a matrix ill-conditioned?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="mf">.9</span><span class="w"> </span><span class="mf">.5</span><span class="p">]</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">svdvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="c"># Julia built-in that returns singular values in decreasing order</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cond(A) = 252.116033572376
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-element Vector{Float64}:
+ 11.22755613596245
+  0.0445332888070338
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are two orders of magnitude difference between <span class="math notranslate nohighlight">\(\sigma_{\textrm{max}}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{\textrm{min}}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">svdvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cond(A) = 7.206778416853811e6
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20-element Vector{Float64}:
+ 11.510601491136654
+  8.993572449917352
+  5.907360126610745
+  3.6029154831946064
+  1.9769729310318853
+  1.098310376576986
+  0.5392322016751737
+  0.2820042230178553
+  0.12425066006852684
+  0.06183086124622112
+  0.024242929146349384
+  0.011556331531623212
+  0.003964435582121844
+  0.0018189836735690052
+  0.0005298822985647027
+  0.00023487660987952337
+  5.4870893944525604e-5
+  2.3566694052620285e-5
+  3.8286365250847765e-6
+  1.597190981232044e-6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Six orders of magnitude here!</p>
+<p>Since
+<div class="math notranslate nohighlight">
+\[ \kappa(A) = \frac{\sigma_{\max}}{\sigma_{\min}} = \texttt{cond}(A) \]</div>
+</p>
+<p>we can see how the larger the ratio between the largest and the smallest singular values is, the larger the condition number of a matrix is (hence, the more it is ill-conditioned).</p>
+</section>
+<section id="singular-value-decomposition-for-solving-systems">
+<h2>3. Singular Value Decomposition for solving systems<a class="headerlink" href="#singular-value-decomposition-for-solving-systems" title="Link to this heading">#</a></h2>
+<p>Recall <div class="math notranslate nohighlight">
+\[ U \Sigma V^T = A \]</div>
+
+where <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> have orthonormal columns and <span class="math notranslate nohighlight">\(\Sigma\)</span> is diagonal with nonnegative entries.</p>
+<p>The entries of <span class="math notranslate nohighlight">\(\Sigma\)</span> are called <strong>singular values</strong> and this decomposition is the <strong>singular value decomposition</strong> (SVD).
+It may remind you of an eigenvalue decomposition <span class="math notranslate nohighlight">\(X \Lambda X^{-1} = A\)</span>, but</p>
+<ul class="simple">
+<li><p>the SVD exists for all matrices (including non-square and deficient matrices)</p></li>
+<li><p><span class="math notranslate nohighlight">\(U,V\)</span> have orthogonal columns (while <span class="math notranslate nohighlight">\(X\)</span> can be arbitrarily ill-conditioned).</p></li>
+<li><p>Indeed, if a matrix is symmetric and positive definite (all positive eigenvalues), then <span class="math notranslate nohighlight">\(U=V\)</span> and <span class="math notranslate nohighlight">\(\Sigma = \Lambda\)</span>.</p></li>
+<li><p>Once you have the SVD decomposition of a matrix <span class="math notranslate nohighlight">\(A\)</span>, you can solve the linear system <span class="math notranslate nohighlight">\(Ax=b\)</span> pretty efficiently (more ont this in a bit).</p></li>
+</ul>
+</section>
+<section id="costs-of-decompositions-seen">
+<h2>4. Costs of decompositions seen<a class="headerlink" href="#costs-of-decompositions-seen" title="Link to this heading">#</a></h2>
+<p>Although I mentioned already in class that counting flops is a bad model for modern high-performance computing, it is not the focus of this course to go too much in depth in the performance models for modern architectures. Let’s review the costs in the classical sense of algorithm complexity (i.e., depending on problem size)</p>
+<p>Recall that we’d say an algorithm costs <span class="math notranslate nohighlight">\(O(n^2)\)</span> if its running time on input of size <span class="math notranslate nohighlight">\(n\)</span> is less than <span class="math notranslate nohighlight">\(c n^2\)</span> for some constant <span class="math notranslate nohighlight">\(c\)</span> and sufficiently large <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Sometimes we write <span class="math notranslate nohighlight">\(\operatorname{cost}(\texttt{algorithm}, n) = O(n^2)\)</span> or (preferably) <span class="math notranslate nohighlight">\(\operatorname{cost}(\texttt{algorithm}) \in O(n^2)\)</span>.</p>
+<p>Note that <span class="math notranslate nohighlight">\(O(\log n) \subset O(n) \subset O(n\log n) \subset O(n^2) \subset \dotsb\)</span>.</p>
+<p>We say the algorithm is in <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span> (“big theta”) if
+<div class="math notranslate nohighlight">
+\[ c_1 n^2 &lt; \operatorname{cost}(\texttt{algorithm}) &lt; c_2 n^2 \]</div>
+
+for some positive constants <span class="math notranslate nohighlight">\(c_1,c_2\)</span> and sufficiently large <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<section id="cost-of-gram-schmidt">
+<h3>4.1 Cost of Gram-Schmidt?<a class="headerlink" href="#cost-of-gram-schmidt" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We’ll count flops (addition, multiplication, division*)</p></li>
+<li><p>*division is special. Since most processors can do an addition, comparison, or multiplication in a single cycle, those are all counted as one flop. But division always takes longer. How much longer depends on the processor. (Also division can be performed as multiplication by the inverse).</p></li>
+<li><p>Inner product <span class="math notranslate nohighlight">\(\sum_{i=1}^m x_i y_i\)</span>?</p></li>
+<li><p>Vector “axpy”: <span class="math notranslate nohighlight">\(y_i = a x_i + y_i\)</span>, <span class="math notranslate nohighlight">\(i \in [1, 2, \dotsc, m]\)</span>.</p></li>
+<li><p>In the function <code class="docutils literal notranslate"><span class="pre">gram_schmidt_naive</span></code>, let’s look at the inner loop:</p></li>
+</ul>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span>
+<span class="w">    </span><span class="n">v</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span>
+<span class="w">    </span><span class="n">R</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<section id="counting-flops-is-a-bad-model">
+<h4>Counting flops is a bad model<a class="headerlink" href="#counting-flops-is-a-bad-model" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>We load a single entry (8 bytes) and do 2 flops (add + multiply). That’s an <strong>arithmetic intensity</strong> of 0.25 flops/byte.</p></li>
+<li><p>Current hardware can do about 10 flops per byte, so our best algorithms will run at about 2% efficiency.</p></li>
+<li><p>Need to focus on <strong>memory bandwidth</strong>, not flops.</p></li>
+</ul>
+</section>
+<section id="dense-matrix-matrix-mulitply-libraries">
+<h4>Dense matrix-matrix mulitply libraries<a class="headerlink" href="#dense-matrix-matrix-mulitply-libraries" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/flame/blis/">BLIS project</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.utexas.edu/users/flame/pubs/TOMS-BLIS-Analytical.pdf">Analytic modeling</a></p></li>
+</ul>
+</section>
+</section>
+<section id="cost-of-qr-by-householder">
+<h3>4.2 Cost of QR (by Householder)<a class="headerlink" href="#cost-of-qr-by-householder" title="Link to this heading">#</a></h3>
+<p>Solve <span class="math notranslate nohighlight">\(R x = Q^T b\)</span>.</p>
+<ul class="simple">
+<li><p>QR factorization costs <span class="math notranslate nohighlight">\(2 m n^2 - \frac 2 3 n^3\)</span> operations and is done once per matrix <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>Computing <span class="math notranslate nohighlight">\(Q^T b\)</span> costs <span class="math notranslate nohighlight">\(4 (m-n)n + 2 n^2 = 4 mn - 2n^2\)</span> (using the elementary reflectors, which are stable and lower storage than naive storage of <span class="math notranslate nohighlight">\(Q\)</span>).</p></li>
+<li><p>Solving with <span class="math notranslate nohighlight">\(R\)</span> costs <span class="math notranslate nohighlight">\(n^2\)</span> operations.</p></li>
+<li><p>Total cost per right hand side is thus <span class="math notranslate nohighlight">\(4 m n - n^2\)</span>.</p></li>
+</ul>
+<p>This method is stable and accurate.</p>
+</section>
+<section id="cost-of-cholesky">
+<h3>4.3 Cost of Cholesky<a class="headerlink" href="#cost-of-cholesky" title="Link to this heading">#</a></h3>
+<p>The mathematically equivalent form <span class="math notranslate nohighlight">\((A^T A) x = A^T b\)</span> are called the <strong>normal equations</strong>.  The solution process involves factoring the symmetric and positive definite <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(A^T A\)</span>.</p>
+<ul class="simple">
+<li><p>Computing <span class="math notranslate nohighlight">\(A^T A\)</span> costs <span class="math notranslate nohighlight">\(m n^2\)</span> flops, exploiting symmetry.</p></li>
+<li><p>Factoring <span class="math notranslate nohighlight">\(A^T A = R^T R\)</span> costs <span class="math notranslate nohighlight">\(\frac 1 3 n^3\)</span> flops.  The total factorization cost is thus <span class="math notranslate nohighlight">\(m n^2 + \frac 1 3 n^3\)</span>.</p></li>
+<li><p>Computing <span class="math notranslate nohighlight">\(A^T b\)</span> costs <span class="math notranslate nohighlight">\(2 m n\)</span>.</p></li>
+<li><p>Solving with <span class="math notranslate nohighlight">\(R^T\)</span> costs <span class="math notranslate nohighlight">\(n^2\)</span>.</p></li>
+<li><p>Solving with <span class="math notranslate nohighlight">\(R\)</span> costs <span class="math notranslate nohighlight">\(n^2\)</span>.</p></li>
+<li><p>Total cost per right hand side is thus <span class="math notranslate nohighlight">\(2 m n + 2 n^2\)</span>.</p></li>
+</ul>
+<p>The product <span class="math notranslate nohighlight">\(A^T A\)</span> is ill-conditioned: <span class="math notranslate nohighlight">\(\kappa(A^T A) = \kappa(A)^2\)</span> and can reduce the accuracy of a least squares solution.</p>
+</section>
+<section id="cost-of-svd">
+<h3>4.4 Cost of SVD<a class="headerlink" href="#cost-of-svd" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We saw that the SVD exists for all matrices (including non-square and deficient matrices)</p></li>
+<li><p><span class="math notranslate nohighlight">\(U,V\)</span> have orthogonal columns (while <span class="math notranslate nohighlight">\(X\)</span> can be arbitrarily ill-conditioned).</p></li>
+<li><p>Indeed, if a matrix is symmetric and positive definite (all positive eigenvalues), then <span class="math notranslate nohighlight">\(U=V\)</span> and <span class="math notranslate nohighlight">\(\Sigma = \Lambda\)</span>.</p></li>
+</ul>
+<p>Computing an SVD requires a somewhat complicated iterative algorithm, but a crude estimate of the cost is <span class="math notranslate nohighlight">\(2 m n^2 + 11 n^3\)</span>.  Note that this is similar to the cost of <span class="math notranslate nohighlight">\(QR\)</span> when <span class="math notranslate nohighlight">\(m \gg n\)</span>, but much more expensive for square matrices.</p>
+<p>Once you have the SVD decomposition of an <span class="math notranslate nohighlight">\(n \times n\)</span> square matrix <span class="math notranslate nohighlight">\(A\)</span>, then you can solve the linear system: <span class="math notranslate nohighlight">\(Ax=b\)</span>, which becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+(U \Sigma V^T)x = b
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x = (U \Sigma V^T)^{-1} b 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x = V \Sigma^{-1} U^T b 
+\]</div>
+<p>(since if <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> square matrix, then <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are orthogonal). Solving it with the SVD then involves:</p>
+<ul class="simple">
+<li><p>Compute <span class="math notranslate nohighlight">\(U^T b\)</span> at a cost of <span class="math notranslate nohighlight">\(2 m n\)</span>.</p></li>
+<li><p>Solve with the diagonal <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> at a cost of <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+<li><p>Apply <span class="math notranslate nohighlight">\(V\)</span> at a cost of <span class="math notranslate nohighlight">\(2 n^2\)</span>.</p></li>
+<li><p>The total cost per right hand side is thus <span class="math notranslate nohighlight">\(2 m n + n + 2n^2\)</span> (not bad at all).</p></li>
+</ul>
+<section id="svd-gives-the-unique-minimum-norm-solution-when-a-is-rank-deficient">
+<h4>SVD gives the unique minimum norm solution when <span class="math notranslate nohighlight">\(A\)</span> is rank deficient<a class="headerlink" href="#svd-gives-the-unique-minimum-norm-solution-when-a-is-rank-deficient" title="Link to this heading">#</a></h4>
+</section>
+<section id="observation">
+<h4>Observation:<a class="headerlink" href="#observation" title="Link to this heading">#</a></h4>
+<p>Orthogonal transformations don’t affect singular values (or conditioning).</p>
+<p>Recall the “Geometry of the Singular Value Decomposition” activity</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">default</span><span class="p">(</span><span class="n">aspect_ratio</span><span class="o">=</span><span class="ss">:equal</span><span class="p">)</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">peanut</span><span class="p">()</span>
+<span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="mf">.4</span><span class="o">*</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">.6</span><span class="o">*</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span>
+<span class="w">    </span><span class="n">r</span><span class="o">&#39;</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="p">[</span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)]</span><span class="o">&#39;</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">circle</span><span class="p">()</span>
+<span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="w">    </span><span class="p">[</span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)]</span><span class="o">&#39;</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">Aplot</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="s">&quot;Plot a transformation from X to Y, first applied to a peanut shape and then to a circle&quot;</span>
+<span class="w">    </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">peanut</span><span class="p">()</span>
+<span class="w">    </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;in&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">scatter!</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;out&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circle</span><span class="p">()</span>
+<span class="w">    </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span>
+<span class="w">    </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;in&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">scatter!</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;out&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Aplot (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">svd</span><span class="p">(</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">S</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">S</span><span class="p">[</span><span class="k">end</span><span class="p">]</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">diagm</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="w"> </span><span class="c"># create diagonal matrix with S values</span>
+<span class="n">Aplot</span><span class="p">(</span><span class="n">diagm</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S = [0.8416242567951701, 0.6149868014207185]
+S[1] / S[end] = 1.3685240965348893
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>diagm(S) = [0.8416242567951701 0.0; 0.0 0.6149868014207185]
+</pre></div>
+</div>
+<div class="output text_html"><?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 2400 1600">
+<defs>
+  <clipPath id="clip640">
+    <rect x="0" y="0" width="2400" height="1600"/>
+  </clipPath>
+</defs>
+<path clip-path="url(#clip640)" d="M0 1600 L2400 1600 L2400 0 L0 0  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
+<defs>
+  <clipPath id="clip641">
+    <rect x="480" y="0" width="1681" height="1600"/>
+  </clipPath>
+</defs>
+<path clip-path="url(#clip640)" d="M147.478 1486.45 L1129.53 1486.45 L1129.53 47.2441 L147.478 47.2441  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
+<defs>
+  <clipPath id="clip642">
+    <rect x="147" y="47" width="983" height="1440"/>
+  </clipPath>
+</defs>
+<polyline clip-path="url(#clip642)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="174.649,1486.45 174.649,47.2441 "/>
+<polyline clip-path="url(#clip642)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="348.473,1486.45 348.473,47.2441 "/>
+<polyline clip-path="url(#clip642)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="522.297,1486.45 522.297,47.2441 "/>
+<polyline clip-path="url(#clip642)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="696.122,1486.45 696.122,47.2441 "/>
+<polyline clip-path="url(#clip642)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="869.946,1486.45 869.946,47.2441 "/>
+<polyline clip-path="url(#clip642)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1043.77,1486.45 1043.77,47.2441 "/>
+<polyline clip-path="url(#clip642)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="147.478,1434.55 1129.53,1434.55 "/>
+<polyline clip-path="url(#clip642)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="147.478,1086.9 1129.53,1086.9 "/>
+<polyline clip-path="url(#clip642)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="147.478,739.249 1129.53,739.249 "/>
+<polyline clip-path="url(#clip642)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="147.478,391.6 1129.53,391.6 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="147.478,1486.45 1129.53,1486.45 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="174.649,1486.45 174.649,1467.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="348.473,1486.45 348.473,1467.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="522.297,1486.45 522.297,1467.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="696.122,1486.45 696.122,1467.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="869.946,1486.45 869.946,1467.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1043.77,1486.45 1043.77,1467.55 "/>
+<path clip-path="url(#clip640)" d="M121.177 1532.02 L150.852 1532.02 L150.852 1535.95 L121.177 1535.95 L121.177 1532.02 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M161.755 1544.91 L169.394 1544.91 L169.394 1518.55 L161.084 1520.21 L161.084 1515.95 L169.348 1514.29 L174.024 1514.29 L174.024 1544.91 L181.663 1544.91 L181.663 1548.85 L161.755 1548.85 L161.755 1544.91 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M191.107 1542.97 L195.991 1542.97 L195.991 1548.85 L191.107 1548.85 L191.107 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M216.176 1517.37 Q212.565 1517.37 210.736 1520.93 Q208.931 1524.47 208.931 1531.6 Q208.931 1538.71 210.736 1542.27 Q212.565 1545.82 216.176 1545.82 Q219.81 1545.82 221.616 1542.27 Q223.445 1538.71 223.445 1531.6 Q223.445 1524.47 221.616 1520.93 Q219.81 1517.37 216.176 1517.37 M216.176 1513.66 Q221.986 1513.66 225.042 1518.27 Q228.121 1522.85 228.121 1531.6 Q228.121 1540.33 225.042 1544.94 Q221.986 1549.52 216.176 1549.52 Q210.366 1549.52 207.287 1544.94 Q204.232 1540.33 204.232 1531.6 Q204.232 1522.85 207.287 1518.27 Q210.366 1513.66 216.176 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M295.499 1532.02 L325.174 1532.02 L325.174 1535.95 L295.499 1535.95 L295.499 1532.02 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M345.267 1517.37 Q341.656 1517.37 339.827 1520.93 Q338.022 1524.47 338.022 1531.6 Q338.022 1538.71 339.827 1542.27 Q341.656 1545.82 345.267 1545.82 Q348.901 1545.82 350.707 1542.27 Q352.535 1538.71 352.535 1531.6 Q352.535 1524.47 350.707 1520.93 Q348.901 1517.37 345.267 1517.37 M345.267 1513.66 Q351.077 1513.66 354.133 1518.27 Q357.211 1522.85 357.211 1531.6 Q357.211 1540.33 354.133 1544.94 Q351.077 1549.52 345.267 1549.52 Q339.457 1549.52 336.378 1544.94 Q333.323 1540.33 333.323 1531.6 Q333.323 1522.85 336.378 1518.27 Q339.457 1513.66 345.267 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M365.429 1542.97 L370.313 1542.97 L370.313 1548.85 L365.429 1548.85 L365.429 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M380.545 1514.29 L398.901 1514.29 L398.901 1518.22 L384.827 1518.22 L384.827 1526.7 Q385.845 1526.35 386.864 1526.19 Q387.882 1526 388.901 1526 Q394.688 1526 398.068 1529.17 Q401.447 1532.34 401.447 1537.76 Q401.447 1543.34 397.975 1546.44 Q394.503 1549.52 388.183 1549.52 Q386.007 1549.52 383.739 1549.15 Q381.494 1548.78 379.086 1548.04 L379.086 1543.34 Q381.17 1544.47 383.392 1545.03 Q385.614 1545.58 388.091 1545.58 Q392.095 1545.58 394.433 1543.48 Q396.771 1541.37 396.771 1537.76 Q396.771 1534.15 394.433 1532.04 Q392.095 1529.94 388.091 1529.94 Q386.216 1529.94 384.341 1530.35 Q382.489 1530.77 380.545 1531.65 L380.545 1514.29 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M499.682 1517.37 Q496.071 1517.37 494.242 1520.93 Q492.436 1524.47 492.436 1531.6 Q492.436 1538.71 494.242 1542.27 Q496.071 1545.82 499.682 1545.82 Q503.316 1545.82 505.121 1542.27 Q506.95 1538.71 506.95 1531.6 Q506.95 1524.47 505.121 1520.93 Q503.316 1517.37 499.682 1517.37 M499.682 1513.66 Q505.492 1513.66 508.547 1518.27 Q511.626 1522.85 511.626 1531.6 Q511.626 1540.33 508.547 1544.94 Q505.492 1549.52 499.682 1549.52 Q493.871 1549.52 490.793 1544.94 Q487.737 1540.33 487.737 1531.6 Q487.737 1522.85 490.793 1518.27 Q493.871 1513.66 499.682 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M519.844 1542.97 L524.728 1542.97 L524.728 1548.85 L519.844 1548.85 L519.844 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M544.913 1517.37 Q541.302 1517.37 539.473 1520.93 Q537.668 1524.47 537.668 1531.6 Q537.668 1538.71 539.473 1542.27 Q541.302 1545.82 544.913 1545.82 Q548.547 1545.82 550.353 1542.27 Q552.181 1538.71 552.181 1531.6 Q552.181 1524.47 550.353 1520.93 Q548.547 1517.37 544.913 1517.37 M544.913 1513.66 Q550.723 1513.66 553.779 1518.27 Q556.857 1522.85 556.857 1531.6 Q556.857 1540.33 553.779 1544.94 Q550.723 1549.52 544.913 1549.52 Q539.103 1549.52 536.024 1544.94 Q532.969 1540.33 532.969 1531.6 Q532.969 1522.85 536.024 1518.27 Q539.103 1513.66 544.913 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M674.004 1517.37 Q670.393 1517.37 668.564 1520.93 Q666.758 1524.47 666.758 1531.6 Q666.758 1538.71 668.564 1542.27 Q670.393 1545.82 674.004 1545.82 Q677.638 1545.82 679.443 1542.27 Q681.272 1538.71 681.272 1531.6 Q681.272 1524.47 679.443 1520.93 Q677.638 1517.37 674.004 1517.37 M674.004 1513.66 Q679.814 1513.66 682.869 1518.27 Q685.948 1522.85 685.948 1531.6 Q685.948 1540.33 682.869 1544.94 Q679.814 1549.52 674.004 1549.52 Q668.193 1549.52 665.115 1544.94 Q662.059 1540.33 662.059 1531.6 Q662.059 1522.85 665.115 1518.27 Q668.193 1513.66 674.004 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M694.166 1542.97 L699.05 1542.97 L699.05 1548.85 L694.166 1548.85 L694.166 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M709.281 1514.29 L727.638 1514.29 L727.638 1518.22 L713.564 1518.22 L713.564 1526.7 Q714.582 1526.35 715.601 1526.19 Q716.619 1526 717.638 1526 Q723.425 1526 726.804 1529.17 Q730.184 1532.34 730.184 1537.76 Q730.184 1543.34 726.712 1546.44 Q723.239 1549.52 716.92 1549.52 Q714.744 1549.52 712.476 1549.15 Q710.23 1548.78 707.823 1548.04 L707.823 1543.34 Q709.906 1544.47 712.128 1545.03 Q714.351 1545.58 716.827 1545.58 Q720.832 1545.58 723.17 1543.48 Q725.508 1541.37 725.508 1537.76 Q725.508 1534.15 723.17 1532.04 Q720.832 1529.94 716.827 1529.94 Q714.952 1529.94 713.078 1530.35 Q711.226 1530.77 709.281 1531.65 L709.281 1514.29 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M837.099 1544.91 L844.738 1544.91 L844.738 1518.55 L836.428 1520.21 L836.428 1515.95 L844.691 1514.29 L849.367 1514.29 L849.367 1544.91 L857.006 1544.91 L857.006 1548.85 L837.099 1548.85 L837.099 1544.91 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M866.451 1542.97 L871.335 1542.97 L871.335 1548.85 L866.451 1548.85 L866.451 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M891.52 1517.37 Q887.909 1517.37 886.08 1520.93 Q884.275 1524.47 884.275 1531.6 Q884.275 1538.71 886.08 1542.27 Q887.909 1545.82 891.52 1545.82 Q895.154 1545.82 896.96 1542.27 Q898.788 1538.71 898.788 1531.6 Q898.788 1524.47 896.96 1520.93 Q895.154 1517.37 891.52 1517.37 M891.52 1513.66 Q897.33 1513.66 900.386 1518.27 Q903.464 1522.85 903.464 1531.6 Q903.464 1540.33 900.386 1544.94 Q897.33 1549.52 891.52 1549.52 Q885.71 1549.52 882.631 1544.94 Q879.575 1540.33 879.575 1531.6 Q879.575 1522.85 882.631 1518.27 Q885.71 1513.66 891.52 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1011.42 1544.91 L1019.06 1544.91 L1019.06 1518.55 L1010.75 1520.21 L1010.75 1515.95 L1019.01 1514.29 L1023.69 1514.29 L1023.69 1544.91 L1031.33 1544.91 L1031.33 1548.85 L1011.42 1548.85 L1011.42 1544.91 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1040.77 1542.97 L1045.66 1542.97 L1045.66 1548.85 L1040.77 1548.85 L1040.77 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1055.89 1514.29 L1074.24 1514.29 L1074.24 1518.22 L1060.17 1518.22 L1060.17 1526.7 Q1061.19 1526.35 1062.21 1526.19 Q1063.23 1526 1064.24 1526 Q1070.03 1526 1073.41 1529.17 Q1076.79 1532.34 1076.79 1537.76 Q1076.79 1543.34 1073.32 1546.44 Q1069.85 1549.52 1063.53 1549.52 Q1061.35 1549.52 1059.08 1549.15 Q1056.84 1548.78 1054.43 1548.04 L1054.43 1543.34 Q1056.51 1544.47 1058.74 1545.03 Q1060.96 1545.58 1063.43 1545.58 Q1067.44 1545.58 1069.78 1543.48 Q1072.11 1541.37 1072.11 1537.76 Q1072.11 1534.15 1069.78 1532.04 Q1067.44 1529.94 1063.43 1529.94 Q1061.56 1529.94 1059.68 1530.35 Q1057.83 1530.77 1055.89 1531.65 L1055.89 1514.29 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="147.478,1486.45 147.478,47.2441 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="147.478,1434.55 166.376,1434.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="147.478,1086.9 166.376,1086.9 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="147.478,739.249 166.376,739.249 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="147.478,391.6 166.376,391.6 "/>
+<path clip-path="url(#clip640)" d="M51.3625 1435 L81.0383 1435 L81.0383 1438.93 L51.3625 1438.93 L51.3625 1435 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M95.1586 1447.89 L111.478 1447.89 L111.478 1451.83 L89.5336 1451.83 L89.5336 1447.89 Q92.1956 1445.14 96.7789 1440.51 Q101.385 1435.85 102.566 1434.51 Q104.811 1431.99 105.691 1430.25 Q106.594 1428.49 106.594 1426.8 Q106.594 1424.05 104.649 1422.31 Q102.728 1420.58 99.6261 1420.58 Q97.4271 1420.58 94.9734 1421.34 Q92.5428 1422.1 89.7651 1423.65 L89.7651 1418.93 Q92.5891 1417.8 95.0428 1417.22 Q97.4965 1416.64 99.5335 1416.64 Q104.904 1416.64 108.098 1419.33 Q111.293 1422.01 111.293 1426.5 Q111.293 1428.63 110.483 1430.55 Q109.696 1432.45 107.589 1435.04 Q107.01 1435.72 103.909 1438.93 Q100.807 1442.13 95.1586 1447.89 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M50.9921 1087.35 L80.6679 1087.35 L80.6679 1091.28 L50.9921 1091.28 L50.9921 1087.35 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M91.5706 1100.24 L99.2095 1100.24 L99.2095 1073.88 L90.8993 1075.54 L90.8993 1071.28 L99.1632 1069.62 L103.839 1069.62 L103.839 1100.24 L111.478 1100.24 L111.478 1104.18 L91.5706 1104.18 L91.5706 1100.24 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M99.5335 725.048 Q95.9224 725.048 94.0937 728.612 Q92.2882 732.154 92.2882 739.284 Q92.2882 746.39 94.0937 749.955 Q95.9224 753.497 99.5335 753.497 Q103.168 753.497 104.973 749.955 Q106.802 746.39 106.802 739.284 Q106.802 732.154 104.973 728.612 Q103.168 725.048 99.5335 725.048 M99.5335 721.344 Q105.344 721.344 108.399 725.95 Q111.478 730.534 111.478 739.284 Q111.478 748.01 108.399 752.617 Q105.344 757.2 99.5335 757.2 Q93.7234 757.2 90.6447 752.617 Q87.5892 748.01 87.5892 739.284 Q87.5892 730.534 90.6447 725.95 Q93.7234 721.344 99.5335 721.344 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M91.5706 404.945 L99.2095 404.945 L99.2095 378.58 L90.8993 380.246 L90.8993 375.987 L99.1632 374.32 L103.839 374.32 L103.839 404.945 L111.478 404.945 L111.478 408.88 L91.5706 408.88 L91.5706 404.945 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><circle clip-path="url(#clip642)" cx="869.946" cy="739.249" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="971.323" cy="681.353" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="1051.16" cy="600.564" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="1096.91" cy="506.614" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="1101.73" cy="412.917" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="1065.75" cy="333.659" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="995.742" cy="280.743" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="903.464" cy="261.281" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="803.003" cy="276.195" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="707.787" cy="320.225" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="627.942" cy="383.296" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="568.595" cy="452.881" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="529.432" cy="516.767" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="505.545" cy="565.592" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="489.27" cy="594.546" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="472.497" cy="603.925" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="448.852" cy="598.468" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="415.216" cy="585.739" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="372.242" cy="574.022" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="323.827" cy="570.289" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="275.741" cy="578.759" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="233.861" cy="600.345" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="202.521" cy="633.076" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="183.43" cy="673.254" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="175.454" cy="716.981" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="175.272" cy="761.529" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="178.689" cy="806.167" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="182.198" cy="852.17" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="184.292" cy="902.024" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="186.133" cy="958.067" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="191.336" cy="1021" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="204.903" cy="1088.73" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="231.588" cy="1156" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="274.141" cy="1214.92" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="331.966" cy="1256.44" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="400.607" cy="1272.41" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="472.285" cy="1257.68" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="537.448" cy="1211.71" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="586.969" cy="1139.27" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="614.484" cy="1049.86" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="618.253" cy="956.014" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="602.028" cy="870.773" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="574.641" cy="804.886" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="548.319" cy="764.449" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="536.064" cy="749.523" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="548.687" cy="754.111" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="592.167" cy="767.536" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="665.988" cy="776.929" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="762.86" cy="770.266" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="869.946" cy="739.249" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="814.887" cy="739.249" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="900.208" cy="703.644" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="967.404" cy="653.959" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="1005.91" cy="596.182" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="1009.96" cy="538.559" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="979.681" cy="489.816" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="920.76" cy="457.274" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="843.096" cy="445.305" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="758.546" cy="454.477" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="678.41" cy="481.555" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="611.211" cy="520.343" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="561.263" cy="563.136" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="528.302" cy="602.426" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="508.198" cy="632.452" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="494.501" cy="650.259" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="480.384" cy="656.027" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="460.484" cy="652.671" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="432.175" cy="644.843" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="396.007" cy="637.636" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="355.26" cy="635.341" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="314.79" cy="640.549" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="279.542" cy="653.825" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="253.165" cy="673.954" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="237.098" cy="698.663" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="230.386" cy="725.554" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="230.232" cy="752.951" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="233.108" cy="780.402" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="236.062" cy="808.694" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="237.824" cy="839.353" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="239.373" cy="873.819" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="243.752" cy="912.522" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="255.171" cy="954.178" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="277.629" cy="995.547" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="313.443" cy="1031.78" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="362.11" cy="1057.31" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="419.879" cy="1067.14" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="480.206" cy="1058.07" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="535.049" cy="1029.8" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="576.726" cy="985.254" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="599.884" cy="930.268" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="603.056" cy="872.556" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="589.401" cy="820.135" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="566.351" cy="779.615" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="544.198" cy="754.747" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="533.884" cy="745.567" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="544.507" cy="748.389" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="581.102" cy="756.645" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="643.231" cy="762.422" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="724.761" cy="758.324" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip642)" cx="814.887" cy="739.249" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<path clip-path="url(#clip640)" d="M180.213 328.498 L389.251 328.498 L389.251 95.2176 L180.213 95.2176  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="180.213,328.498 389.251,328.498 389.251,95.2176 180.213,95.2176 180.213,328.498 "/>
+<circle clip-path="url(#clip640)" cx="223.859" cy="172.978" r="30.72" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="6.82667"/>
+<path clip-path="url(#clip640)" d="M267.506 160.009 L273.895 160.009 L273.895 198.898 L267.506 198.898 L267.506 160.009 M267.506 144.87 L273.895 144.87 L273.895 152.96 L267.506 152.96 L267.506 144.87 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M319.589 175.425 L319.589 198.898 L313.2 198.898 L313.2 175.634 Q313.2 170.113 311.048 167.37 Q308.895 164.627 304.589 164.627 Q299.416 164.627 296.43 167.925 Q293.443 171.224 293.443 176.919 L293.443 198.898 L287.02 198.898 L287.02 160.009 L293.443 160.009 L293.443 166.051 Q295.735 162.544 298.825 160.807 Q301.95 159.071 306.013 159.071 Q312.714 159.071 316.152 163.238 Q319.589 167.37 319.589 175.425 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><circle clip-path="url(#clip640)" cx="223.859" cy="250.738" r="30.72" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="6.82667"/>
+<path clip-path="url(#clip640)" d="M285.353 242.248 Q280.214 242.248 277.228 246.276 Q274.242 250.269 274.242 257.248 Q274.242 264.227 277.194 268.255 Q280.18 272.248 285.353 272.248 Q290.457 272.248 293.443 268.22 Q296.43 264.192 296.43 257.248 Q296.43 250.338 293.443 246.31 Q290.457 242.248 285.353 242.248 M285.353 236.831 Q293.687 236.831 298.443 242.248 Q303.2 247.665 303.2 257.248 Q303.2 266.796 298.443 272.248 Q293.687 277.664 285.353 277.664 Q276.985 277.664 272.228 272.248 Q267.506 266.796 267.506 257.248 Q267.506 247.665 272.228 242.248 Q276.985 236.831 285.353 236.831 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M313.131 261.31 L313.131 237.769 L319.52 237.769 L319.52 261.067 Q319.52 266.588 321.672 269.366 Q323.825 272.109 328.131 272.109 Q333.304 272.109 336.29 268.81 Q339.311 265.512 339.311 259.817 L339.311 237.769 L345.7 237.769 L345.7 276.658 L339.311 276.658 L339.311 270.685 Q336.985 274.227 333.895 275.963 Q330.839 277.664 326.777 277.664 Q320.075 277.664 316.603 273.498 Q313.131 269.331 313.131 261.31 M329.207 236.831 L329.207 236.831 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M365.179 226.727 L365.179 237.769 L378.339 237.769 L378.339 242.734 L365.179 242.734 L365.179 263.845 Q365.179 268.602 366.464 269.956 Q367.783 271.31 371.776 271.31 L378.339 271.31 L378.339 276.658 L371.776 276.658 Q364.381 276.658 361.568 273.915 Q358.756 271.137 358.756 263.845 L358.756 242.734 L354.068 242.734 L354.068 237.769 L358.756 237.769 L358.756 226.727 L365.179 226.727 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1370.71 1486.45 L2352.76 1486.45 L2352.76 47.2441 L1370.71 47.2441  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
+<defs>
+  <clipPath id="clip643">
+    <rect x="1370" y="47" width="983" height="1440"/>
+  </clipPath>
+</defs>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1397.55,1486.45 1397.55,47.2441 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1629.4,1486.45 1629.4,47.2441 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1861.26,1486.45 1861.26,47.2441 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2093.11,1486.45 2093.11,47.2441 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2324.96,1486.45 2324.96,47.2441 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1370.71,1462.41 2352.76,1462.41 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1370.71,1230.55 2352.76,1230.55 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1370.71,998.699 2352.76,998.699 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1370.71,766.846 2352.76,766.846 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1370.71,534.992 2352.76,534.992 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1370.71,303.139 2352.76,303.139 "/>
+<polyline clip-path="url(#clip643)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1370.71,71.2855 2352.76,71.2855 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1370.71,1486.45 2352.76,1486.45 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1397.55,1486.45 1397.55,1467.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1629.4,1486.45 1629.4,1467.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1861.26,1486.45 1861.26,1467.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2093.11,1486.45 2093.11,1467.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2324.96,1486.45 2324.96,1467.55 "/>
+<path clip-path="url(#clip640)" d="M1344.08 1532.02 L1373.75 1532.02 L1373.75 1535.95 L1344.08 1535.95 L1344.08 1532.02 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1384.65 1544.91 L1392.29 1544.91 L1392.29 1518.55 L1383.98 1520.21 L1383.98 1515.95 L1392.25 1514.29 L1396.92 1514.29 L1396.92 1544.91 L1404.56 1544.91 L1404.56 1548.85 L1384.65 1548.85 L1384.65 1544.91 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1414.01 1542.97 L1418.89 1542.97 L1418.89 1548.85 L1414.01 1548.85 L1414.01 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1439.08 1517.37 Q1435.46 1517.37 1433.64 1520.93 Q1431.83 1524.47 1431.83 1531.6 Q1431.83 1538.71 1433.64 1542.27 Q1435.46 1545.82 1439.08 1545.82 Q1442.71 1545.82 1444.52 1542.27 Q1446.34 1538.71 1446.34 1531.6 Q1446.34 1524.47 1444.52 1520.93 Q1442.71 1517.37 1439.08 1517.37 M1439.08 1513.66 Q1444.89 1513.66 1447.94 1518.27 Q1451.02 1522.85 1451.02 1531.6 Q1451.02 1540.33 1447.94 1544.94 Q1444.89 1549.52 1439.08 1549.52 Q1433.27 1549.52 1430.19 1544.94 Q1427.13 1540.33 1427.13 1531.6 Q1427.13 1522.85 1430.19 1518.27 Q1433.27 1513.66 1439.08 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1576.43 1532.02 L1606.1 1532.02 L1606.1 1535.95 L1576.43 1535.95 L1576.43 1532.02 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1626.2 1517.37 Q1622.58 1517.37 1620.76 1520.93 Q1618.95 1524.47 1618.95 1531.6 Q1618.95 1538.71 1620.76 1542.27 Q1622.58 1545.82 1626.2 1545.82 Q1629.83 1545.82 1631.64 1542.27 Q1633.46 1538.71 1633.46 1531.6 Q1633.46 1524.47 1631.64 1520.93 Q1629.83 1517.37 1626.2 1517.37 M1626.2 1513.66 Q1632.01 1513.66 1635.06 1518.27 Q1638.14 1522.85 1638.14 1531.6 Q1638.14 1540.33 1635.06 1544.94 Q1632.01 1549.52 1626.2 1549.52 Q1620.39 1549.52 1617.31 1544.94 Q1614.25 1540.33 1614.25 1531.6 Q1614.25 1522.85 1617.31 1518.27 Q1620.39 1513.66 1626.2 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1646.36 1542.97 L1651.24 1542.97 L1651.24 1548.85 L1646.36 1548.85 L1646.36 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1661.47 1514.29 L1679.83 1514.29 L1679.83 1518.22 L1665.76 1518.22 L1665.76 1526.7 Q1666.77 1526.35 1667.79 1526.19 Q1668.81 1526 1669.83 1526 Q1675.62 1526 1679 1529.17 Q1682.38 1532.34 1682.38 1537.76 Q1682.38 1543.34 1678.9 1546.44 Q1675.43 1549.52 1669.11 1549.52 Q1666.94 1549.52 1664.67 1549.15 Q1662.42 1548.78 1660.01 1548.04 L1660.01 1543.34 Q1662.1 1544.47 1664.32 1545.03 Q1666.54 1545.58 1669.02 1545.58 Q1673.02 1545.58 1675.36 1543.48 Q1677.7 1541.37 1677.7 1537.76 Q1677.7 1534.15 1675.36 1532.04 Q1673.02 1529.94 1669.02 1529.94 Q1667.14 1529.94 1665.27 1530.35 Q1663.42 1530.77 1661.47 1531.65 L1661.47 1514.29 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1838.64 1517.37 Q1835.03 1517.37 1833.2 1520.93 Q1831.39 1524.47 1831.39 1531.6 Q1831.39 1538.71 1833.2 1542.27 Q1835.03 1545.82 1838.64 1545.82 Q1842.27 1545.82 1844.08 1542.27 Q1845.91 1538.71 1845.91 1531.6 Q1845.91 1524.47 1844.08 1520.93 Q1842.27 1517.37 1838.64 1517.37 M1838.64 1513.66 Q1844.45 1513.66 1847.51 1518.27 Q1850.58 1522.85 1850.58 1531.6 Q1850.58 1540.33 1847.51 1544.94 Q1844.45 1549.52 1838.64 1549.52 Q1832.83 1549.52 1829.75 1544.94 Q1826.7 1540.33 1826.7 1531.6 Q1826.7 1522.85 1829.75 1518.27 Q1832.83 1513.66 1838.64 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1858.8 1542.97 L1863.69 1542.97 L1863.69 1548.85 L1858.8 1548.85 L1858.8 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1883.87 1517.37 Q1880.26 1517.37 1878.43 1520.93 Q1876.63 1524.47 1876.63 1531.6 Q1876.63 1538.71 1878.43 1542.27 Q1880.26 1545.82 1883.87 1545.82 Q1887.5 1545.82 1889.31 1542.27 Q1891.14 1538.71 1891.14 1531.6 Q1891.14 1524.47 1889.31 1520.93 Q1887.5 1517.37 1883.87 1517.37 M1883.87 1513.66 Q1889.68 1513.66 1892.74 1518.27 Q1895.82 1522.85 1895.82 1531.6 Q1895.82 1540.33 1892.74 1544.94 Q1889.68 1549.52 1883.87 1549.52 Q1878.06 1549.52 1874.98 1544.94 Q1871.93 1540.33 1871.93 1531.6 Q1871.93 1522.85 1874.98 1518.27 Q1878.06 1513.66 1883.87 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M2070.99 1517.37 Q2067.38 1517.37 2065.55 1520.93 Q2063.75 1524.47 2063.75 1531.6 Q2063.75 1538.71 2065.55 1542.27 Q2067.38 1545.82 2070.99 1545.82 Q2074.62 1545.82 2076.43 1542.27 Q2078.26 1538.71 2078.26 1531.6 Q2078.26 1524.47 2076.43 1520.93 Q2074.62 1517.37 2070.99 1517.37 M2070.99 1513.66 Q2076.8 1513.66 2079.86 1518.27 Q2082.94 1522.85 2082.94 1531.6 Q2082.94 1540.33 2079.86 1544.94 Q2076.8 1549.52 2070.99 1549.52 Q2065.18 1549.52 2062.1 1544.94 Q2059.05 1540.33 2059.05 1531.6 Q2059.05 1522.85 2062.1 1518.27 Q2065.18 1513.66 2070.99 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M2091.15 1542.97 L2096.04 1542.97 L2096.04 1548.85 L2091.15 1548.85 L2091.15 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M2106.27 1514.29 L2124.62 1514.29 L2124.62 1518.22 L2110.55 1518.22 L2110.55 1526.7 Q2111.57 1526.35 2112.59 1526.19 Q2113.61 1526 2114.62 1526 Q2120.41 1526 2123.79 1529.17 Q2127.17 1532.34 2127.17 1537.76 Q2127.17 1543.34 2123.7 1546.44 Q2120.23 1549.52 2113.91 1549.52 Q2111.73 1549.52 2109.46 1549.15 Q2107.22 1548.78 2104.81 1548.04 L2104.81 1543.34 Q2106.89 1544.47 2109.12 1545.03 Q2111.34 1545.58 2113.81 1545.58 Q2117.82 1545.58 2120.16 1543.48 Q2122.49 1541.37 2122.49 1537.76 Q2122.49 1534.15 2120.16 1532.04 Q2117.82 1529.94 2113.81 1529.94 Q2111.94 1529.94 2110.06 1530.35 Q2108.21 1530.77 2106.27 1531.65 L2106.27 1514.29 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M2292.12 1544.91 L2299.75 1544.91 L2299.75 1518.55 L2291.44 1520.21 L2291.44 1515.95 L2299.71 1514.29 L2304.38 1514.29 L2304.38 1544.91 L2312.02 1544.91 L2312.02 1548.85 L2292.12 1548.85 L2292.12 1544.91 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M2321.47 1542.97 L2326.35 1542.97 L2326.35 1548.85 L2321.47 1548.85 L2321.47 1542.97 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M2346.54 1517.37 Q2342.92 1517.37 2341.1 1520.93 Q2339.29 1524.47 2339.29 1531.6 Q2339.29 1538.71 2341.1 1542.27 Q2342.92 1545.82 2346.54 1545.82 Q2350.17 1545.82 2351.98 1542.27 Q2353.8 1538.71 2353.8 1531.6 Q2353.8 1524.47 2351.98 1520.93 Q2350.17 1517.37 2346.54 1517.37 M2346.54 1513.66 Q2352.35 1513.66 2355.4 1518.27 Q2358.48 1522.85 2358.48 1531.6 Q2358.48 1540.33 2355.4 1544.94 Q2352.35 1549.52 2346.54 1549.52 Q2340.73 1549.52 2337.65 1544.94 Q2334.59 1540.33 2334.59 1531.6 Q2334.59 1522.85 2337.65 1518.27 Q2340.73 1513.66 2346.54 1513.66 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1370.71,1486.45 1370.71,47.2441 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1370.71,1462.41 1389.6,1462.41 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1370.71,1230.55 1389.6,1230.55 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1370.71,998.699 1389.6,998.699 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1370.71,766.846 1389.6,766.846 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1370.71,534.992 1389.6,534.992 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1370.71,303.139 1389.6,303.139 "/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1370.71,71.2855 1389.6,71.2855 "/>
+<path clip-path="url(#clip640)" d="M1228.76 1462.86 L1258.43 1462.86 L1258.43 1466.79 L1228.76 1466.79 L1228.76 1462.86 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1269.34 1475.75 L1276.98 1475.75 L1276.98 1449.39 L1268.67 1451.05 L1268.67 1446.79 L1276.93 1445.13 L1281.61 1445.13 L1281.61 1475.75 L1289.24 1475.75 L1289.24 1479.69 L1269.34 1479.69 L1269.34 1475.75 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1298.69 1473.81 L1303.57 1473.81 L1303.57 1479.69 L1298.69 1479.69 L1298.69 1473.81 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1313.8 1445.13 L1332.16 1445.13 L1332.16 1449.06 L1318.09 1449.06 L1318.09 1457.53 Q1319.11 1457.19 1320.12 1457.02 Q1321.14 1456.84 1322.16 1456.84 Q1327.95 1456.84 1331.33 1460.01 Q1334.71 1463.18 1334.71 1468.6 Q1334.71 1474.18 1331.23 1477.28 Q1327.76 1480.36 1321.44 1480.36 Q1319.27 1480.36 1317 1479.99 Q1314.75 1479.62 1312.35 1478.88 L1312.35 1474.18 Q1314.43 1475.31 1316.65 1475.87 Q1318.87 1476.42 1321.35 1476.42 Q1325.36 1476.42 1327.69 1474.32 Q1330.03 1472.21 1330.03 1468.6 Q1330.03 1464.99 1327.69 1462.88 Q1325.36 1460.77 1321.35 1460.77 Q1319.48 1460.77 1317.6 1461.19 Q1315.75 1461.61 1313.8 1462.49 L1313.8 1445.13 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1227.76 1231 L1257.44 1231 L1257.44 1234.94 L1227.76 1234.94 L1227.76 1231 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1268.34 1243.9 L1275.98 1243.9 L1275.98 1217.53 L1267.67 1219.2 L1267.67 1214.94 L1275.93 1213.27 L1280.61 1213.27 L1280.61 1243.9 L1288.25 1243.9 L1288.25 1247.83 L1268.34 1247.83 L1268.34 1243.9 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1297.69 1241.95 L1302.58 1241.95 L1302.58 1247.83 L1297.69 1247.83 L1297.69 1241.95 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1322.76 1216.35 Q1319.15 1216.35 1317.32 1219.92 Q1315.52 1223.46 1315.52 1230.59 Q1315.52 1237.69 1317.32 1241.26 Q1319.15 1244.8 1322.76 1244.8 Q1326.4 1244.8 1328.2 1241.26 Q1330.03 1237.69 1330.03 1230.59 Q1330.03 1223.46 1328.2 1219.92 Q1326.4 1216.35 1322.76 1216.35 M1322.76 1212.65 Q1328.57 1212.65 1331.63 1217.25 Q1334.71 1221.84 1334.71 1230.59 Q1334.71 1239.31 1331.63 1243.92 Q1328.57 1248.5 1322.76 1248.5 Q1316.95 1248.5 1313.87 1243.92 Q1310.82 1239.31 1310.82 1230.59 Q1310.82 1221.84 1313.87 1217.25 Q1316.95 1212.65 1322.76 1212.65 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1228.76 999.151 L1258.43 999.151 L1258.43 1003.09 L1228.76 1003.09 L1228.76 999.151 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1278.53 984.498 Q1274.92 984.498 1273.09 988.063 Q1271.28 991.605 1271.28 998.734 Q1271.28 1005.84 1273.09 1009.41 Q1274.92 1012.95 1278.53 1012.95 Q1282.16 1012.95 1283.97 1009.41 Q1285.8 1005.84 1285.8 998.734 Q1285.8 991.605 1283.97 988.063 Q1282.16 984.498 1278.53 984.498 M1278.53 980.794 Q1284.34 980.794 1287.39 985.401 Q1290.47 989.984 1290.47 998.734 Q1290.47 1007.46 1287.39 1012.07 Q1284.34 1016.65 1278.53 1016.65 Q1272.72 1016.65 1269.64 1012.07 Q1266.58 1007.46 1266.58 998.734 Q1266.58 989.984 1269.64 985.401 Q1272.72 980.794 1278.53 980.794 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1298.69 1010.1 L1303.57 1010.1 L1303.57 1015.98 L1298.69 1015.98 L1298.69 1010.1 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1313.8 981.419 L1332.16 981.419 L1332.16 985.355 L1318.09 985.355 L1318.09 993.827 Q1319.11 993.48 1320.12 993.318 Q1321.14 993.132 1322.16 993.132 Q1327.95 993.132 1331.33 996.304 Q1334.71 999.475 1334.71 1004.89 Q1334.71 1010.47 1331.23 1013.57 Q1327.76 1016.65 1321.44 1016.65 Q1319.27 1016.65 1317 1016.28 Q1314.75 1015.91 1312.35 1015.17 L1312.35 1010.47 Q1314.43 1011.6 1316.65 1012.16 Q1318.87 1012.72 1321.35 1012.72 Q1325.36 1012.72 1327.69 1010.61 Q1330.03 1008.5 1330.03 1004.89 Q1330.03 1001.28 1327.69 999.174 Q1325.36 997.068 1321.35 997.068 Q1319.48 997.068 1317.6 997.484 Q1315.75 997.901 1313.8 998.781 L1313.8 981.419 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1277.53 752.645 Q1273.92 752.645 1272.09 756.209 Q1270.29 759.751 1270.29 766.881 Q1270.29 773.987 1272.09 777.552 Q1273.92 781.094 1277.53 781.094 Q1281.17 781.094 1282.97 777.552 Q1284.8 773.987 1284.8 766.881 Q1284.8 759.751 1282.97 756.209 Q1281.17 752.645 1277.53 752.645 M1277.53 748.941 Q1283.34 748.941 1286.4 753.547 Q1289.48 758.131 1289.48 766.881 Q1289.48 775.608 1286.4 780.214 Q1283.34 784.797 1277.53 784.797 Q1271.72 784.797 1268.64 780.214 Q1265.59 775.608 1265.59 766.881 Q1265.59 758.131 1268.64 753.547 Q1271.72 748.941 1277.53 748.941 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1297.69 778.246 L1302.58 778.246 L1302.58 784.126 L1297.69 784.126 L1297.69 778.246 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1322.76 752.645 Q1319.15 752.645 1317.32 756.209 Q1315.52 759.751 1315.52 766.881 Q1315.52 773.987 1317.32 777.552 Q1319.15 781.094 1322.76 781.094 Q1326.4 781.094 1328.2 777.552 Q1330.03 773.987 1330.03 766.881 Q1330.03 759.751 1328.2 756.209 Q1326.4 752.645 1322.76 752.645 M1322.76 748.941 Q1328.57 748.941 1331.63 753.547 Q1334.71 758.131 1334.71 766.881 Q1334.71 775.608 1331.63 780.214 Q1328.57 784.797 1322.76 784.797 Q1316.95 784.797 1313.87 780.214 Q1310.82 775.608 1310.82 766.881 Q1310.82 758.131 1313.87 753.547 Q1316.95 748.941 1322.76 748.941 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1278.53 520.791 Q1274.92 520.791 1273.09 524.356 Q1271.28 527.898 1271.28 535.027 Q1271.28 542.134 1273.09 545.698 Q1274.92 549.24 1278.53 549.24 Q1282.16 549.24 1283.97 545.698 Q1285.8 542.134 1285.8 535.027 Q1285.8 527.898 1283.97 524.356 Q1282.16 520.791 1278.53 520.791 M1278.53 517.087 Q1284.34 517.087 1287.39 521.694 Q1290.47 526.277 1290.47 535.027 Q1290.47 543.754 1287.39 548.36 Q1284.34 552.944 1278.53 552.944 Q1272.72 552.944 1269.64 548.36 Q1266.58 543.754 1266.58 535.027 Q1266.58 526.277 1269.64 521.694 Q1272.72 517.087 1278.53 517.087 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1298.69 546.393 L1303.57 546.393 L1303.57 552.272 L1298.69 552.272 L1298.69 546.393 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1313.8 517.712 L1332.16 517.712 L1332.16 521.648 L1318.09 521.648 L1318.09 530.12 Q1319.11 529.773 1320.12 529.611 Q1321.14 529.425 1322.16 529.425 Q1327.95 529.425 1331.33 532.597 Q1334.71 535.768 1334.71 541.185 Q1334.71 546.763 1331.23 549.865 Q1327.76 552.944 1321.44 552.944 Q1319.27 552.944 1317 552.573 Q1314.75 552.203 1312.35 551.462 L1312.35 546.763 Q1314.43 547.898 1316.65 548.453 Q1318.87 549.009 1321.35 549.009 Q1325.36 549.009 1327.69 546.902 Q1330.03 544.796 1330.03 541.185 Q1330.03 537.573 1327.69 535.467 Q1325.36 533.361 1321.35 533.361 Q1319.48 533.361 1317.6 533.777 Q1315.75 534.194 1313.8 535.073 L1313.8 517.712 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1268.34 316.484 L1275.98 316.484 L1275.98 290.118 L1267.67 291.785 L1267.67 287.526 L1275.93 285.859 L1280.61 285.859 L1280.61 316.484 L1288.25 316.484 L1288.25 320.419 L1268.34 320.419 L1268.34 316.484 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1297.69 314.539 L1302.58 314.539 L1302.58 320.419 L1297.69 320.419 L1297.69 314.539 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1322.76 288.938 Q1319.15 288.938 1317.32 292.502 Q1315.52 296.044 1315.52 303.174 Q1315.52 310.28 1317.32 313.845 Q1319.15 317.387 1322.76 317.387 Q1326.4 317.387 1328.2 313.845 Q1330.03 310.28 1330.03 303.174 Q1330.03 296.044 1328.2 292.502 Q1326.4 288.938 1322.76 288.938 M1322.76 285.234 Q1328.57 285.234 1331.63 289.84 Q1334.71 294.424 1334.71 303.174 Q1334.71 311.901 1331.63 316.507 Q1328.57 321.09 1322.76 321.09 Q1316.95 321.09 1313.87 316.507 Q1310.82 311.901 1310.82 303.174 Q1310.82 294.424 1313.87 289.84 Q1316.95 285.234 1322.76 285.234 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1269.34 84.6303 L1276.98 84.6303 L1276.98 58.2647 L1268.67 59.9314 L1268.67 55.6721 L1276.93 54.0055 L1281.61 54.0055 L1281.61 84.6303 L1289.24 84.6303 L1289.24 88.5655 L1269.34 88.5655 L1269.34 84.6303 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1298.69 82.6859 L1303.57 82.6859 L1303.57 88.5655 L1298.69 88.5655 L1298.69 82.6859 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1313.8 54.0055 L1332.16 54.0055 L1332.16 57.9406 L1318.09 57.9406 L1318.09 66.4128 Q1319.11 66.0656 1320.12 65.9036 Q1321.14 65.7184 1322.16 65.7184 Q1327.95 65.7184 1331.33 68.8897 Q1334.71 72.0609 1334.71 77.4776 Q1334.71 83.0562 1331.23 86.1581 Q1327.76 89.2368 1321.44 89.2368 Q1319.27 89.2368 1317 88.8664 Q1314.75 88.496 1312.35 87.7553 L1312.35 83.0562 Q1314.43 84.1905 1316.65 84.7461 Q1318.87 85.3016 1321.35 85.3016 Q1325.36 85.3016 1327.69 83.1951 Q1330.03 81.0887 1330.03 77.4776 Q1330.03 73.8665 1327.69 71.76 Q1325.36 69.6535 1321.35 69.6535 Q1319.48 69.6535 1317.6 70.0702 Q1315.75 70.4869 1313.8 71.3665 L1313.8 54.0055 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><circle clip-path="url(#clip643)" cx="2324.96" cy="766.846" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2321.16" cy="707.548" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2309.8" cy="649.225" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2291.07" cy="592.832" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2265.29" cy="539.297" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2232.88" cy="489.498" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2194.36" cy="444.253" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2150.37" cy="404.305" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2101.64" cy="370.31" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2048.96" cy="342.826" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1993.19" cy="322.305" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1935.26" cy="309.083" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1876.12" cy="303.377" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1816.73" cy="305.282" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1758.07" cy="314.765" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1701.11" cy="331.672" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1646.77" cy="355.724" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1595.96" cy="386.526" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1549.5" cy="423.574" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1508.17" cy="466.258" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1472.63" cy="513.878" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1443.47" cy="565.651" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1421.17" cy="620.728" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1406.1" cy="678.204" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1398.5" cy="737.136" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1398.5" cy="796.556" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1406.1" cy="855.488" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1421.17" cy="912.964" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1443.47" cy="968.041" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1472.63" cy="1019.81" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1508.17" cy="1067.43" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1549.5" cy="1110.12" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1595.96" cy="1147.17" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1646.77" cy="1177.97" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1701.11" cy="1202.02" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1758.07" cy="1218.93" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1816.73" cy="1228.41" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1876.12" cy="1230.31" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1935.26" cy="1224.61" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1993.19" cy="1211.39" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2048.96" cy="1190.87" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2101.64" cy="1163.38" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2150.37" cy="1129.39" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2194.36" cy="1089.44" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2232.88" cy="1044.19" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2265.29" cy="994.395" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2291.07" cy="940.86" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2309.8" cy="884.467" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2321.16" cy="826.144" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2324.96" cy="766.846" r="14.4" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2251.52" cy="766.846" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2248.32" cy="730.379" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2238.76" cy="694.51" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2223" cy="659.83" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2201.3" cy="626.906" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2174.02" cy="596.281" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2141.6" cy="568.456" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2104.58" cy="543.888" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2063.57" cy="522.982" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2019.23" cy="506.08" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1972.3" cy="493.459" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1923.54" cy="485.328" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1873.76" cy="481.819" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1823.78" cy="482.99" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1774.41" cy="488.822" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1726.47" cy="499.219" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1680.74" cy="514.011" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1637.98" cy="532.954" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1598.88" cy="555.738" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1564.09" cy="581.988" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1534.18" cy="611.274" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1509.64" cy="643.114" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1490.87" cy="676.985" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1478.18" cy="712.333" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1471.79" cy="748.575" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1471.79" cy="785.117" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1478.18" cy="821.359" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1490.87" cy="856.707" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1509.64" cy="890.578" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1534.18" cy="922.418" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1564.09" cy="951.704" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1598.88" cy="977.954" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1637.98" cy="1000.74" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1680.74" cy="1019.68" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1726.47" cy="1034.47" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1774.41" cy="1044.87" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1823.78" cy="1050.7" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1873.76" cy="1051.87" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1923.54" cy="1048.36" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="1972.3" cy="1040.23" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2019.23" cy="1027.61" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2063.57" cy="1010.71" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2104.58" cy="989.804" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2141.6" cy="965.236" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2174.02" cy="937.411" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2201.3" cy="906.786" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2223" cy="873.862" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2238.76" cy="839.182" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2248.32" cy="803.313" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip643)" cx="2251.52" cy="766.846" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<path clip-path="url(#clip640)" d="M1403.44 328.498 L1612.48 328.498 L1612.48 95.2176 L1403.44 95.2176  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
+<polyline clip-path="url(#clip640)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1403.44,328.498 1612.48,328.498 1612.48,95.2176 1403.44,95.2176 1403.44,328.498 "/>
+<circle clip-path="url(#clip640)" cx="1447.09" cy="172.978" r="30.72" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="6.82667"/>
+<path clip-path="url(#clip640)" d="M1490.74 160.009 L1497.12 160.009 L1497.12 198.898 L1490.74 198.898 L1490.74 160.009 M1490.74 144.87 L1497.12 144.87 L1497.12 152.96 L1490.74 152.96 L1490.74 144.87 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1542.82 175.425 L1542.82 198.898 L1536.43 198.898 L1536.43 175.634 Q1536.43 170.113 1534.28 167.37 Q1532.12 164.627 1527.82 164.627 Q1522.64 164.627 1519.66 167.925 Q1516.67 171.224 1516.67 176.919 L1516.67 198.898 L1510.25 198.898 L1510.25 160.009 L1516.67 160.009 L1516.67 166.051 Q1518.96 162.544 1522.05 160.807 Q1525.18 159.071 1529.24 159.071 Q1535.94 159.071 1539.38 163.238 Q1542.82 167.37 1542.82 175.425 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><circle clip-path="url(#clip640)" cx="1447.09" cy="250.738" r="30.72" fill="#e26f46" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="6.82667"/>
+<path clip-path="url(#clip640)" d="M1508.58 242.248 Q1503.44 242.248 1500.46 246.276 Q1497.47 250.269 1497.47 257.248 Q1497.47 264.227 1500.42 268.255 Q1503.41 272.248 1508.58 272.248 Q1513.69 272.248 1516.67 268.22 Q1519.66 264.192 1519.66 257.248 Q1519.66 250.338 1516.67 246.31 Q1513.69 242.248 1508.58 242.248 M1508.58 236.831 Q1516.92 236.831 1521.67 242.248 Q1526.43 247.665 1526.43 257.248 Q1526.43 266.796 1521.67 272.248 Q1516.92 277.664 1508.58 277.664 Q1500.21 277.664 1495.46 272.248 Q1490.74 266.796 1490.74 257.248 Q1490.74 247.665 1495.46 242.248 Q1500.21 236.831 1508.58 236.831 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1536.36 261.31 L1536.36 237.769 L1542.75 237.769 L1542.75 261.067 Q1542.75 266.588 1544.9 269.366 Q1547.05 272.109 1551.36 272.109 Q1556.53 272.109 1559.52 268.81 Q1562.54 265.512 1562.54 259.817 L1562.54 237.769 L1568.93 237.769 L1568.93 276.658 L1562.54 276.658 L1562.54 270.685 Q1560.21 274.227 1557.12 275.963 Q1554.07 277.664 1550.01 277.664 Q1543.3 277.664 1539.83 273.498 Q1536.36 269.331 1536.36 261.31 M1552.44 236.831 L1552.44 236.831 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip640)" d="M1588.41 226.727 L1588.41 237.769 L1601.57 237.769 L1601.57 242.734 L1588.41 242.734 L1588.41 263.845 Q1588.41 268.602 1589.69 269.956 Q1591.01 271.31 1595.01 271.31 L1601.57 271.31 L1601.57 276.658 L1595.01 276.658 Q1587.61 276.658 1584.8 273.915 Q1581.98 271.137 1581.98 263.845 L1581.98 242.734 L1577.3 242.734 L1577.3 237.769 L1581.98 237.769 L1581.98 226.727 L1588.41 226.727 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /></svg>
+</div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="recommended-video-to-watch-at-home">
+<h2>Recommended video to watch at home:<a class="headerlink" href="#recommended-video-to-watch-at-home" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.mathworks.com/videos/the-singular-value-decomposition-saves-the-universe-1481294462044.html">The Singular Value Decomposition Saves the Universe</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "sdsu-comp526/fall25",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.10"
+        },
+        kernelOptions: {
+            name: "julia-1.10",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.10'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-on-matrix-norm-and-condition-number">1. Recap on matrix norm and condition number</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-norms-induced-by-vector-norms">Matrix norms induced by vector norms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condition-number-via-svd">2. Condition number via SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-conditioning-and-singular-values">2.1 Relationship between conditioning and singular values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition-for-solving-systems">3. Singular Value Decomposition for solving systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#costs-of-decompositions-seen">4. Costs of decompositions seen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-gram-schmidt">4.1 Cost of Gram-Schmidt?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-flops-is-a-bad-model">Counting flops is a bad model</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-matrix-matrix-mulitply-libraries">Dense matrix-matrix mulitply libraries</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-qr-by-householder">4.2 Cost of QR (by Householder)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-cholesky">4.3 Cost of Cholesky</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-svd">4.4 Cost of SVD</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#svd-gives-the-unique-minimum-norm-solution-when-a-is-rank-deficient">SVD gives the unique minimum norm solution when <span class="math notranslate nohighlight">\(A\)</span> is rank deficient</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observation">Observation:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-video-to-watch-at-home">Recommended video to watch at home:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
