@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -182,12 +182,14 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Syllabus</a></li>
+
+
 <li class="toctree-l1 has-children"><a class="reference internal" href="lectures.html">Lectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="lectures/module1-1_first_class.html">1) First Class: Reproducibility and Git</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="lectures/module1-2_linux.html">2) The Linux Filesystem and commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lectures/module2-1_intro_to_fortran.html">23) Introduction to Fortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures/module2-1_intro_to_fortran.html">3) Introduction to Fortran</a></li>
 </ul>
 </details></li>
 </ul>
@@ -385,6 +387,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Syllabus</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistics">Logistics</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instructor-valeria-barra">Instructor: Valeria Barra</a></li>
 </ul>
@@ -396,6 +399,14 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessment-grading-policy-and-schedule">Assessment, grading policy and schedule</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#head">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#details-on-midterm-and-final-projects">Details on Midterm and Final projects</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-community-projects">Why community projects?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#community-contributions-and-analysis">Community contributions and analysis</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github">GitHub</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-materials-programming-languages-and-environment">Course materials, programming languages and environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#target-audience">Target audience</a></li>
@@ -405,10 +416,17 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preferred-student-names-and-pronouns">Preferred Student Names and Pronouns</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-honesty">Academic Honesty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-of-ai">Use of AI</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#head-this-course-requires-you-to-complete-various-assignments-that-assess-your-understanding-and-application-of-the-course-content-you-are-expected-to-do-your-own-work-and-cite-any-sources-you-use-and-collaborators-appropriately-you-are-personally-responsible-for-understanding-and-verifying-the-code-that-you-submit-and-include-appropriate-documentation">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+This course requires you to complete various assignments that assess your understanding and application of the course content. You are expected to do your own work and cite any sources you use and collaborators appropriately. You are personally responsible for understanding and verifying the code that you submit and include appropriate documentation.</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sexual-misconduct-discrimination-harassment-and-or-related-retaliation">Sexual Misconduct, Discrimination, Harassment and/or Related Retaliation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#religious-holidays">Religious Holidays</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#land-acknowledgment">Land Acknowledgment</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -516,6 +534,36 @@ it to solve it using computers.</p>
 <p><strong>Late submission and absences policy</strong>: if you submit your assignments late, there is an increasing penalty (10% off for up to 24 hours late, 20% off for 24-48 hours late). No assignments will be graded if submitted later than 48 hours late.</p>
 <p>Any student who cannot attend class or submit assignments by their due date for serious issues (e.g., medical emergencies) or participation in university activities (e.g., official university travel for conferences or sports) that can be documented, should communicate those to your instructor as soon as possible before the deadline.</p>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="head">
+<h1>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<a class="headerlink" href="#head" title="Link to this heading">#</a></h1>
+<section id="details-on-midterm-and-final-projects">
+<h2>Details on Midterm and Final projects<a class="headerlink" href="#details-on-midterm-and-final-projects" title="Link to this heading">#</a></h2>
+<section id="why-community-projects">
+<h3>Why community projects?<a class="headerlink" href="#why-community-projects" title="Link to this heading">#</a></h3>
+<p>Nowadays, the vital role of scientific software in research is widely recognized. Moreover, modern science is often conducted by large, collaborative multi-institutional aggregate teams scattered across the globe. To facilitate work across teams and to promote partnerships and collaborations, it is crucial for students to be exposed to open-source community projects and learn the best practices and standards by making contributions via software. If you are still unsure, check this reference <a class="reference external" href="https://opensource.guide/how-to-contribute/#why-contribute-to-open-source">“Why contribute to open source?”</a> from the <a class="reference external" href="https://opensource.guide/how-to-contribute/">How to Contribute to Open Source</a> guide.</p>
+</section>
+<section id="community-contributions-and-analysis">
+<h3>Community contributions and analysis<a class="headerlink" href="#community-contributions-and-analysis" title="Link to this heading">#</a></h3>
+<p>Over the course of the semester, you will follow the development activities of an <em>active</em> open source project of your choosing. This should be a project with an active developer community, hopefully from multiple institutions, that discuss their rationale in public, such as a mailing list and/or GitHub/GitLab Issues and Pull Requests or Slack/Discord channels. You will write and present about the performance and capability needs of key stakeholders, the way project resources are allocated, their metrics for success, and any notable achievements made over the course of the semester.</p>
+<p>Your Final Project will be to make a contribution to be merged by the project of your choice. Adding new examples and/or improving documentation are extremely valuable contributions, but you may also add features or improve implementations. You can also analyze an existing bug or working example, comment on the implementation performance, and compare with other similar implementations from other packages/libraries. Please respect the time of project maintainers and reviewers by learning about the project and its expectations and process, communicating in advance, and leaving plenty of time for multiple rounds of review and revision.</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>360423d (Add first draft of Syllabus, TOC and  materials for Fall 25)</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</section>
+</section>
 <section id="github">
 <h2>GitHub<a class="headerlink" href="#github" title="Link to this heading">#</a></h2>
 <p>We’ll use Git with GitHub Classroom for managing activities and feedback.</p>
@@ -571,13 +619,46 @@ it to solve it using computers.</p>
 </section>
 <section id="use-of-ai">
 <h2>Use of AI<a class="headerlink" href="#use-of-ai" title="Link to this heading">#</a></h2>
-<p>This course requires you to complete various assignments that assess your understanding and application of the course content. You are expected to do your own work and cite any sources you use and collaborators appropriately. You are personally responsible for understanding and verifying the code that you submit and include appropriate documentation.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="head-this-course-requires-you-to-complete-various-assignments-that-assess-your-understanding-and-application-of-the-course-content-you-are-expected-to-do-your-own-work-and-cite-any-sources-you-use-and-collaborators-appropriately-you-are-personally-responsible-for-understanding-and-verifying-the-code-that-you-submit-and-include-appropriate-documentation">
+<h1>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+This course requires you to complete various assignments that assess your understanding and application of the course content. You are expected to do your own work and cite any sources you use and collaborators appropriately. You are personally responsible for understanding and verifying the code that you submit and include appropriate documentation.<a class="headerlink" href="#head-this-course-requires-you-to-complete-various-assignments-that-assess-your-understanding-and-application-of-the-course-content-you-are-expected-to-do-your-own-work-and-cite-any-sources-you-use-and-collaborators-appropriately-you-are-personally-responsible-for-understanding-and-verifying-the-code-that-you-submit-and-include-appropriate-documentation" title="Link to this heading">#</a></h1>
+<p>This course requires you to complete various assignments that assess your understanding and application of the course content. You are expected to do your own work and cite any sources you use and collaborators (humans or not) appropriately. You are personally responsible for understanding and verifying the code that you submit and include appropriate documentation.</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>360423d (Add first draft of Syllabus, TOC and  materials for Fall 25)</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
 <p>The California State University system requires instructors to report all instances of academic misconduct to the Center for Student Rights and Responsibilities. Academic dishonesty will result in disciplinary review by the University and may lead to probation, suspension, or expulsion. Instructors may also, at their discretion, penalize student grades on any assignment discovered to have been
 produced in an academically dishonest manner such as cheating and plagiarism as described on the <a class="reference external" href="https://sacd.sdsu.edu/student-rights/academic-dishonesty/cheating-and-plagiarism">Cheating and Plagiarism</a> page.</p>
 <p>In May 2024, the University Senate extended its definition of plagiarism to include the un-cited use of generative AI applications, specifically: “representing work produced by generative Artificial Intelligence as one’s own.” Academic freedom ensures that instructors are empowered to determine whether students may use genAI in their classes and to what extent. To minimize confusion, we report here a statement regarding the use of AI in this class.</p>
-<p><strong>Instructor Approved Use of LLMs</strong>: Students should not use generative AI applications, known as large language models (LLMs), in this course except as approved by the instructor. Any use of generative AI outside of instructor-approved guidelines constitutes misuse. Misuse of generative AI is a violation of the course policy on academic honesty and will be reported to the Center for Student Rights and Responsibilities. LLMs, such as OpenAI’s chatGPT, Microsoft’s Co-Pilot, Anthropic’s Claude, Meta’s Llama, Google’s Gemini, etc. are valuable tools, which are still in their infancy, that will likely transform how we teach, learn, and code. However, such LLMs are highly sensitive to the (often biased) data that they are trained on and prone to hallucinations leading to inaccurate and unreliable results. Hence, it is necessary for the user to have a firm grasp and understanding of the material. You may use AI tools as an “assistant” and other online resources (e.g., <a class="reference external" href="https://stackoverflow.com/questions">stackoverflow.com</a>) as aids for the assignments. You <strong>must acknowledge</strong> use of examples and aids that you include in your assignments, whether from LLMs or other sources.</p>
-<p>In order to prevent misuse of these tools and to ensure students are adequately learning the material, the Instructor may ask students in class or during office hours about certain topics covered in this course after they have been introduced and the students’ answers will contribute to the overall assessment and grades.</p>
-</section>
+<p><strong>Instructor Approved Use of LLMs</strong>: Students should not use generative AI applications, known as large language models (LLMs), in this course except as approved by the instructor. Any use of generative AI outside of instructor-approved guidelines constitutes misuse. Misuse of generative AI is a violation of the course policy on academic honesty and will be reported to the Center for Student Rights and Responsibilities. LLMs, such as OpenAI’s chatGPT, Microsoft’s Co-Pilot, Anthropic’s Claude, Meta’s Llama, Google’s Gemini, etc. are valuable tools, which are still in their infancy, that will likely transform how we teach, learn, and code. However, such LLMs are highly sensitive to the (often biased) data that they are trained on and prone to hallucinations leading to inaccurate and unreliable results. Hence, it is necessary for the user to have a firm grasp and understanding of the material.</p>
+<ul class="simple">
+<li><p>Work created by AI tools may not be considered original work and instead, considered <em>automated plagiarism</em>. It is derived from previously created texts from other sources that the models were trained on, yet doesn’t cite sources.</p></li>
+<li><p>AI models have built-in biases (ie, they are trained on limited underlying sources; they reproduce, rather than challenge, errors in the sources)</p></li>
+<li><p>AI tools have limitations (ie, they lack critical thinking to evaluate and reflect on criteria; they lack abductive reasoning to make judgments with incomplete information at hand)</p></li>
+</ul>
+<p>Given these important ethical caveats, it is crucial for students to learn how to use these tools and other online resources (e.g., <a class="reference external" href="https://stackoverflow.com/questions">stackoverflow.com</a>) responsibly. For my class</p>
+<ul class="simple">
+<li><p>You <strong>must acknowledge and cite</strong> use of examples and aids that you include in your assignments, whether from LLMs or other sources.</p></li>
+<li><p>You must clearly identify the use of AI-based tools in your work. Any work that utilizes AI-based tools must be clearly marked as such, including the specific tool(s) used. For example, if you use ChatGPT-3, you must cite “ChatGPT-3. (YYYY, Month DD of query). “Text of your query and answers”.</p></li>
+<li><p>You must be transparent in how you used the AI-based tool, including what work is your original contribution.</p></li>
+<li><p>You must ensure your use of AI-based tools does not violate any copyright or intellectual property law.</p></li>
+<li><p>You must not use AI-based tools to cheat on assessments.</p></li>
+<li><p>You must not use AI-based tools to plagiarize without citation.</p></li>
+</ul>
+<p>In order to prevent misuse of these tools and to ensure students are adequately learning the material, the Instructor may ask students in class or during office hours about certain topics covered in this course after they have been introduced and the students’ answers will contribute to the overall assessment and grades. Instructors and graders/TAs may also use AI detector tools. If you are found in violation of this policy, you may face penalties such as a reduction in grade, failure of the assignment or assessment, or even failure of the course. Finally, it’s your responsibility to be aware of the academic integrity policy and take the necessary steps to ensure that your use of AI-based tools is in compliance with this policy.</p>
 <section id="sexual-misconduct-discrimination-harassment-and-or-related-retaliation">
 <h2>Sexual Misconduct, Discrimination, Harassment and/or Related Retaliation<a class="headerlink" href="#sexual-misconduct-discrimination-harassment-and-or-related-retaliation" title="Link to this heading">#</a></h2>
 <p>SDSU is committed to fostering an inclusive and welcoming learning, working, and living environment. SDSU will not tolerate acts of sexual misconduct (harassment, exploitation, and assault), intimate partner violence (dating or domestic violence), stalking, or protected-class discrimination or harassment by or against members of our community. Individuals who believe they have been subject to misconduct or retaliatory actions for reporting a concern should contact the <a class="reference external" href="https://titleix.sdsu.edu/report-an-incident-landing">SDSU Title IX Office</a>.</p>
@@ -657,6 +738,7 @@ produced in an academically dishonest manner such as cheating and plagiarism as 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Syllabus</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistics">Logistics</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instructor-valeria-barra">Instructor: Valeria Barra</a></li>
 </ul>
@@ -668,6 +750,14 @@ produced in an academically dishonest manner such as cheating and plagiarism as 
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessment-grading-policy-and-schedule">Assessment, grading policy and schedule</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#head">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#details-on-midterm-and-final-projects">Details on Midterm and Final projects</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-community-projects">Why community projects?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#community-contributions-and-analysis">Community contributions and analysis</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github">GitHub</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-materials-programming-languages-and-environment">Course materials, programming languages and environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#target-audience">Target audience</a></li>
@@ -677,10 +767,17 @@ produced in an academically dishonest manner such as cheating and plagiarism as 
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preferred-student-names-and-pronouns">Preferred Student Names and Pronouns</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-honesty">Academic Honesty</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-of-ai">Use of AI</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#head-this-course-requires-you-to-complete-various-assignments-that-assess-your-understanding-and-application-of-the-course-content-you-are-expected-to-do-your-own-work-and-cite-any-sources-you-use-and-collaborators-appropriately-you-are-personally-responsible-for-understanding-and-verifying-the-code-that-you-submit-and-include-appropriate-documentation">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+This course requires you to complete various assignments that assess your understanding and application of the course content. You are expected to do your own work and cite any sources you use and collaborators appropriately. You are personally responsible for understanding and verifying the code that you submit and include appropriate documentation.</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sexual-misconduct-discrimination-harassment-and-or-related-retaliation">Sexual Misconduct, Discrimination, Harassment and/or Related Retaliation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#religious-holidays">Religious Holidays</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#land-acknowledgment">Land Acknowledgment</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

@@ -118,6 +118,21 @@ The schedule is subject to change (the instructor will announce any changes).
 
 Any student who cannot attend class or submit assignments by their due date for serious issues (e.g., medical emergencies) or participation in university activities (e.g., official university travel for conferences or sports) that can be documented, should communicate those to your instructor as soon as possible before the deadline.
 
+<<<<<<< HEAD
+=======
+### Details on Midterm and Final projects
+
+#### Why community projects?
+
+Nowadays, the vital role of scientific software in research is widely recognized. Moreover, modern science is often conducted by large, collaborative multi-institutional aggregate teams scattered across the globe. To facilitate work across teams and to promote partnerships and collaborations, it is crucial for students to be exposed to open-source community projects and learn the best practices and standards by making contributions via software. If you are still unsure, check this reference ["Why contribute to open source?"](https://opensource.guide/how-to-contribute/#why-contribute-to-open-source) from the [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/) guide.
+
+#### Community contributions and analysis
+
+Over the course of the semester, you will follow the development activities of an _active_ open source project of your choosing. This should be a project with an active developer community, hopefully from multiple institutions, that discuss their rationale in public, such as a mailing list and/or GitHub/GitLab Issues and Pull Requests or Slack/Discord channels. You will write and present about the performance and capability needs of key stakeholders, the way project resources are allocated, their metrics for success, and any notable achievements made over the course of the semester.
+
+Your Final Project will be to make a contribution to be merged by the project of your choice. Adding new examples and/or improving documentation are extremely valuable contributions, but you may also add features or improve implementations. You can also analyze an existing bug or working example, comment on the implementation performance, and compare with other similar implementations from other packages/libraries. Please respect the time of project maintainers and reviewers by learning about the project and its expectations and process, communicating in advance, and leaving plenty of time for multiple rounds of review and revision.
+
+>>>>>>> 360423d (Add first draft of Syllabus, TOC and  materials for Fall 25)
 ## GitHub
 
 We'll use Git with GitHub Classroom for managing activities and feedback.
@@ -174,7 +189,11 @@ SDSU has strict codes of conduct and policies regarding [cheating and plagiarism
 
 ## Use of AI
 
+<<<<<<< HEAD
 This course requires you to complete various assignments that assess your understanding and application of the course content. You are expected to do your own work and cite any sources you use and collaborators appropriately. You are personally responsible for understanding and verifying the code that you submit and include appropriate documentation.
+=======
+This course requires you to complete various assignments that assess your understanding and application of the course content. You are expected to do your own work and cite any sources you use and collaborators (humans or not) appropriately. You are personally responsible for understanding and verifying the code that you submit and include appropriate documentation.
+>>>>>>> 360423d (Add first draft of Syllabus, TOC and  materials for Fall 25)
 
 The California State University system requires instructors to report all instances of academic misconduct to the Center for Student Rights and Responsibilities. Academic dishonesty will result in disciplinary review by the University and may lead to probation, suspension, or expulsion. Instructors may also, at their discretion, penalize student grades on any assignment discovered to have been
 produced in an academically dishonest manner such as cheating and plagiarism as described on the [Cheating and Plagiarism](https://sacd.sdsu.edu/student-rights/academic-dishonesty/cheating-and-plagiarism) page.
@@ -182,9 +201,24 @@ produced in an academically dishonest manner such as cheating and plagiarism as 
 In May 2024, the University Senate extended its definition of plagiarism to include the un-cited use of generative AI applications, specifically: "representing work produced by generative Artificial Intelligence as one’s own." Academic freedom ensures that instructors are empowered to determine whether students may use genAI in their classes and to what extent. To minimize confusion, we report here a statement regarding the use of AI in this class.
 
 
-**Instructor Approved Use of LLMs**: Students should not use generative AI applications, known as large language models (LLMs), in this course except as approved by the instructor. Any use of generative AI outside of instructor-approved guidelines constitutes misuse. Misuse of generative AI is a violation of the course policy on academic honesty and will be reported to the Center for Student Rights and Responsibilities. LLMs, such as OpenAI’s chatGPT, Microsoft’s Co-Pilot, Anthropic’s Claude, Meta’s Llama, Google’s Gemini, etc. are valuable tools, which are still in their infancy, that will likely transform how we teach, learn, and code. However, such LLMs are highly sensitive to the (often biased) data that they are trained on and prone to hallucinations leading to inaccurate and unreliable results. Hence, it is necessary for the user to have a firm grasp and understanding of the material. You may use AI tools as an "assistant" and other online resources (e.g., [stackoverflow.com](https://stackoverflow.com/questions)) as aids for the assignments. You **must acknowledge** use of examples and aids that you include in your assignments, whether from LLMs or other sources. 
+**Instructor Approved Use of LLMs**: Students should not use generative AI applications, known as large language models (LLMs), in this course except as approved by the instructor. Any use of generative AI outside of instructor-approved guidelines constitutes misuse. Misuse of generative AI is a violation of the course policy on academic honesty and will be reported to the Center for Student Rights and Responsibilities. LLMs, such as OpenAI’s chatGPT, Microsoft’s Co-Pilot, Anthropic’s Claude, Meta’s Llama, Google’s Gemini, etc. are valuable tools, which are still in their infancy, that will likely transform how we teach, learn, and code. However, such LLMs are highly sensitive to the (often biased) data that they are trained on and prone to hallucinations leading to inaccurate and unreliable results. Hence, it is necessary for the user to have a firm grasp and understanding of the material. 
 
-In order to prevent misuse of these tools and to ensure students are adequately learning the material, the Instructor may ask students in class or during office hours about certain topics covered in this course after they have been introduced and the students' answers will contribute to the overall assessment and grades.
+* Work created by AI tools may not be considered original work and instead, considered _automated plagiarism_. It is derived from previously created texts from other sources that the models were trained on, yet doesn't cite sources.
+* AI models have built-in biases (ie, they are trained on limited underlying sources; they reproduce, rather than challenge, errors in the sources)
+* AI tools have limitations (ie, they lack critical thinking to evaluate and reflect on criteria; they lack abductive reasoning to make judgments with incomplete information at hand)
+
+
+Given these important ethical caveats, it is crucial for students to learn how to use these tools and other online resources (e.g., [stackoverflow.com](https://stackoverflow.com/questions)) responsibly. For my class
+
+- You **must acknowledge and cite** use of examples and aids that you include in your assignments, whether from LLMs or other sources. 
+- You must clearly identify the use of AI-based tools in your work. Any work that utilizes AI-based tools must be clearly marked as such, including the specific tool(s) used. For example, if you use ChatGPT-3, you must cite "ChatGPT-3. (YYYY, Month DD of query). "Text of your query and answers".
+- You must be transparent in how you used the AI-based tool, including what work is your original contribution.
+- You must ensure your use of AI-based tools does not violate any copyright or intellectual property law.
+- You must not use AI-based tools to cheat on assessments.
+- You must not use AI-based tools to plagiarize without citation.
+
+
+In order to prevent misuse of these tools and to ensure students are adequately learning the material, the Instructor may ask students in class or during office hours about certain topics covered in this course after they have been introduced and the students' answers will contribute to the overall assessment and grades. Instructors and graders/TAs may also use AI detector tools. If you are found in violation of this policy, you may face penalties such as a reduction in grade, failure of the assignment or assessment, or even failure of the course. Finally, it's your responsibility to be aware of the academic integrity policy and take the necessary steps to ensure that your use of AI-based tools is in compliance with this policy. 
 
 ## Sexual Misconduct, Discrimination, Harassment and/or Related Retaliation
 
