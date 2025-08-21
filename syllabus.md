@@ -118,8 +118,6 @@ The schedule is subject to change (the instructor will announce any changes).
 
 Any student who cannot attend class or submit assignments by their due date for serious issues (e.g., medical emergencies) or participation in university activities (e.g., official university travel for conferences or sports) that can be documented, should communicate those to your instructor as soon as possible before the deadline.
 
-<<<<<<< HEAD
-=======
 ### Details on Midterm and Final projects
 
 #### Why community projects?
@@ -132,7 +130,6 @@ Over the course of the semester, you will follow the development activities of a
 
 Your Final Project will be to make a contribution to be merged by the project of your choice. Adding new examples and/or improving documentation are extremely valuable contributions, but you may also add features or improve implementations. You can also analyze an existing bug or working example, comment on the implementation performance, and compare with other similar implementations from other packages/libraries. Please respect the time of project maintainers and reviewers by learning about the project and its expectations and process, communicating in advance, and leaving plenty of time for multiple rounds of review and revision.
 
->>>>>>> 360423d (Add first draft of Syllabus, TOC and  materials for Fall 25)
 ## GitHub
 
 We'll use Git with GitHub Classroom for managing activities and feedback.
@@ -189,11 +186,7 @@ SDSU has strict codes of conduct and policies regarding [cheating and plagiarism
 
 ## Use of AI
 
-<<<<<<< HEAD
-This course requires you to complete various assignments that assess your understanding and application of the course content. You are expected to do your own work and cite any sources you use and collaborators appropriately. You are personally responsible for understanding and verifying the code that you submit and include appropriate documentation.
-=======
 This course requires you to complete various assignments that assess your understanding and application of the course content. You are expected to do your own work and cite any sources you use and collaborators (humans or not) appropriately. You are personally responsible for understanding and verifying the code that you submit and include appropriate documentation.
->>>>>>> 360423d (Add first draft of Syllabus, TOC and  materials for Fall 25)
 
 The California State University system requires instructors to report all instances of academic misconduct to the Center for Student Rights and Responsibilities. Academic dishonesty will result in disciplinary review by the University and may lead to probation, suspension, or expulsion. Instructors may also, at their discretion, penalize student grades on any assignment discovered to have been
 produced in an academically dishonest manner such as cheating and plagiarism as described on the [Cheating and Plagiarism](https://sacd.sdsu.edu/student-rights/academic-dishonesty/cheating-and-plagiarism) page.
@@ -201,7 +194,7 @@ produced in an academically dishonest manner such as cheating and plagiarism as 
 In May 2024, the University Senate extended its definition of plagiarism to include the un-cited use of generative AI applications, specifically: "representing work produced by generative Artificial Intelligence as one’s own." Academic freedom ensures that instructors are empowered to determine whether students may use genAI in their classes and to what extent. To minimize confusion, we report here a statement regarding the use of AI in this class.
 
 
-**Instructor Approved Use of LLMs**: Students should not use generative AI applications, known as large language models (LLMs), in this course except as approved by the instructor. Any use of generative AI outside of instructor-approved guidelines constitutes misuse. Misuse of generative AI is a violation of the course policy on academic honesty and will be reported to the Center for Student Rights and Responsibilities. LLMs, such as OpenAI’s chatGPT, Microsoft’s Co-Pilot, Anthropic’s Claude, Meta’s Llama, Google’s Gemini, etc. are valuable tools, which are still in their infancy, that will likely transform how we teach, learn, and code. However, such LLMs are highly sensitive to the (often biased) data that they are trained on and prone to hallucinations leading to inaccurate and unreliable results. Hence, it is necessary for the user to have a firm grasp and understanding of the material. 
+**Instructor Approved Use of LLMs**: Students should not use generative AI applications, known as large language models (LLMs), in this course except as approved by the instructor. Any use of generative AI outside of instructor-approved guidelines constitutes misuse. Misuse of generative AI is a violation of the course policy on academic honesty and will be reported to the Center for Student Rights and Responsibilities. LLMs, such as OpenAI’s chatGPT, Microsoft’s Co-Pilot, Anthropic’s Claude, Meta’s Llama, Google’s Gemini, or VSCode AI assistant etc. are valuable tools, which are still in their infancy, that will likely transform how we teach, learn, and code. However, such LLMs are highly sensitive to the (often biased) data that they are trained on and prone to hallucinations leading to inaccurate and unreliable results. Hence, it is necessary for the user to have a firm grasp and understanding of the material. 
 
 * Work created by AI tools may not be considered original work and instead, considered _automated plagiarism_. It is derived from previously created texts from other sources that the models were trained on, yet doesn't cite sources.
 * AI models have built-in biases (ie, they are trained on limited underlying sources; they reproduce, rather than challenge, errors in the sources)
