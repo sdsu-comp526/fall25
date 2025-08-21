@@ -121,9 +121,11 @@ Assignments will be distributed no later than a week prior to the due date.
 
 The schedule is subject to change (the instructor will announce any changes).
 
-**Late submission and absences policy**: if you submit your assignments late, there is an increasing penalty (10% off for up to 24 hours late, 20% off for 24-48 hours late). No assignments will be graded if submitted later than 48 hours late.
+**Late submission and absences policy**: If you submit your assignments late, there is an increasing penalty (10% off for up to 24 hours late, 20% off for 24-48 hours late). No assignments will be graded if submitted later than 48 hours late.
 
-Any student who cannot attend class or submit assignments by their due date for serious issues (e.g., medical emergencies) or participation in university activities (e.g., official university travel for conferences or sports) that can be documented, should communicate those to your instructor as soon as possible before the deadline.
+**Grade questions/disputes**: All questions regarding grading must be received no later than 5 days from the date grades are posted in Canvas.
+
+Any student who cannot attend class or submit assignments by their due date for serious issues (e.g., medical emergencies) or participation in university activities (e.g., official university travel for conferences or sports) that can be _documented_, should communicate those to your instructor as soon as possible before the deadline.
 
 ### Details on Midterm and Final projects
 
