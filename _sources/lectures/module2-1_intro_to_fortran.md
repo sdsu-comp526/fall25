@@ -1,7 +1,8 @@
-# 3) Introduction to Fortran
+# 4) Introduction to Fortran
 
 ## Last time:
-- Introduction to Linux
+
+- Community Projects
 
 ## Today:
  1. How to compile a Fortran program

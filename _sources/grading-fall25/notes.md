@@ -3,8 +3,8 @@
 ## For this year:
 
 - Participation: 5%
-- Assignment 1: Git repo (10%)
-- Assignment 2: Fortran assignment (10%) Root finding - bisection method
+- Assignment 1: Git repo (10%) - due 09/12
+- Assignment 2: Fortran assignment (10%) Root finding - bisection method or some linear algebra ?
 - Assignment 3: C assignment (10%) Lagrange interpolation
 - Assignment 4: Julia assignment (10%) Gaussian quadrature
 
