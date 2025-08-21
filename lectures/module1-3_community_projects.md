@@ -1,10 +1,8 @@
-# 22) Community Projects
+# 3) Community Projects
 
 ## Last time
 
-* Reflection on algorithm choices
-* Low-rank structure
-* Primer on interpolation
+- Introduction to Linux
 
 ## Today
 
