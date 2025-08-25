@@ -6,7 +6,8 @@ Welcome to **Computational Methods for Scientists**, Comp-526
 * Office hours: announced on the course [Canvas page](https://sdsu.instructure.com/courses/185408) or by appointment.
 :::
 
-:::{note} Who am I?
+:::{note}
+Who am I?
 - _Assistant Professor_ in the Department of Mathematics & Statistics and the Computational Science Research Center
 - Previously:
   * Research Software Engineer for 3+ years at Caltech, in the [CliMA](https://clima.caltech.edu/) group
@@ -36,4 +37,11 @@ Welcome to **Computational Methods for Scientists**, Comp-526
     * linear algebra with attention to performance; free PDF and videos
   * [Eijkhout (2023), **The Art of HPC**](https://theartofhpc.com/)
     * collection of free books on numerical and scientific computing, plus "carpentry"
+:::
+
+:::{note}
+This course website is powered by Jupyter Book 
+```{only} html
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)
+```
 :::

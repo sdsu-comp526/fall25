@@ -108,11 +108,11 @@ Grading breakdown:
 
 AOE: Anywhere on Earth time zone. This time zone is 12 hours behind Coordinated Universal Time (UTC) and typically used for online submissions to accommodate people from different time zones. Given that this course is taught in person in the Pacific standard time, I use this not really to facilitate submissions from different time zones, but to allow people not to worry about submitting by midnight sharp. This does _not_ mean that I encourage people working late. I actually advocate for a healthy work/life balance for everyone (students and instructors alike).
 
-- **Midterm Project** (%20): The midterm/final project choice and proposal will need to be discussed with your teacher, before its submission (_not_ via email). Please make sure to use plenty of Office Hours to discuss your midterm/final project Proposal before submitting it. This project is broken down in two deadlines TBD. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Midterm Project**, I will set the **earliest of the two** deadlines on **Canvas**.
+- **Midterm Project** (%20): The midterm/final project choice and proposal will need to be discussed with your teacher, before its submission (_not_ via email). Please make sure to use plenty of Office Hours to discuss your midterm/final project Proposal before submitting it. This project is broken down in two deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Midterm Project**, I will set the **earliest of the two** deadlines on **Canvas**.
     * Part 1, due **Friday 10/17/25**, by midnight (AOE): Community project analysis and proposal.
     * Part 2, due **Friday 10/31/25**, by midnight (AOE): Community project contribution proposal and creation of an Issue.
 
-- **Final Project** (%35): This project is broken down in three deadlines TBD. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Final Project**, I will set the **latest of the three** deadlines on **Canvas**.
+- **Final Project** (%35): This project is broken down in three deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Final Project**, I will set the **latest of the three** deadlines on **Canvas**.
     * Part 1, due **Wednesday 11/19/25** by midnight (AOE): Creation of a Pull/Merge Request
     * Part 2, **Friday 12/05/25**, **Monday 12/08/25** and **Wednesday 12/10/25**: In class oral presentations.
     * Part 3, due **Wednesday 12/10/25**, by midnight (AOE): submission of Final Project Report.
