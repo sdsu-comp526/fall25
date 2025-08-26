@@ -100,7 +100,7 @@ Upon completing this course, students will be able to
 This class will have some assignments and projects (midterm and final). The final projects can be individual or group projects (depending on the number of students registered) and will be agreed upon with the instructor. There will be a midterm and a final oral presentation for each project. Moreover, a final report must be delivered. Instructions about what is expected for both midterm and final presentations as well as for the final report will be provided.
 
 Grading breakdown:
-- Participation (can include engagement in class, attendance, use of office hours, etc) (5%)
+- Participation (can include engagement in class, attendance, use of office hours, etc) (5% - includes a graded quiz (1%) with due date **Wednesday 09/10/25**, by midnight (AOE))
 - Assignment 1 (10%): due date **Friday 09/12/25**, by midnight (AOE)
 - Assignment 2 (10%): due date **Friday 09/26/25**, by midnight (AOE)
 - Assignment 3 (10%): due date **Friday 10/03/25**, by midnight (AOE)
@@ -108,11 +108,11 @@ Grading breakdown:
 
 AOE: Anywhere on Earth time zone. This time zone is 12 hours behind Coordinated Universal Time (UTC) and typically used for online submissions to accommodate people from different time zones. Given that this course is taught in person in the Pacific standard time, I use this not really to facilitate submissions from different time zones, but to allow people not to worry about submitting by midnight sharp. This does _not_ mean that I encourage people working late. I actually advocate for a healthy work/life balance for everyone (students and instructors alike).
 
-- **Midterm Project** (%20): The midterm/final project choice and proposal will need to be discussed with your teacher, before its submission (_not_ via email). Please make sure to use plenty of Office Hours to discuss your midterm/final project Proposal before submitting it. This project is broken down in two deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Midterm Project**, I will set the **earliest of the two** deadlines on **Canvas**.
+- **Midterm Project** (20%): The midterm/final project choice and proposal will need to be discussed with your teacher, before its submission (_not_ via email). Please make sure to use plenty of Office Hours to discuss your midterm/final project Proposal before submitting it. This project is broken down in two deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Midterm Project**, I will set the **earliest of the two** deadlines on **Canvas**.
     * Part 1, due **Friday 10/17/25**, by midnight (AOE): Community project analysis and proposal.
     * Part 2, due **Friday 10/31/25**, by midnight (AOE): Community project contribution proposal and creation of an Issue.
 
-- **Final Project** (%35): This project is broken down in three deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Final Project**, I will set the **latest of the three** deadlines on **Canvas**.
+- **Final Project** (35%): This project is broken down in three deadlines. Please note that Canvas does not allow setting multiple parts with different deadlines for a given assignment. For the **Final Project**, I will set the **latest of the three** deadlines on **Canvas**.
     * Part 1, due **Wednesday 11/19/25** by midnight (AOE): Creation of a Pull/Merge Request
     * Part 2, **Friday 12/05/25**, **Monday 12/08/25** and **Wednesday 12/10/25**: In class oral presentations.
     * Part 3, due **Wednesday 12/10/25**, by midnight (AOE): submission of Final Project Report.
@@ -181,8 +181,7 @@ Good to know:
 Both students and faculty are responsible for maintaining an appropriate learning environment in all instructional settings, whether in person, remote, or online. Those who fail to adhere to such behavioral standards may be subject to discipline. Professional courtesy and sensitivity are especially important with respect to individuals and topics dealing with race, color, national origin, sex, pregnancy, age, disability (visible or invisible), creed, religion, sexual orientation, gender identity, gender expression, veteran status, political affiliation, or political philosophy.
 
 ## Resources for students
-Every student is encouraged to read the [SDSU Student Academic Success Handbook](https://docs.google.com/document/d/1rXNpNGs1K7nIxcS73o6R-fxZqPIWQwS9gHD7XpIqjhM/edit#heading=h.apbuhr7p11ak) (includes essential information for students). Please, watch this [video](https://drive.google.com/file/d/1eViqiJ3TDjuA6a-342aLZMpFTzGCXzUJ/view?usp=drivesdk
-).
+Every student is encouraged to read the [SDSU Student Academic Success Handbook](https://docs.google.com/document/d/1rXNpNGs1K7nIxcS73o6R-fxZqPIWQwS9gHD7XpIqjhM/edit#heading=h.apbuhr7p11ak) (includes essential information for students). Please, watch this [video](https://drive.google.com/file/d/1eViqiJ3TDjuA6a-342aLZMpFTzGCXzUJ/view?usp=drivesdk) from the Basic Needs Center and Economic Crisis Response Team (ECRT).
 
 ## Accommodation for Disabilities
 
