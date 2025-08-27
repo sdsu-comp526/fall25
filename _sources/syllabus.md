@@ -217,6 +217,7 @@ Given these important ethical caveats, it is crucial for students to learn how t
 
 - You **must acknowledge and cite** use of examples and aids that you include in your assignments, whether from LLMs or other sources. 
 - You must clearly identify the use of AI-based tools in your work. Any work that utilizes AI-based tools must be clearly marked as such, including the specific tool(s) used. For example, if you use ChatGPT-3, you must cite "ChatGPT-3. (YYYY, Month DD of query). "Text of your query and answers".
+- You must not use AI-based tools to write commentaries/reports/essays, but use **your own words** for those.
 - You must be transparent in how you used the AI-based tool, including what work is your original contribution.
 - You must ensure your use of AI-based tools does not violate any copyright or intellectual property law.
 - You must not use AI-based tools to cheat on assessments.
