@@ -9,7 +9,7 @@
  2. The simplest Fortran program
  3. Hello, World! and Simple I/O
  4. Arithmetic in Fortran
- 5. Functions
+ 5. Functions  
    5.1 Scope Rules
  6. Interface Blocks
  7. Subroutines
