@@ -687,9 +687,10 @@ first, and then <code class="docutils literal notranslate"><span class="pre">git
 <li><p>A good practice for managing output of experiments and avoid output being overwirtten is to concatenate parameters as strings in the output folder name so that each experiment will create a unique output folder, and this should facilitate experiments book-keeping.</p>
 <ul>
 <li><p>But what if you want to repeat the same experiment with exactly the same parameters? This will overwite your concatenated parameter string output folder name as well. Some people prefer using a time stamp (so that you are sure it is unique) but it might be obscure to visualize and remember which folder/experiment pair that output belongs to. Some other people use a combination of these two methods (time stamp + concatenated parameters string).</p></li>
-<li><p>There is no <em>right</em> way of doing this, as long as you can find what works best for your own bookkeeping and be able to easily fetch an old result when needed (if you do research, sometimes you may be asked to show results from a couple of years ago!)</p></li>
+<li><p>There is no <em>right</em> way of doing this, as long as you can find what works best for your own bookkeeping and be able to easily fetch an old result when needed (if you do research, sometimes you may be asked to show results from a couple of years ago!).</p></li>
 </ul>
 </li>
+<li><p>Recommended reading: <a class="reference external" href="https://www.siam.org/publications/siam-news/articles/taming-the-chaos-of-computational-experiments/">Taming the Chaos of Computational Experiments</a>.</p></li>
 </ul>
 </section>
 </section>
@@ -817,6 +818,24 @@ first, and then <code class="docutils literal notranslate"><span class="pre">git
 </li>
 <li><p>Note that even if you do not specify the current directory with the period <code class="docutils literal notranslate"><span class="pre">.</span></code>, julia will try to find the environment to launch in the current directory, so <code class="docutils literal notranslate"><span class="pre">julia</span> <span class="pre">--project=.</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">julia</span> <span class="pre">--project</span></code></p></li>
 </ul>
+<p>Once you have added new packages, to load a module from a package, you can use the <code class="docutils literal notranslate"><span class="pre">using</span></code> keyword.</p>
+<p>Julia’s <em>modules</em> are a unit of code in the Julia programming language that contain related functions, types, and data structures. They are used to organize code and to make it reusable in different parts of a project or in different projects. Modules help to reduce code duplication and improve maintainability.</p>
+<p>The using statement is used to bring an entire module and its functions into your code, and it can be written as follows:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">MyModule</span>
+</pre></div>
+</div>
+<p>This statement will load the <code class="docutils literal notranslate"><span class="pre">MyModule</span></code> module and make all its functions available in your current code.</p>
+<p>The import statement is used to bring specific functions from a module into your code. It can be written as follows:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="n">MyModule</span><span class="o">.</span><span class="n">myfunction</span>
+</pre></div>
+</div>
+<p>This statement will load only the <code class="docutils literal notranslate"><span class="pre">myfunction</span></code> function from the <code class="docutils literal notranslate"><span class="pre">MyModule</span></code> module and make it available in your current code.</p>
+<p>You can also use the import statement to rename functions or modules, like this:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="n">MyModule</span><span class="o">.</span><span class="n">myfunction</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">func</span>
+</pre></div>
+</div>
+<p>This statement will load the <code class="docutils literal notranslate"><span class="pre">myfunction</span></code> function from the <code class="docutils literal notranslate"><span class="pre">MyModule</span></code> module and make it available in your current code as <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p>
+<p>In summary: With <code class="docutils literal notranslate"><span class="pre">using</span></code>, you can directly call myfunction without needing to qualify it with the <code class="docutils literal notranslate"><span class="pre">MyModule</span></code> prefix. On the other hand, <code class="docutils literal notranslate"><span class="pre">import</span></code> is used when you want to selectively bring in specific names from a module into your namespace. With <code class="docutils literal notranslate"><span class="pre">import</span></code>, you can choose which specific names you want to use, and you can rename them if you want to avoid naming conflicts.</p>
 </section>
 </section>
 <section id="python">
