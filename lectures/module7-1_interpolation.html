@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>24) Interpolation &#8212; Computational Methods for Scientists</title>
+    <title>24) Interpolation &#8212; Computational Methods for Scientists Fall 25</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -156,8 +156,8 @@
       
     
     
-    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists - Home"/>
-    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists - Home"/>`);</script>
+    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists Fall 25 - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists Fall 25 - Home"/>`);</script>
   
   
 </a></div>
@@ -588,8 +588,8 @@ document.write(`
 \begin{bmatrix} y_0 \\ y_1 \\ \vdots \\ y_n \end{bmatrix}
 \end{split}\]</div>
 <p>which is the matrix form of the system of equations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bba97c25-30cb-4966-bdc6-bbb20e63454c">
-<span class="eqno">()<a class="headerlink" href="#equation-bba97c25-30cb-4966-bdc6-bbb20e63454c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bad93c59-a477-4838-9590-7e2c344a874c">
+<span class="eqno">()<a class="headerlink" href="#equation-bad93c59-a477-4838-9590-7e2c344a874c" title="Permalink to this equation">#</a></span>\[\begin{align}
 p(x_0) &amp;= a_0 + a_1 x_0 + a_2 x_0^2 + \ldots + a_n x_0^m = y_0\\
 p(x_1) &amp;= a_0 + a_1 x_1 + a_2 x_1^2 + \ldots + a_n x_1^m = y_1\\
 p(x_2) &amp;= a_0 + a_1 x_2 + a_2 x_2^2 + \ldots + a_n x_2^m = y_2\\ 
@@ -669,12 +669,11 @@ l_i(x)= \frac{(x-x_0)(x-x_1) \cdots (x-x_{i-1})(x-x_{i+1}) \cdots (x-x_m)}{(x_i-
 <section id="example">
 <h3>Example:<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
 <p>Find an interpolating polynomial for the data points <span class="math notranslate nohighlight">\((0, 1)\)</span>, <span class="math notranslate nohighlight">\((2, 2)\)</span>, and <span class="math notranslate nohighlight">\((3, 4)\)</span>. Substituting into Lagrange’s formula yields:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f64032aa-f360-425e-835a-623df58734a0">
-<span class="eqno">()<a class="headerlink" href="#equation-f64032aa-f360-425e-835a-623df58734a0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2db42703-77f7-41a2-8884-15129c06e7f2">
+<span class="eqno">()<a class="headerlink" href="#equation-2db42703-77f7-41a2-8884-15129c06e7f2" title="Permalink to this equation">#</a></span>\[\begin{align}
 p_2(x) =&amp; 1 \frac{(x-2)(x-3)}{(0-2)(0-3)} +2 \frac{(x-0)(x-3)}{(2-0)(2-3)} +4\frac{(x-0)(x-2)}{(3-0)(3-2)} = \\
        =&amp; \frac{1}{6}(x^2 - 5x +6) +2\left(-\frac{1}{2} \right)(x^2 - 3x) +4\left( \frac{1}{3} \right) (x^2 -2x) = \\
        =&amp; \frac{x^2}{2} - \frac{x}{2} +1.
-
 \end{align}\]</div>
 <p>Check that <span class="math notranslate nohighlight">\(p_2(0)=1\)</span>, <span class="math notranslate nohighlight">\(p_2(2)=2\)</span>, and <span class="math notranslate nohighlight">\(p_2(3)=4\)</span>.</p>
 <div class="cell docutils container">

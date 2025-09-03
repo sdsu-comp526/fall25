@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>36) Stiff Equations &#8212; Computational Methods for Scientists</title>
+    <title>36) Stiff Equations &#8212; Computational Methods for Scientists Fall 25</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -156,8 +156,8 @@
       
     
     
-    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists - Home"/>
-    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists - Home"/>`);</script>
+    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists Fall 25 - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists Fall 25 - Home"/>`);</script>
   
   
 </a></div>
@@ -807,8 +807,8 @@ y^{n+1} = \left(1 + h \lambda \right)^{n+1} y^0 .
 \dot{\mathbf{y}} = A \mathbf{y}
 \]</div>
 <p>For example, a system of two first-order linear ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5cf68ae6-4df7-4ddb-979f-065ad0865437">
-<span class="eqno">()<a class="headerlink" href="#equation-5cf68ae6-4df7-4ddb-979f-065ad0865437" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6709632a-5a83-4a80-a858-64ef025d7b94">
+<span class="eqno">()<a class="headerlink" href="#equation-6709632a-5a83-4a80-a858-64ef025d7b94" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_1' &amp;= y_2\\
 y_2' &amp;= - y_1\\
 \end{align}\]</div>
@@ -1255,7 +1255,7 @@ Evidently only <span class="math notranslate nohighlight">\(\theta=1\)</span> is
 \frac{\partial u}{\partial t} = - c  \frac{\partial u}{\partial x}
 \]</div>
 <p>on <span class="math notranslate nohighlight">\([-1,1]\)</span>, with an initial condition <span class="math notranslate nohighlight">\(u(x,t=0)  = u_0 = e^{-9x^2}\)</span>, and periodic boundary conditions: <span class="math notranslate nohighlight">\(u(-1)=u(1)\)</span>.</p>
-<p>Here <span class="math notranslate nohighlight">\(u(x,t)\)</span>, <span class="math notranslate nohighlight">\(x \in \R\)</span> is a scalar (wave), advected by a nonezero constant <span class="math notranslate nohighlight">\(c\)</span> during time <span class="math notranslate nohighlight">\(t\)</span>. The sign of <span class="math notranslate nohighlight">\(c\)</span>  characterise the direction of wave propagation. If <span class="math notranslate nohighlight">\(c&gt;0\)</span>, the wave propagates in the positive direction of <span class="math notranslate nohighlight">\(x\)</span>-axis. On the other hand, if <span class="math notranslate nohighlight">\(c&lt;0\)</span>  then the wave propagates to the negative direction of <span class="math notranslate nohighlight">\(x\)</span>-axis. The mangitude of <span class="math notranslate nohighlight">\(c\)</span> tells us how fast the wave propagates. The exact solution of this equation is given by its initial value. Assuming that the initial condition is given as <span class="math notranslate nohighlight">\(u_0(x,t)= u(x,0)\)</span>, then the exact solution of equation is <span class="math notranslate nohighlight">\(u(x,t) = u_0 (x-ct)\)</span>.</p>
+<p>Here <span class="math notranslate nohighlight">\(u(x,t)\)</span>, <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> is a scalar (wave), advected by a nonezero constant <span class="math notranslate nohighlight">\(c\)</span> during time <span class="math notranslate nohighlight">\(t\)</span>. The sign of <span class="math notranslate nohighlight">\(c\)</span>  characterise the direction of wave propagation. If <span class="math notranslate nohighlight">\(c&gt;0\)</span>, the wave propagates in the positive direction of <span class="math notranslate nohighlight">\(x\)</span>-axis. On the other hand, if <span class="math notranslate nohighlight">\(c&lt;0\)</span>  then the wave propagates to the negative direction of <span class="math notranslate nohighlight">\(x\)</span>-axis. The mangitude of <span class="math notranslate nohighlight">\(c\)</span> tells us how fast the wave propagates. The exact solution of this equation is given by its initial value. Assuming that the initial condition is given as <span class="math notranslate nohighlight">\(u_0(x,t)= u(x,0)\)</span>, then the exact solution of equation is <span class="math notranslate nohighlight">\(u(x,t) = u_0 (x-ct)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">advect_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">upwind</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span>

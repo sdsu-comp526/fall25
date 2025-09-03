@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>35) Differential Equations &#8212; Computational Methods for Scientists</title>
+    <title>35) Differential Equations &#8212; Computational Methods for Scientists Fall 25</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -156,8 +156,8 @@
       
     
     
-    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists - Home"/>
-    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists - Home"/>`);</script>
+    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists Fall 25 - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists Fall 25 - Home"/>`);</script>
   
   
 </a></div>
@@ -778,8 +778,8 @@ y^{n+1} = \left(1 + h \lambda \right)^{n+1} y^0 .
 \dot{\mathbf{y}} = A \mathbf{y}
 \]</div>
 <p>For example, a system of two first-order linear ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-70845366-5941-489b-b094-343d4548b7be">
-<span class="eqno">()<a class="headerlink" href="#equation-70845366-5941-489b-b094-343d4548b7be" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-005a812b-16f5-40bf-8ffe-1f018ad8e983">
+<span class="eqno">()<a class="headerlink" href="#equation-005a812b-16f5-40bf-8ffe-1f018ad8e983" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_1' &amp;= y_2\\
 y_2' &amp;= - y_1\\
 \end{align}\]</div>
@@ -943,15 +943,24 @@ y^{n+1} = \underbrace{(1 + h \lambda)}_{R(h \lambda)} y^n,
 <h3>Stability of backward Euler<a class="headerlink" href="#stability-of-backward-euler" title="Link to this heading">#</a></h3>
 <p>For the test equation</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned} 
-y' = \lambda y
-$$, \\at the first time step, the backward Euler method is\\$$ \tilde y(h) = y(0) + h \lambda \tilde y(h), \end{aligned}\end{align} \]</div>
+\[ 
+y' = \lambda y,
+\]</div>
+<p>at the first time step, the backward Euler method is</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde y(h) = y(0) + h \lambda \tilde y(h),
+\]</div>
 <p>or</p>
 <div class="math notranslate nohighlight">
-\[  \left(1 - h \lambda\right)   \tilde y(h) =  y(0) , \]</div>
+\[
+\left(1 - h \lambda\right)   \tilde y(h) =  y(0),
+\]</div>
 <p>hence</p>
 <div class="math notranslate nohighlight">
-\[ \tilde y(h) = \underbrace{\left( \frac{1}{1 - h \lambda}\right)}_{R(h\lambda)} y(0) . \]</div>
+\[
+\tilde y(h) = \underbrace{\left( \frac{1}{1 - h \lambda}\right)}_{R(h\lambda)} y(0) .
+\]</div>
 <p>For many steps, <span class="math notranslate nohighlight">\((n \geq 1)\)</span>, we obtain:</p>
 <div class="math notranslate nohighlight">
 \[

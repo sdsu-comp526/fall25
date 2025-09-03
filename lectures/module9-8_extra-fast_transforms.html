@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>41) Extra: Fast transforms &#8212; Computational Methods for Scientists</title>
+    <title>41) Extra: Fast transforms &#8212; Computational Methods for Scientists Fall 25</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -156,8 +156,8 @@
       
     
     
-    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists - Home"/>
-    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists - Home"/>`);</script>
+    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists Fall 25 - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists Fall 25 - Home"/>`);</script>
   
   
 </a></div>
@@ -521,8 +521,8 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[ f(x) \approx \sum_{k=1}^n \underbrace{\hat f(\theta_k)}_{\hat f_k} e^{i\theta_k x} . \]</div>
 <p>This is reminiscent of linear algebra… We saw how linear combinations can be expressed as column-wise matrix-vector products:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0adc996b-dc21-487a-8986-ff54de0b374e">
-<span class="eqno">()<a class="headerlink" href="#equation-0adc996b-dc21-487a-8986-ff54de0b374e" title="Permalink to this equation">#</a></span>\[\begin{align} \Bigg[ f(x) \Bigg] &amp;= \Bigg[ e^{i\theta_1 x} \Bigg| e^{i\theta_2 x} \Bigg| \dotsm \Bigg] \begin{bmatrix} \hat f_1 \\ \hat f_2 \\ \vdots \end{bmatrix} \\
+<div class="amsmath math notranslate nohighlight" id="equation-845e3de5-bf6d-4894-8e93-f0d16305b746">
+<span class="eqno">()<a class="headerlink" href="#equation-845e3de5-bf6d-4894-8e93-f0d16305b746" title="Permalink to this equation">#</a></span>\[\begin{align} \Bigg[ f(x) \Bigg] &amp;= \Bigg[ e^{i\theta_1 x} \Bigg| e^{i\theta_2 x} \Bigg| \dotsm \Bigg] \begin{bmatrix} \hat f_1 \\ \hat f_2 \\ \vdots \end{bmatrix} \\
 &amp;= \Bigg[ e^{i\theta_1 x} \Bigg] \hat f_1 + \Bigg[ e^{i\theta_2 x} \Bigg] \hat f_2 + \dotsb .
 \end{align}\]</div>
 <section id="continuous-theta-infinite-domain">
@@ -602,8 +602,8 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[ \hat f_k = \sum_\ell e^{-i\theta_k x_\ell} f_\ell \]</div>
 <p>where <span class="math notranslate nohighlight">\(f_\ell\)</span> are samples <span class="math notranslate nohighlight">\(f(x_\ell)\)</span> at integers <span class="math notranslate nohighlight">\(x_\ell = \ell\)</span> and <span class="math notranslate nohighlight">\(\theta_k\)</span> are the frequencies <span class="math notranslate nohighlight">\(2 \pi k/n\)</span> (because the branch <span class="math notranslate nohighlight">\(\theta \in (-\pi, \pi]\)</span> is arbitrary).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0f3336ff-08bc-49e5-9f1d-fd1328b238ac">
-<span class="eqno">()<a class="headerlink" href="#equation-0f3336ff-08bc-49e5-9f1d-fd1328b238ac" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-475619b2-a198-4f9f-a4ca-5fe883ec2c97">
+<span class="eqno">()<a class="headerlink" href="#equation-475619b2-a198-4f9f-a4ca-5fe883ec2c97" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat f_k &amp;= \sum_{\ell=0}^{n-1} e^{-2\pi i \frac{k \ell}{n}} f_\ell \\
  &amp;= \underbrace{\sum_{\ell=0}^{n/2-1} e^{-2\pi i \frac{k (2\ell)}{n}} f_{2\ell}}_{\text{even}} +
  \underbrace{\sum_{\ell=0}^{n/2-1} e^{-2\pi i \frac{k (2\ell+1)}{n}} f_{2\ell+1}}_{\text{odd}} \\
@@ -612,8 +612,8 @@ document.write(`
 <section id="periodicity">
 <h3>Periodicity<a class="headerlink" href="#periodicity" title="Link to this heading">#</a></h3>
 <p>When the original signal <span class="math notranslate nohighlight">\(f\)</span> is periodic, <span class="math notranslate nohighlight">\(f_{\ell} = f_{(\ell + n) \bmod n}\)</span>, then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-60aa1791-b03b-4724-ac8c-6a1a0c3bd6b3">
-<span class="eqno">()<a class="headerlink" href="#equation-60aa1791-b03b-4724-ac8c-6a1a0c3bd6b3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-358d6019-c214-4e7d-b75a-b7f09f84fc35">
+<span class="eqno">()<a class="headerlink" href="#equation-358d6019-c214-4e7d-b75a-b7f09f84fc35" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat f_{k+n/2} &amp;= \sum_{\ell=0}^{n/2-1} e^{-2\pi i \frac{(k+n/2) \ell}{n/2}} f_{2\ell} + e^{-2\pi i \frac{(k+n/2)}{n}} \sum_{\ell=0}^{n/2-1} e^{-2\pi i \frac{(k+n/2) \ell}{n/2}} f_{2\ell+1} \\
 &amp;= \sum_{\ell=0}^{n/2-1} e^{-2\pi i \frac{k \ell}{n/2}} f_{2\ell} + e^{-2\pi i \frac{k}{n}} e^{-\pi i} \sum_{\ell=0}^{n/2-1} e^{-2\pi i \frac{k\ell}{n/2}} f_{2\ell+1} \\
 &amp;= \sum_{\ell=0}^{n/2-1} e^{-2\pi i \frac{k \ell}{n/2}} f_{2\ell} - e^{-2\pi i \frac{k}{n}} \sum_{\ell=0}^{n/2-1} e^{-2\pi i \frac{k \ell}{n/2}} f_{2\ell+1}

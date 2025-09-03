@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>17) Cholesky QR &#8212; Computational Methods for Scientists</title>
+    <title>17) Cholesky QR &#8212; Computational Methods for Scientists Fall 25</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -156,8 +156,8 @@
       
     
     
-    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists - Home"/>
-    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists - Home"/>`);</script>
+    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists Fall 25 - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists Fall 25 - Home"/>`);</script>
   
   
 </a></div>
@@ -801,8 +801,8 @@ norm(v) = 1.4245900685395503
 </section>
 <section id="composition-of-reflectors">
 <h2>2. Composition of reflectors<a class="headerlink" href="#composition-of-reflectors" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-d8171762-2c48-4af0-9260-11ea211ab38d">
-<span class="eqno">()<a class="headerlink" href="#equation-d8171762-2c48-4af0-9260-11ea211ab38d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5b9976ad-43e3-4767-8048-dbeeac703090">
+<span class="eqno">()<a class="headerlink" href="#equation-5b9976ad-43e3-4767-8048-dbeeac703090" title="Permalink to this equation">#</a></span>\[\begin{align}
 (I - 2 v v^T) (I - 2 w w^T) &amp;= I - 2 v v^T - 2 w w^T + 4 v (v^T w) w^T \\
 &amp;= I - \Bigg[v \Bigg| w \Bigg] \begin{bmatrix} 2 &amp; -4 v^T w \\ 0 &amp; 2 \end{bmatrix} \begin{bmatrix} v^T \\ w^T \end{bmatrix}
 \end{align}\]</div>
@@ -887,7 +887,7 @@ norm(Q * R - A) = 4.181859677183379e-12
 <section id="cholesky-decomposition">
 <h2>3. Cholesky decomposition<a class="headerlink" href="#cholesky-decomposition" title="Link to this heading">#</a></h2>
 <p>First some definitions:</p>
-<p>A matrix <span class="math notranslate nohighlight">\(A \in \R^{n \times n}\)</span> is <em>symmetric</em> if <span class="math notranslate nohighlight">\(A = A^{T}\)</span> and <em>positive definite</em> if <span class="math notranslate nohighlight">\(x^{T}Ax &gt; 0\)</span> for all nonzero <span class="math notranslate nohighlight">\(x \in \R^n\)</span>. Symmetric <em>and</em> positive definite matrices, i.e., <em>symmetric positive definite (SPD)</em> matrices, are the most important class of specially structured matrices that arise in applications.</p>
+<p>A matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> is <em>symmetric</em> if <span class="math notranslate nohighlight">\(A = A^{T}\)</span> and <em>positive definite</em> if <span class="math notranslate nohighlight">\(x^{T}Ax &gt; 0\)</span> for all nonzero <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>. Symmetric <em>and</em> positive definite matrices, i.e., <em>symmetric positive definite (SPD)</em> matrices, are the most important class of specially structured matrices that arise in applications.</p>
 <p>Intuitively, the largest entry in an SPD matrix is on the diagonal and, more qualitatively, SPD matrices have more “mass” on the diagonal than off the diagonal.</p>
 <p>If <span class="math notranslate nohighlight">\(A\)</span> can be factored in a QR-factorization, i.e., <span class="math notranslate nohighlight">\(A = QR\)</span>, then we can write:</p>
 <div class="math notranslate nohighlight">
