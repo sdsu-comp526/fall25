@@ -1,4 +1,4 @@
-# 5) Intro to C pointers
+# 22) Intro to C pointers
 
 Today:
  1. Definition

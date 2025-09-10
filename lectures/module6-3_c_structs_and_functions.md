@@ -1,4 +1,4 @@
-# 6) C structs and functions
+# 23) C structs and functions
 
 Today:
  1. Structs
