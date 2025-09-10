@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>34) Differentiation &#8212; Computational Methods for Scientists Fall 25</title>
+    <title>37) Differentiation &#8212; Computational Methods for Scientists Fall 25</title>
   
   
   
@@ -191,6 +191,11 @@
 <li class="toctree-l2"><a class="reference internal" href="module1-2_linux.html">2) The Linux Filesystem and commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module1-3_community_projects.html">3) Community Projects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module2-1_intro_to_fortran.html">4) Introduction to Fortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-1_functions_and_fpa.html">5) Functions</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="module3-2_function_errors.html">6) Function errors</a></li>
 </ul>
 </details></li>
 </ul>
@@ -409,7 +414,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>34) Differentiation</h1>
+    <h1>37) Differentiation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -466,7 +471,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="differentiation">
-<h1>34) Differentiation<a class="headerlink" href="#differentiation" title="Link to this heading">#</a></h1>
+<h1>37) Differentiation<a class="headerlink" href="#differentiation" title="Link to this heading">#</a></h1>
 <section id="last-time">
 <h2>Last time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -696,8 +701,8 @@ This error becomes large (relative to <span class="math notranslate nohighlight"
 <section id="we-can-go-the-other-way">
 <h3>We can go the other way<a class="headerlink" href="#we-can-go-the-other-way" title="Link to this heading">#</a></h3>
 <p>We can differentiate a composition <span class="math notranslate nohighlight">\(h(g(f(x)))\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0f7c6e2c-abdb-4fee-ab84-aba23261eb7f">
-<span class="eqno">()<a class="headerlink" href="#equation-0f7c6e2c-abdb-4fee-ab84-aba23261eb7f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-035cf833-11d4-46b5-be54-8363019db8ee">
+<span class="eqno">()<a class="headerlink" href="#equation-035cf833-11d4-46b5-be54-8363019db8ee" title="Permalink to this equation">#</a></span>\[\begin{align}
   \operatorname{d} h &amp;= h' \operatorname{d} g \\
   \operatorname{d} g &amp;= g' \operatorname{d} f \\
   \operatorname{d} f &amp;= f' \operatorname{d} x.
@@ -812,7 +817,10 @@ top:
 ; │││┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface2.jl within `macro expansion`
 ; ││││┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/chainrules.jl:234 within `chain_rrule`
 ; │││││┌ @ /home/vbarra/.julia/packages/ChainRulesCore/U6wNx/src/rules.jl:138 within `rrule` @ /home/vbarra/.julia/packages/ChainRules/166sf/src/rulesets/Base/fastmath_able.jl:56
-        %1 = <span class=" -Color -Color-Bold">call</span> <span class=" -Color -Color-Cyan">double</span> @j_exp_4766<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span>
+        %1 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>= <span class=" -Color -Color-Bold">call</span> <span class=" -Color -Color-Cyan">double</span> @j_exp_4766<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span>
 ; └└└└└└
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:154 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:97 within `#88`

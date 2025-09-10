@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>15) Gram-Schmidt and QR &#8212; Computational Methods for Scientists Fall 25</title>
+    <title>13) Gram-Schmidt and QR &#8212; Computational Methods for Scientists Fall 25</title>
   
   
   
@@ -191,6 +191,11 @@
 <li class="toctree-l2"><a class="reference internal" href="module1-2_linux.html">2) The Linux Filesystem and commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module1-3_community_projects.html">3) Community Projects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module2-1_intro_to_fortran.html">4) Introduction to Fortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-1_functions_and_fpa.html">5) Functions</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="module3-2_function_errors.html">6) Function errors</a></li>
 </ul>
 </details></li>
 </ul>
@@ -409,7 +414,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>15) Gram-Schmidt and QR</h1>
+    <h1>13) Gram-Schmidt and QR</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -467,7 +472,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="gram-schmidt-and-qr">
-<h1>15) Gram-Schmidt and QR<a class="headerlink" href="#gram-schmidt-and-qr" title="Link to this heading">#</a></h1>
+<h1>13) Gram-Schmidt and QR<a class="headerlink" href="#gram-schmidt-and-qr" title="Link to this heading">#</a></h1>
 <section id="last-time">
 <h2>Last time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -1850,8 +1855,8 @@ norm(Q * R - A) = 8.268821431611631e-16
 <section id="a-variant-with-more-parallelism">
 <h3>A variant with more parallelism<a class="headerlink" href="#a-variant-with-more-parallelism" title="Link to this heading">#</a></h3>
 <p>We are performing the following (from right to left):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e0f1f081-81f1-4984-bacd-f6a35651f1e0">
-<span class="eqno">()<a class="headerlink" href="#equation-e0f1f081-81f1-4984-bacd-f6a35651f1e0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fda32f6a-1464-4f4d-8e82-772638595377">
+<span class="eqno">()<a class="headerlink" href="#equation-fda32f6a-1464-4f4d-8e82-772638595377" title="Permalink to this equation">#</a></span>\[\begin{align}
 w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
 &amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
 \end{align}\]</div>
@@ -1907,8 +1912,8 @@ norm(Q * R - A) = 7.350692433565389e-16
 <section id="why-does-the-order-of-operations-matter">
 <h4>Why does the order of operations matter?<a class="headerlink" href="#why-does-the-order-of-operations-matter" title="Link to this heading">#</a></h4>
 <p>We are performing the following (from right to left):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e72de72-bfbf-4446-9651-ab65e20ee9a3">
-<span class="eqno">()<a class="headerlink" href="#equation-5e72de72-bfbf-4446-9651-ab65e20ee9a3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a661d5ef-2c92-4532-b864-75b9e1568a99">
+<span class="eqno">()<a class="headerlink" href="#equation-a661d5ef-2c92-4532-b864-75b9e1568a99" title="Permalink to this equation">#</a></span>\[\begin{align}
 w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
 &amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
 \end{align}\]</div>
