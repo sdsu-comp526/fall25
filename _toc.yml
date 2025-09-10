@@ -11,8 +11,7 @@ chapters:
   - file: lectures/module1-2_linux.ipynb
   - file: lectures/module1-3_community_projects.md
   - file: lectures/module2-1_intro_to_fortran.md  
-  
-  # - file: lectures/module3-1_functions_and_fpa.ipynb
+  - file: lectures/module3-1_functions_and_fpa.ipynb
   # - file: lectures/module3-2_function_errors.ipynb
   # - file: lectures/module3-3_conditioning.ipynb
   # - file: lectures/module3-4_root_finding.ipynb
