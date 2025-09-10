@@ -355,7 +355,7 @@ Some important rules for Fortran function arguments:
 
 Example:
 
-```{literalinclude} ../fortran_programs/module6-1_intro_to_fortran/scope.f90
+```{literalinclude} ../fortran_programs/module2-1_intro_to_fortran/scope.f90
 :language: fortran
 :linenos: true
 ```
@@ -375,7 +375,7 @@ Example:
   3. Type of values returned by the subprogram
 
 Example:
-```{literalinclude} ../fortran_programs/module6-1_intro_to_fortran/area_circle_function_interface.f90
+```{literalinclude} ../fortran_programs/module2-1_intro_to_fortran/area_circle_function_interface.f90
 :language: fortran
 :linenos: true
 ```
@@ -395,7 +395,7 @@ Example:
 Example:
 
 Example:
-```{literalinclude} ../fortran_programs/module6-1_intro_to_fortran/area_circle_subroutine_interface.f90
+```{literalinclude} ../fortran_programs/module2-1_intro_to_fortran/area_circle_subroutine_interface.f90
 :language: fortran
 :linenos: true
 ```
@@ -419,7 +419,7 @@ Syntax:
 
 Example:
 
-```{literalinclude} ../fortran_programs/module6-1_intro_to_fortran/using_modules.f
+```{literalinclude} ../fortran_programs/module2-1_intro_to_fortran/using_modules.f
 :language: fortran
 :linenos: true
 ```
