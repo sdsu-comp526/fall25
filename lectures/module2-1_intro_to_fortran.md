@@ -393,8 +393,6 @@ Example:
 - The `INTENT` of arguments in subroutines can be multiple: `IN` (the value of the dummy argument may be used, but not modified, within the procedure.), `OUT` (the dummy argument may be set and then modified within the procedure, and the values returned to the caller), and `INOUT` (initial values of the dummy argument may be both used and modified within the procedure, and then returned to the caller).
 
 Example:
-
-Example:
 ```{literalinclude} ../fortran_programs/module2-1_intro_to_fortran/area_circle_subroutine_interface.f90
 :language: fortran
 :linenos: true
