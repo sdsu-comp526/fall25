@@ -773,6 +773,33 @@ document.write(`
 <li><p>Scope Rule: A global entity is visible to all contained functions, including the function in which that entity is declared.</p></li>
 </ul>
 <p>Example:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">    </span><span class="k">PROGRAM </span><span class="n">Scope</span>
+<span class="linenos"> 2</span><span class="w">        </span><span class="k">IMPLICIT NONE</span>
+<span class="linenos"> 3</span><span class="k">        </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c">! a,b,c are global</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="w">        </span><span class="k">WRITE</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">Add</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="c">! a = 4</span>
+<span class="linenos"> 6</span><span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+<span class="linenos"> 7</span><span class="w">        </span><span class="k">WRITE</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">Add</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="c">! a = 5</span>
+<span class="linenos"> 8</span><span class="w">        </span><span class="k">WRITE</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">Mul</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w">    </span><span class="k">CONTAINS</span>
+<span class="linenos">11</span><span class="k">        </span><span class="kt">INTEGER </span><span class="k">FUNCTION </span><span class="n">Add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="linenos">12</span><span class="w">            </span><span class="k">IMPLICIT NONE</span>
+<span class="linenos">13</span><span class="k">            </span><span class="kt">INTEGER</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="w"> </span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">            </span><span class="n">Add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="c">! c is used here, from global scope</span>
+<span class="linenos">16</span><span class="w">        </span><span class="k">END FUNCTION </span><span class="n">Add</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">        </span><span class="kt">INTEGER </span><span class="k">FUNCTION </span><span class="n">Mul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">19</span><span class="w">            </span><span class="k">IMPLICIT NONE</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="k">            </span><span class="kt">INTEGER</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="w"> </span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="n">y</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">            </span><span class="n">Mul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span>
+<span class="linenos">24</span><span class="w">        </span><span class="k">END FUNCTION </span><span class="n">Mul</span>
+<span class="linenos">25</span><span class="w">    </span><span class="k">END PROGRAM </span><span class="n">Scope</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="interface-blocks">
@@ -790,6 +817,39 @@ document.write(`
 </li>
 </ul>
 <p>Example:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">      </span><span class="k">PROGRAM </span><span class="n">Area</span>
+<span class="linenos"> 2</span><span class="w">        </span><span class="k">IMPLICIT NONE</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="k">        INTERFACE</span>
+<span class="linenos"> 5</span><span class="k">            </span><span class="kt">REAL </span><span class="k">FUNCTION </span><span class="n">Area_Circle</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="w">              </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">            </span><span class="k">END FUNCTION </span><span class="n">Area_Circle</span>
+<span class="linenos">10</span><span class="w">        </span><span class="k">END INTERFACE</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="k">        </span><span class="kt">REAL</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">radius</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">        </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ADVANCE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;NO&quot;</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Enter radius of circle: &quot;</span>
+<span class="linenos">15</span><span class="w">        </span><span class="k">read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">radius</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">        </span><span class="c">! Write out area of circle using function call</span>
+<span class="linenos">18</span><span class="w">        </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Area of circle with radius&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; is&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Area_Circle</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+<span class="linenos">19</span><span class="mi">100</span><span class="w"> </span><span class="k">FORMAT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">F6</span><span class="p">.</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">F11</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="c">! Need Fortran90 specification, i.e., name your file with the .f90 extension</span>
+<span class="linenos">20</span><span class="w">      </span><span class="k">END PROGRAM </span><span class="n">Area</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">      </span><span class="kt">REAL </span><span class="k">FUNCTION </span><span class="n">Area_Circle</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">        </span><span class="k">IMPLICIT NONE</span>
+<span class="linenos">25</span><span class="k">        </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="w"> </span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="w">        </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">PARAMETER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.1415927</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="w">        </span><span class="n">Area_Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pi</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">r</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="w">      </span><span class="k">END FUNCTION </span><span class="n">Area_Circle</span>
+</pre></div>
+</div>
 <section id="subroutines">
 <h3>7. Subroutines<a class="headerlink" href="#subroutines" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -808,6 +868,42 @@ document.write(`
 </ul>
 <p>Example:</p>
 <p>Example:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">PROGRAM </span><span class="n">Area</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="k">IMPLICIT NONE</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="k">    INTERFACE</span>
+<span class="linenos"> 5</span><span class="k">        SUBROUTINE </span><span class="n">Compute_Area</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">Area</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="w">            </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span>
+<span class="linenos"> 8</span><span class="w">            </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Area</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w">        </span><span class="k">END SUBROUTINE </span><span class="n">Compute_Area</span>
+<span class="linenos">11</span><span class="w">    </span><span class="k">END INTERFACE</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">    </span><span class="kt">REAL</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="n">Area_Circle</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(A)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ADVANCE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;NO&quot;</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Enter radius of circle: &quot;</span>
+<span class="linenos">16</span><span class="w">    </span><span class="k">read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">radius</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">    </span><span class="k">CALL </span><span class="n">Compute_Area</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="n">Area_Circle</span><span class="p">)</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">    </span><span class="c">! Write out area of circle using function call</span>
+<span class="linenos">21</span><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Area of circle with radius&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; is&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Area_Circle</span>
+<span class="linenos">22</span><span class="mi">100</span><span class="w"> </span><span class="k">FORMAT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">F6</span><span class="p">.</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">F11</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="c">! Need Fortran90 specification, i.e., name your file with the .f90 extension</span>
+<span class="linenos">23</span><span class="w">  </span><span class="k">END PROGRAM </span><span class="n">Area</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">  </span><span class="k">SUBROUTINE </span><span class="n">Compute_Area</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">Area</span><span class="p">)</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="w">    </span><span class="k">IMPLICIT NONE</span>
+<span class="linenos">28</span><span class="k">    </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span>
+<span class="linenos">29</span><span class="w">    </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Area</span>
+<span class="linenos">30</span><span class="w">    </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">PARAMETER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.1415927</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="w">    </span><span class="n">Area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pi</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">r</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="w">  </span><span class="k">END SUBROUTINE </span><span class="n">Compute_Area</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="modules">
@@ -827,6 +923,20 @@ document.write(`
 <li><p>The <code class="docutils literal notranslate"><span class="pre">USE</span></code> statement must appear at the beginning of the declaration part of the program unit making use of the module. It must appear even <em>before</em> the statement <code class="docutils literal notranslate"><span class="pre">IMPLICIT</span> <span class="pre">NONE</span></code>.</p></li>
 </ul>
 <p>Example:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">      </span><span class="k">PROGRAM </span><span class="n">program_using_module</span>
+<span class="linenos"> 2</span><span class="w">      </span><span class="k">USE </span><span class="n">math_consts_module</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w">      </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
+<span class="linenos"> 5</span><span class="w">      </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;The cosine of pi is &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">log</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;The natural log of e is &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">      </span><span class="k">END PROGRAM </span><span class="n">program_using_module</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Each module unit must be compiled independently.</p></li>
 <li><p>To compile a module use:</p></li>
