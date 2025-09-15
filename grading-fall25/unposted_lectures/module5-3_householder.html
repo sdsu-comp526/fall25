@@ -196,6 +196,7 @@
 
 
 <li class="toctree-l2"><a class="reference internal" href="../../lectures/module3-2_function_errors.html">6) Function errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/module3-3_conditioning.html">7) Conditioning</a></li>
 </ul>
 </details></li>
 </ul>
@@ -522,8 +523,8 @@ document.write(`
 <section id="gram-schmidt-with-more-parallelism">
 <h3>Gram-Schmidt with more parallelism<a class="headerlink" href="#gram-schmidt-with-more-parallelism" title="Link to this heading">#</a></h3>
 <p>We are performing the following (from right to left):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-307e8948-0dd5-4d1d-8976-53616d519c5f">
-<span class="eqno">()<a class="headerlink" href="#equation-307e8948-0dd5-4d1d-8976-53616d519c5f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cdf821d9-6c48-4e67-bdee-4edf577d6174">
+<span class="eqno">()<a class="headerlink" href="#equation-cdf821d9-6c48-4e67-bdee-4edf577d6174" title="Permalink to this equation">#</a></span>\[\begin{align}
 w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
 &amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
 \end{align}\]</div>
@@ -579,8 +580,8 @@ norm(Q * R - A) = 7.350692433565389e-16
 <section id="why-does-the-order-of-operations-matter">
 <h4>Why does the order of operations matter?<a class="headerlink" href="#why-does-the-order-of-operations-matter" title="Link to this heading">#</a></h4>
 <p>We are performing the following (from right to left):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-85a1e0e3-34be-43a1-aef1-80ef57a98ab2">
-<span class="eqno">()<a class="headerlink" href="#equation-85a1e0e3-34be-43a1-aef1-80ef57a98ab2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-374fb631-4e50-49c6-ae51-1520e8f5883c">
+<span class="eqno">()<a class="headerlink" href="#equation-374fb631-4e50-49c6-ae51-1520e8f5883c" title="Permalink to this equation">#</a></span>\[\begin{align}
 w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
 &amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
 \end{align}\]</div>
@@ -764,14 +765,14 @@ This transformation is a <em>reflection</em> across a plane with normal <span cl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(v) = 2.4713642089575387
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(v) = 2.7576311489004355
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
-  2.47136       1.4233    2.14478    2.49894
-  2.07705e-16  -0.162121  0.206386  -0.271807
- -1.53827e-16   0.704916  0.117158   0.0754837
- -4.13541e-17   0.618428  0.541701   0.593664
+  2.75763       2.05431    1.67947    1.98837
+ -5.72674e-17   0.355191   0.493186   0.727606
+ -1.4796e-16    0.526976   0.312063   0.549682
+  3.0756e-18   -1.31004   -1.14887   -0.0730472
 </pre></div>
 </div>
 </div>
@@ -789,10 +790,10 @@ This transformation is a <em>reflection</em> across a plane with normal <span cl
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
-  2.47136      1.4233        2.14478      2.49894
-  2.07705e-16  0.951652      0.403645     0.488007
- -1.53827e-16  5.55112e-17  -0.00768848  -0.405409
- -4.13541e-17  1.11022e-16   0.432172     0.171773
+  2.75763       2.05431       1.67947    1.98837
+ -5.72674e-17   1.45604       1.26692    0.442159
+ -1.4796e-16   -1.11022e-16  -0.05832    0.686325
+  3.0756e-18    2.35922e-16  -0.228113  -0.412735
 </pre></div>
 </div>
 </div>
@@ -966,10 +967,7 @@ norm(Q * R - A) = 7.562760794606217e-15
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tau = [2.0, 2.0]
-V1 = 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.0, 0.0], [1.0]]
+V1 = [[1.0, 0.0], [1.0]]
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2×2 Matrix{Int64}:
