@@ -523,8 +523,8 @@ document.write(`
 <section id="gram-schmidt-with-more-parallelism">
 <h3>Gram-Schmidt with more parallelism<a class="headerlink" href="#gram-schmidt-with-more-parallelism" title="Link to this heading">#</a></h3>
 <p>We are performing the following (from right to left):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a10a5494-2515-46dd-b115-69f5fd9a9ced">
-<span class="eqno">()<a class="headerlink" href="#equation-a10a5494-2515-46dd-b115-69f5fd9a9ced" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ffb0d20f-816f-47ee-b278-eb4082811988">
+<span class="eqno">()<a class="headerlink" href="#equation-ffb0d20f-816f-47ee-b278-eb4082811988" title="Permalink to this equation">#</a></span>\[\begin{align}
 w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
 &amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
 \end{align}\]</div>
@@ -580,8 +580,8 @@ norm(Q * R - A) = 7.350692433565389e-16
 <section id="why-does-the-order-of-operations-matter">
 <h4>Why does the order of operations matter?<a class="headerlink" href="#why-does-the-order-of-operations-matter" title="Link to this heading">#</a></h4>
 <p>We are performing the following (from right to left):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e92001f5-8afe-4065-90f1-937a9b50b96f">
-<span class="eqno">()<a class="headerlink" href="#equation-e92001f5-8afe-4065-90f1-937a9b50b96f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bb5c922f-db7d-4126-9885-75b75fd5d433">
+<span class="eqno">()<a class="headerlink" href="#equation-bb5c922f-db7d-4126-9885-75b75fd5d433" title="Permalink to this equation">#</a></span>\[\begin{align}
 w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
 &amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
 \end{align}\]</div>
@@ -765,14 +765,14 @@ This transformation is a <em>reflection</em> across a plane with normal <span cl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(v) = 1.5926853443591082
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(v) = 2.064008357627818
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
-  1.59269       2.48251   1.82998     1.64023
- -1.3101e-16    0.35687   0.420932    0.554521
- -1.87377e-16  -1.15497  -0.0820154  -1.07337
- -1.17652e-16   1.17527   0.425434    0.0179861
+ 2.06401       1.63622    1.29517   2.25508
+ 1.61276e-16  -0.230737   0.659012  0.333737
+ 4.52463e-17   1.0119    -0.177653  0.136773
+ 2.45994e-16   0.371307  -0.319848  0.492229
 </pre></div>
 </div>
 </div>
@@ -790,10 +790,10 @@ This transformation is a <em>reflection</em> across a plane with normal <span cl
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
-  1.59269       2.48251       1.82998     1.64023
- -1.3101e-16    1.68599       0.441843    0.865209
- -1.87377e-16  -1.11022e-16  -0.0638445  -0.803386
- -1.17652e-16   5.55112e-17   0.406944   -0.256739
+ 2.06401      1.63622   1.29517   2.25508
+ 1.61276e-16  1.10229  -0.408773  0.221504
+ 4.52463e-17  0.0       0.6329    0.221969
+ 2.45994e-16  0.0      -0.022424  0.52349
 </pre></div>
 </div>
 </div>
