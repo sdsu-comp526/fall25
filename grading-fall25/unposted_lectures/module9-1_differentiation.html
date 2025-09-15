@@ -197,6 +197,7 @@
 
 <li class="toctree-l2"><a class="reference internal" href="../../lectures/module3-2_function_errors.html">6) Function errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lectures/module3-3_conditioning.html">7) Conditioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/module3-4_root_finding.html">8) Rootfinding</a></li>
 </ul>
 </details></li>
 </ul>
@@ -709,8 +710,8 @@ This error becomes large (relative to <span class="math notranslate nohighlight"
 <section id="we-can-go-the-other-way">
 <h3>We can go the other way<a class="headerlink" href="#we-can-go-the-other-way" title="Link to this heading">#</a></h3>
 <p>We can differentiate a composition <span class="math notranslate nohighlight">\(h(g(f(x)))\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-abc467ba-82ab-43d2-835e-751a6c5e9bd0">
-<span class="eqno">()<a class="headerlink" href="#equation-abc467ba-82ab-43d2-835e-751a6c5e9bd0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-43c2b54f-7128-4ca5-9769-471207c06520">
+<span class="eqno">()<a class="headerlink" href="#equation-43c2b54f-7128-4ca5-9769-471207c06520" title="Permalink to this equation">#</a></span>\[\begin{align}
   \operatorname{d} h &amp;= h' \operatorname{d} g \\
   \operatorname{d} g &amp;= g' \operatorname{d} f \\
   \operatorname{d} f &amp;= f' \operatorname{d} x.
@@ -823,7 +824,7 @@ This error becomes large (relative to <span class="math notranslate nohighlight"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:152 within `gradient`
-define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4196<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4194<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:153 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:94 within `pullback` @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:96
@@ -832,7 +833,7 @@ top:
 ; │││┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface2.jl within `macro expansion`
 ; ││││┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/chainrules.jl:234 within `chain_rrule`
 ; │││││┌ @ /home/vbarra/.julia/packages/ChainRulesCore/Vsbj9/src/rules.jl:138 within `rrule` @ /home/vbarra/.julia/packages/ChainRules/166sf/src/rulesets/Base/fastmath_able.jl:56
-        %1 = <span class=" -Color -Color-Bold">call</span> <span class=" -Color -Color-Cyan">double</span> @j_exp_4198<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span>
+        %1 = <span class=" -Color -Color-Bold">call</span> <span class=" -Color -Color-Cyan">double</span> @j_exp_4196<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span>
 ; └└└└└└
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:154 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:97 within `#88`
@@ -865,7 +866,7 @@ top:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ In[12]:1 within `square`
-define <span class=" -Color -Color-Cyan">double</span> @julia_square_4217<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Cyan">double</span> @julia_square_4215<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ; ┌ @ intfuncs.jl:332 within `literal_pow`
 ; │┌ @ float.jl:411 within `*`
@@ -885,7 +886,7 @@ top:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:152 within `gradient`
-define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4221<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4219<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:154 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:97 within `#88`
