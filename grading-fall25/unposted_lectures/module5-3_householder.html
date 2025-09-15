@@ -1,0 +1,1199 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>14) Householder QR &#8212; Computational Methods for Scientists Fall 25</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'grading-fall25/unposted_lectures/module5-3_householder';</script>
+    <link rel="icon" href="../../_static/SDSU-comp526_logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists Fall 25 - Home"/>
+    <script>document.write(`<img src="../../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists Fall 25 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures.html">Lectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/module1-1_first_class.html">1) First Class: Reproducibility and Git</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/module1-2_linux.html">2) The Linux Filesystem and commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/module1-3_community_projects.html">3) Community Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/module2-1_intro_to_fortran.html">4) Introduction to Fortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/module3-1_functions_and_fpa.html">5) Functions</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/module3-2_function_errors.html">6) Function errors</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25/issues/new?title=Issue%20on%20page%20%2Fgrading-fall25/unposted_lectures/module5-3_householder.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/grading-fall25/unposted_lectures/module5-3_householder.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>14) Householder QR</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-gram-schmidt-orthogonalization">1. Recap Gram-Schmidt orthogonalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gram-schmidt-with-more-parallelism">Gram-Schmidt with more parallelism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-vs-modified-gram-schmidt">Classical Vs Modified Gram-Schmidt</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-the-order-of-operations-matter">Why does the order of operations matter?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#we-can-look-at-the-size-of-what-s-left-over">We can look at the size of what’s left over</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-next-vector-is-almost-linearly-dependent">The next vector is almost linearly dependent</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#right-looking-modified-gram-schmidt">Right-looking modified Gram-Schmidt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-versus-modified">Classical versus modified?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#householder-triangularization">2. Householder triangularization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-the-q-j">Constructing the <span class="math notranslate nohighlight">\(Q_j\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adventures-in-reflection">Adventures in reflection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#householder-a-naive-algorithm">Householder: A naive algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-interpret-v-as-q">How to interpret <span class="math notranslate nohighlight">\(V\)</span> as <span class="math notranslate nohighlight">\(Q\)</span>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#great-but-we-can-still-break-it">Great, but we can still break it</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#householder-an-improved-algorithm">Householder: An improved algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#householder-is-backward-stable">Householder is backward stable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonality-is-preserved">Orthogonality is preserved</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="householder-qr">
+<h1>14) Householder QR<a class="headerlink" href="#householder-qr" title="Link to this heading">#</a></h1>
+<section id="last-time">
+<h2>Last time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Gram-Schmidt orthogonalization</p></li>
+<li><p>Classical vs Modified Gram-Schmidt</p></li>
+<li><p>QR factorization</p></li>
+</ul>
+</section>
+<section id="today">
+<h2>Today<a class="headerlink" href="#today" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Recap from last time</p></li>
+<li><p>Householder QR</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Polynomials</span>
+<span class="n">default</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">legendfontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">isnothing</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="w">        </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">k</span>
+<span class="w">        </span><span class="n">V</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">x</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">V</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vander (generic function with 2 methods)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recap-gram-schmidt-orthogonalization">
+<h2>1. Recap Gram-Schmidt orthogonalization<a class="headerlink" href="#recap-gram-schmidt-orthogonalization" title="Link to this heading">#</a></h2>
+<p>For many applications, we find ourselves interested in the column spaces of a matrix <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\langle a_1 \rangle  \subseteq \langle a_1, a_2 \rangle \subseteq \langle a_1, a_2, a_3 \rangle \ldots 
+\]</div>
+<p>The idea of QR factorization is the construction of a sequence of orthonormal vectors, <span class="math notranslate nohighlight">\(q_1, q_2, \ldots\)</span> that span these successive spaces.</p>
+<p>Thus, suppose we want to find an orthogonal basis for the span of the columns of <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \Bigg[ a_1 \Bigg| a_2 \Bigg] = \Bigg[ q_1 \Bigg| q_2 \Bigg] \begin{bmatrix} r_{11} &amp; r_{12} \\ 0 &amp; r_{22} \end{bmatrix} \end{split}\]</div>
+<p>Given <span class="math notranslate nohighlight">\(a_1, a_2, \dots\)</span>, we can construct vectors <span class="math notranslate nohighlight">\(q_1, q_2, \ldots\)</span> and entries <span class="math notranslate nohighlight">\(r_{ij}\)</span>, by an iterative process of successive orthogonalization.</p>
+<section id="gram-schmidt-with-more-parallelism">
+<h3>Gram-Schmidt with more parallelism<a class="headerlink" href="#gram-schmidt-with-more-parallelism" title="Link to this heading">#</a></h3>
+<p>We are performing the following (from right to left):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-307e8948-0dd5-4d1d-8976-53616d519c5f">
+<span class="eqno">()<a class="headerlink" href="#equation-307e8948-0dd5-4d1d-8976-53616d519c5f" title="Permalink to this equation">#</a></span>\[\begin{align}
+w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
+&amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
+\end{align}\]</div>
+<p>which can be factored in blocks to expoloit a bit of parallelism. Let’s call this classical Gram-Schmidt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">gram_schmidt_classical</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gram_schmidt_classical (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gram_schmidt_classical</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="c"># really not orthogonal; unstable algorithm</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q&#39; * Q - I) = 1.4985231287367549
+norm(Q * R - A) = 7.350692433565389e-16
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.350692433565389e-16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="classical-vs-modified-gram-schmidt">
+<h3>Classical Vs Modified Gram-Schmidt<a class="headerlink" href="#classical-vs-modified-gram-schmidt" title="Link to this heading">#</a></h3>
+<section id="why-does-the-order-of-operations-matter">
+<h4>Why does the order of operations matter?<a class="headerlink" href="#why-does-the-order-of-operations-matter" title="Link to this heading">#</a></h4>
+<p>We are performing the following (from right to left):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-85a1e0e3-34be-43a1-aef1-80ef57a98ab2">
+<span class="eqno">()<a class="headerlink" href="#equation-85a1e0e3-34be-43a1-aef1-80ef57a98ab2" title="Permalink to this equation">#</a></span>\[\begin{align}
+w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
+&amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
+\end{align}\]</div>
+<p>which can be factored in blocks and is <em>not</em> exact in finite arithmetic.</p>
+<p>Let’s look at this a bit more closely. In the classical Gram-Schmidt (CGS), we take each vector, one at a time, and make it orthogonal to all previous vectors. If an error is made in computing <span class="math notranslate nohighlight">\(q_2\)</span> in CGS, so that  <span class="math notranslate nohighlight">\(q^T_1q_2=\delta\)</span> is small, but non-zero in finite arithmetic, this will not be corrected for in any of the computations that follow, and it will actually be propagated. In this case, <span class="math notranslate nohighlight">\(v_3\)</span> will not be orthogonal to <span class="math notranslate nohighlight">\(q_1\)</span> or <span class="math notranslate nohighlight">\(q_2\)</span>.</p>
+<p>Because of rounding errors, in classical Gram-Schmidt, <span class="math notranslate nohighlight">\(Q_{k−1}\)</span> does not have truly orthogonal columns. In modified Gram–Schmidt (MGS) we compute the length of the projection of <span class="math notranslate nohighlight">\(w = v_k\)</span> onto <span class="math notranslate nohighlight">\(q_1\)</span> and subtract that projection (and the rounding errors) from <span class="math notranslate nohighlight">\(w\)</span>. Next, we compute the length of the projection of the <em>computed</em> <span class="math notranslate nohighlight">\(w\)</span> onto <span class="math notranslate nohighlight">\(q_2\)</span> and subtract that projection (and the rounding errors) from <span class="math notranslate nohighlight">\(w\)</span>, and so on, but always <em>orthogonalizing against the</em> <strong>computed version</strong> of <span class="math notranslate nohighlight">\(w\)</span>.</p>
+</section>
+</section>
+<section id="we-can-look-at-the-size-of-what-s-left-over">
+<h3>We can look at the size of what’s left over<a class="headerlink" href="#we-can-look-at-the-size-of-what-s-left-over" title="Link to this heading">#</a></h3>
+<p>We project out the components of our vectors in the directions of each <span class="math notranslate nohighlight">\(q_j\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">23</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gram_schmidt_classical</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">diag</span><span class="p">(</span><span class="n">R</span><span class="p">),</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="data:image/png;base64,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" /></div></div>
+</div>
+<section id="the-next-vector-is-almost-linearly-dependent">
+<h4>The next vector is almost linearly dependent<a class="headerlink" href="#the-next-vector-is-almost-linearly-dependent" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gram_schmidt_classical</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="c">#Q, _ = qr(A) # try it with Julia&#39;s built-in</span>
+<span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="k">end</span><span class="p">]</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">abs</span><span class="o">.</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="p">),</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(v) = 1.4245900685395503
+</pre></div>
+</div>
+<div class="output text_html"><img src="data:image/png;base64,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" /></div></div>
+</div>
+</section>
+</section>
+<section id="right-looking-modified-gram-schmidt">
+<h3>Right-looking modified Gram-Schmidt<a class="headerlink" href="#right-looking-modified-gram-schmidt" title="Link to this heading">#</a></h3>
+<p>Each outer step of the modified Gram-Schmidt algorithm can be interpreted as a right-multiplication by a square upper-triangular matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">gram_schmidt_modified</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">])</span>
+<span class="w">        </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">&#39;*</span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">]</span>
+<span class="w">        </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">]</span><span class="o">&#39;</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gram_schmidt_modified (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gram_schmidt_modified</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="c"># better, in terms of orthogonality error</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q&#39; * Q - I) = 8.486718528276085e-9
+norm(Q * R - A) = 8.709998074379606e-16
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.709998074379606e-16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="classical-versus-modified">
+<h3>Classical versus modified?<a class="headerlink" href="#classical-versus-modified" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Classical</p>
+<ul>
+<li><p>Really unstable, orthogonality error of size <span class="math notranslate nohighlight">\(1 \gg \epsilon_{\text{machine}}\)</span></p></li>
+<li><p>Don’t need to know all the vectors in advance</p></li>
+</ul>
+</li>
+<li><p>Modified</p>
+<ul>
+<li><p>Needs to be right-looking for efficiency</p></li>
+<li><p>Less unstable, but orthogonality error <span class="math notranslate nohighlight">\(10^{-9} \gg \epsilon_{\text{machine}}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="c"># Julia built-in</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q&#39; * Q - I) = 3.216006485393791e-15
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.216006485393791e-15
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="householder-triangularization">
+<h2>2. Householder triangularization<a class="headerlink" href="#householder-triangularization" title="Link to this heading">#</a></h2>
+<p>Householder triangularization is numerically more stable than Gram-Schmidt orthogonaliztion, though it lacks the latter’s applicability as a basis for iterative methods. The Householder algorithm is a process of “orthogonal triangularization”, making a matrix triangular by a sequence of unitary matrix operations.</p>
+<p>Gram-Schmidt constructed a triangular matrix <span class="math notranslate nohighlight">\(R\)</span> to orthogonalize <span class="math notranslate nohighlight">\(A\)</span> into <span class="math notranslate nohighlight">\(Q\)</span>. Each step was an orthogonal <em>projector</em>, which is a rank-deficient operation.</p>
+<p><img alt="Oblique projector (Trefethen and Bau, 1999)" src="grading-fall25/img/TB-oblique-projector.png" /></p>
+<p><img alt="Orthogonal projector (Trefethen and Bau, 1999)" src="grading-fall25/img/TB-orthogonal-projector.png" /></p>
+<p>Householder uses orthogonal transformations (<em>reflectors</em>) to triangularize.</p>
+<div class="math notranslate nohighlight">
+\[ \underbrace{Q_{n} \dotsb Q_1}_{Q^T} A = R \]</div>
+<p><img alt="Householder Reflector (Trefethen and Bau, 1999)" src="grading-fall25/img/TB-Householder.png" /></p>
+<p>The reflection, as depicted above by Trefethen and Bau (1999) can be written <span class="math notranslate nohighlight">\(F = I - 2 \frac{v v^T}{v^T v}\)</span>.</p>
+<p>The structure of the algorithm is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \underbrace{\begin{bmatrix} * &amp; * &amp; * \\ * &amp; * &amp; * \\ * &amp; * &amp; * \\ * &amp; * &amp; * \\ * &amp; * &amp; * \\ \end{bmatrix}}_{A} \to
+\underbrace{\begin{bmatrix} * &amp; * &amp; * \\ 0 &amp; * &amp; * \\ 0 &amp; * &amp; * \\ 0 &amp; * &amp; * \\ 0 &amp; * &amp; * \\ \end{bmatrix}}_{Q_1 A} \to
+\underbrace{\begin{bmatrix} * &amp; * &amp; * \\ 0 &amp; * &amp; * \\ 0 &amp; 0 &amp; * \\ 0 &amp; 0 &amp; * \\ 0 &amp; 0 &amp; * \\ \end{bmatrix}}_{Q_2 Q_1 A} \to
+\underbrace{\begin{bmatrix} * &amp; * &amp; * \\ 0 &amp; * &amp; * \\ 0 &amp; 0 &amp; * \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ \end{bmatrix}}_{Q_3 Q_2 Q_1 A}
+\end{split}\]</div>
+<section id="constructing-the-q-j">
+<h3>Constructing the <span class="math notranslate nohighlight">\(Q_j\)</span><a class="headerlink" href="#constructing-the-q-j" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \underbrace{Q_{n-1} \dotsb Q_0}_{Q^T} A = R \]</div>
+<p>Each of our <span class="math notranslate nohighlight">\(Q_j\)</span> will have the form
+<div class="math notranslate nohighlight">
+\[\begin{split}Q_j = \begin{bmatrix} I_j &amp; 0 \\ 0 &amp; F \end{bmatrix}\end{split}\]</div>
+
+where <span class="math notranslate nohighlight">\(F\)</span> is a “reflection” that achieves
+<div class="math notranslate nohighlight">
+\[\begin{split} F x = \begin{bmatrix} \lVert x \rVert \\ 0 \\ 0 \\ \vdots \end{bmatrix} \end{split}\]</div>
+
+where <span class="math notranslate nohighlight">\(x\)</span> is the column of <span class="math notranslate nohighlight">\(R\)</span> from the diagonal down.
+This transformation is a <em>reflection</em> across a plane with normal <span class="math notranslate nohighlight">\(v = Fx - x = \lVert x \rVert e_1 - x\)</span>.</p>
+<p>The two methods can be summarized as follows:</p>
+<ul class="simple">
+<li><p>Gram-Schmidt: a triangular orthogonalization</p></li>
+<li><p>Householder: an orthogonal triangularization</p></li>
+</ul>
+</section>
+<section id="adventures-in-reflection">
+<h3>Adventures in reflection<a class="headerlink" href="#adventures-in-reflection" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">A</span><span class="o">&#39;</span>
+<span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normalize</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">F</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="o">&#39;</span>
+<span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">F</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="c"># we have zeroed-out all entries below the diagonal in the first column</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(v) = 2.4713642089575387
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
+  2.47136       1.4233    2.14478    2.49894
+  2.07705e-16  -0.162121  0.206386  -0.271807
+ -1.53827e-16   0.704916  0.117158   0.0754837
+ -4.13541e-17   0.618428  0.541701   0.593664
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">])</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normalize</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">F</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="o">&#39;</span>
+<span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">F</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">]</span><span class="w"> </span><span class="c"># we have zeroed-out all entries below the diagonal also in the 2nd column</span>
+<span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
+  2.47136      1.4233        2.14478      2.49894
+  2.07705e-16  0.951652      0.403645     0.488007
+ -1.53827e-16  5.55112e-17  -0.00768848  -0.405409
+ -4.13541e-17  1.11022e-16   0.432172     0.171773
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="householder-a-naive-algorithm">
+<h3>Householder: A naive algorithm<a class="headerlink" href="#householder-a-naive-algorithm" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">qr_householder_naive</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="c"># list of reflectors</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">])</span>
+<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normalize</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">])</span>
+<span class="w">        </span><span class="n">push!</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qr_householder_naive (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr_householder_naive</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">R_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">R_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
+ -2.0  0.0      -1.11111      0.0
+  0.0  1.49071   1.38778e-17  1.3582
+  0.0  0.0       0.888889     9.71445e-17
+  0.0  0.0       0.0          0.397523
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="how-to-interpret-v-as-q">
+<h3>How to interpret <span class="math notranslate nohighlight">\(V\)</span> as <span class="math notranslate nohighlight">\(Q\)</span>?<a class="headerlink" href="#how-to-interpret-v-as-q" title="Link to this heading">#</a></h3>
+<p>The following two programs compute a matrix containing vectors that generate the Householder reflectors whose product is Q.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">reflectors_mult</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">reverse</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="n">n</span><span class="o">:</span><span class="n">end</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="n">n</span><span class="o">:</span><span class="n">end</span><span class="p">])</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">y</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">reflectors_to_dense</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diagm</span><span class="p">(</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">m</span>
+<span class="w">        </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reflectors_mult</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">])</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">Q</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>reflectors_to_dense (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr_householder_naive</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reflectors_to_dense</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q&#39; * Q - I) = 3.7994490775439526e-15
+norm(Q * R - A) = 7.562760794606217e-15
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="great-but-we-can-still-break-it">
+<h3>Great, but we can still break it<a class="headerlink" href="#great-but-we-can-still-break-it" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1.</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mf">1.</span><span class="p">]</span><span class="w"> </span><span class="c"># identity matrix, with canonical basis vectors in columns</span>
+<span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr_householder_naive</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Any[[NaN, NaN], [NaN]], [NaN NaN; NaN NaN])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We had the lines</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">])</span>
+<span class="w">    </span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">    </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normalize</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>What happens when <code class="docutils literal notranslate"><span class="pre">R</span></code> is already upper triangular?</p>
+<p>In this case <div class="math notranslate nohighlight">
+\[\begin{split}v = \begin{bmatrix}1 \\ 0  \end{bmatrix} \end{split}\]</div>
+</p>
+<p><img alt="Choosing the better of two Householder reflectors (Trefethen and Bau, 1999)." src="grading-fall25/img/TB-Householder2reflectors.png" /></p>
+<p>In general, there are two possible reflections. For numerical stability, it is important to choose the one that moves <span class="math notranslate nohighlight">\(x\)</span> the largest distance, so that it is not too close to <span class="math notranslate nohighlight">\(x\)</span> itself.</p>
+<p>In fact, suppose that in the above figure, the angle of <span class="math notranslate nohighlight">\(H^{+}\)</span> and the <span class="math notranslate nohighlight">\(e_1\)</span> axis is much smaller than <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(|| x || e_1\)</span>. Thus, the calculation of <span class="math notranslate nohighlight">\(v\)</span> represents a subtraction of nearby quantities and will tend to suffer from cancellation errors. We can pick the sign of <span class="math notranslate nohighlight">\(v\)</span> so that we can avoid such effects by ensuring that <span class="math notranslate nohighlight">\(||v||\)</span> is never smaller than <span class="math notranslate nohighlight">\(||x||\)</span>.</p>
+</section>
+<section id="householder-an-improved-algorithm">
+<h3>Householder: An improved algorithm<a class="headerlink" href="#householder-an-improved-algorithm" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">qr_householder</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="c"># list of reflectors</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">])</span>
+<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sign</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="c"># &lt;--- here we pick the sign of v so that moves it the largest distance</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normalize</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">]</span>
+<span class="w">        </span><span class="n">push!</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qr_householder (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span>
+<span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr_householder</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">tau</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">V</span><span class="p">]</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">tau</span>
+<span class="n">V1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">v</span><span class="w"> </span><span class="o">./</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">V</span><span class="p">]</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">V1</span>
+<span class="n">R</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tau = [2.0, 2.0]
+V1 = 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.0, 0.0], [1.0]]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2×2 Matrix{Int64}:
+ -1   0
+  0  -1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="householder-is-backward-stable">
+<h3>Householder is backward stable<a class="headerlink" href="#householder-is-backward-stable" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr_householder</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reflectors_to_dense</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q&#39; * Q - I) = 5.949301496893686e-15
+norm(Q * R - A) = 1.2090264267288813e-14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mf">1.</span><span class="p">]</span>
+<span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr_householder</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="c"># we don&#39;t get NaNs anymore</span>
+<span class="n">qr</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="c"># Julia built-in</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearAlgebra.QRCompactWY{Float64, Matrix{Float64}, Matrix{Float64}}
+Q factor: 2×2 LinearAlgebra.QRCompactWYQ{Float64, Matrix{Float64}, Matrix{Float64}}
+R factor:
+2×2 Matrix{Float64}:
+ 1.0  0.0
+ 0.0  1.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="orthogonality-is-preserved">
+<h3>Orthogonality is preserved<a class="headerlink" href="#orthogonality-is-preserved" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="c"># [1 | x | x^2 | ... x^19]</span>
+<span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gram_schmidt_classical</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I</span><span class="p">)</span>
+<span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="k">end</span><span class="p">]</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">abs</span><span class="o">.</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="p">),</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Classical Gram-Schmidt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q&#39; * Q - I) = 1.4985231287367549
+norm(v) = 1.4245900685395503
+</pre></div>
+</div>
+<div class="output text_html"><img src="data:image/png;base64,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w4cPz8jImD59+ieffFJSUhIWFhYfH79q1Soulztz5sycnJzaw3h7exNClixZcvHiRYVCUcuUM2fOXLJkib29/d9///3w4cPExMT9+/cHBARIJBLVyaZOnSoSicLCwhISEjZv3mxqarpy5cqLFy+qze3HH39MS0s7fPhwQkLCunXr9PX1v/rqqzVr1sydO3fx4sUxMTFnzpzx9PSMiIig97++SlRU1MSJE7lc7ubNm58+fZqQkNClS5fhw4erTrN8+XL6z5oxY8Zc+E/Pnj1r/2RAJzHdxNDYDB06lNT5gMy6HDWakZFhZGTUunVr5UhISAghJDMz81UvsbKysra2rmWeamuECoXCw8ODELJnz566xFaaOnUqISQ0NFQ5Upc1QnpL76VLl+r4LvQaISFkw4YNr524oqLCyclJIBAIhULloLm5OSHkyy+/VI6IxWJ67bB58+aqU3722WeEkC1bttT+LoWFhcptkpaWloMGDVq2bFlSUpLaZDExMYQQOzu7vLy8V82KXiP09PRU3YRAH24zffp05Qi9RmhjY1NWVqYcVPb98ePHlYP0dmBfX1/lSM01woCAAELI7t27lSNyubxLly7kxaNG9+zZQwj54Ycfav80QNdhjRA0rLy8nBBiYmKiqRm6uLh4eXk9fPiwoqKCHqF/rdMbsl7KzMysoqIiOTm5jm9x+/btlJQUDw+PsWPHvlG2wYMHE0JiY2Pf6FX0gqh9RPn5+SEvUvYfzcLC4tNPP33tzE1MTHr27CkUCmsu/tdff638Wl9fv2vXroSQ6dOnq+7n6969OyHkyZMntb+LlZVVYmLi/PnzXVxciouL//nnn/nz57dv397T01P1+7J//35CyKxZs9T2xdb01VdfqW5CoDdL1owxefJk1dMN6bRubm70N4Lm5eVlZmZWyyIUFhZeu3bN3t7+448/Vg5yudzZs2fXHhIaKxwsAxrWpEkTQohQKHy7l8tksq1btx44cIA++kMmkymfKi4upveHTZw4MTQ0dNSoUatXr+7Tp09QUJC/v7+e3v9/mCdNmrRgwYIOHToEBwf36tUrODi49jOp79y5Q/7b3FeLlJSUFStWxMXFPXv2rLKyUjleVFT0RstobGxcUVGh9hGJxWLlERmVlZUymay0tFR1glatWqmdcUg7fPjw9u3bHz58mJubq7q9US2VoaGh2qEi1tbW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" /></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reflectors_to_dense</span><span class="p">(</span><span class="n">qr_householder</span><span class="p">(</span><span class="n">A</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">Q</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I</span><span class="p">)</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">abs</span><span class="o">.</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="p">),</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Householder QR&quot;</span><span class="p">)</span><span class="w"> </span><span class="c"># they are less linearly dependent, i.e., more linearly independent</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q&#39; * Q - I) = 3.840520021608235e-15
+</pre></div>
+</div>
+<div class="output text_html"><img src="data:image/png;base64,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" /></div></div>
+</div>
+</section>
+<section id="summary">
+<h3>Summary:<a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Classic Gram-Schmidt: Usually very poor orthogonality.</p></li>
+<li><p>Modified Gram-Schmidt: Depends upon condition of <span class="math notranslate nohighlight">\(A\)</span>. Fails completely when <span class="math notranslate nohighlight">\(A\)</span> is singular.</p></li>
+<li><p>Householder triangularization: Always good orthogonality and backward stable.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "sdsu-comp526/fall25",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.10"
+        },
+        kernelOptions: {
+            name: "julia-1.10",
+            path: "./grading-fall25/unposted_lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.10'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-gram-schmidt-orthogonalization">1. Recap Gram-Schmidt orthogonalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gram-schmidt-with-more-parallelism">Gram-Schmidt with more parallelism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-vs-modified-gram-schmidt">Classical Vs Modified Gram-Schmidt</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-the-order-of-operations-matter">Why does the order of operations matter?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#we-can-look-at-the-size-of-what-s-left-over">We can look at the size of what’s left over</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-next-vector-is-almost-linearly-dependent">The next vector is almost linearly dependent</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#right-looking-modified-gram-schmidt">Right-looking modified Gram-Schmidt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-versus-modified">Classical versus modified?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#householder-triangularization">2. Householder triangularization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-the-q-j">Constructing the <span class="math notranslate nohighlight">\(Q_j\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adventures-in-reflection">Adventures in reflection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#householder-a-naive-algorithm">Householder: A naive algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-interpret-v-as-q">How to interpret <span class="math notranslate nohighlight">\(V\)</span> as <span class="math notranslate nohighlight">\(Q\)</span>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#great-but-we-can-still-break-it">Great, but we can still break it</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#householder-an-improved-algorithm">Householder: An improved algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#householder-is-backward-stable">Householder is backward stable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonality-is-preserved">Orthogonality is preserved</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

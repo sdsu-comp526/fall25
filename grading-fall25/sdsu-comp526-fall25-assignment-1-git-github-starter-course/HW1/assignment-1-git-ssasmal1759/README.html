@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>:wave: Reading: The Basics of GitHub &#8212; Computational Methods for Scientists Fall 25</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'grading-fall25/sdsu-comp526-fall25-assignment-1-git-github-starter-course/HW1/assignment-1-git-ssasmal1759/README';</script>
+    <link rel="icon" href="../../../../_static/SDSU-comp526_logo.svg"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists Fall 25 - Home"/>
+    <script>document.write(`<img src="../../../../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists Fall 25 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../lectures.html">Lectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25/issues/new?title=Issue%20on%20page%20%2Fgrading-fall25/sdsu-comp526-fall25-assignment-1-git-github-starter-course/HW1/assignment-1-git-ssasmal1759/README.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/grading-fall25/sdsu-comp526-fall25-assignment-1-git-github-starter-course/HW1/assignment-1-git-ssasmal1759/README.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>:wave: Reading: The Basics of GitHub</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">:wave: Reading: The Basics of GitHub</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-overview-and-learning-outcomes">🤓 Assignment overview and learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#octocat-git-and-github">:octocat: Git and GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#octocat-understanding-the-github-flow">:octocat: Understanding the GitHub flow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repositories">Repositories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning">Cloning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#committing-and-pushing">Committing and pushing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-terms-to-know">💻 GitHub terms to know</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Repositories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branches">Branches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forks">Forks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-requests">Pull requests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issues">Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-user-profile">Your user profile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-markdown-on-github">Using markdown on GitHub</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#engaging-with-the-github-community">Engaging with the GitHub community</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#starring-repositories">Starring repositories</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#following-users">Following users</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#browsing-github-explore">Browsing GitHub Explore</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">📝 Assignment instructions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ec-question-10">📝 EC Question (+10%):</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">📚  Resources</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><a class="reference external" href="https://classroom.github.com/a/H0NR7cCR"><img alt="Review Assignment Due Date" src="https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="wave-reading-the-basics-of-github">
+<h1>:wave: Reading: The Basics of GitHub<a class="headerlink" href="#wave-reading-the-basics-of-github" title="Link to this heading">#</a></h1>
+<section id="assignment-overview-and-learning-outcomes">
+<h2>🤓 Assignment overview and learning outcomes<a class="headerlink" href="#assignment-overview-and-learning-outcomes" title="Link to this heading">#</a></h2>
+<p>The goal of this assignment is to get yourself familiar with GitHub and some basic as well as more advanced <code class="docutils literal notranslate"><span class="pre">git</span></code> commands. We’ll also provide you with materials for further learning and a few ideas to get you started on the GitHub platform. 🚀</p>
+</section>
+<section id="octocat-git-and-github">
+<h2>:octocat: Git and GitHub<a class="headerlink" href="#octocat-git-and-github" title="Link to this heading">#</a></h2>
+<p>Git is a <strong>distributed Version Control System (VCS)</strong>, which means it is a useful tool for easily tracking changes to your code, collaborating, and sharing. With Git you can track the changes you make to your project so you always have a record of what you’ve worked on and can easily revert back to an older version if need be. It also makes working with others easier—groups of people can work together on the same project and merge their changes into one final source!</p>
+<p>GitHub is a way to use the same power of Git all online with an easy-to-use interface. It’s used across the software world and beyond to collaborate and maintain the history of projects.</p>
+<p>GitHub is home to some of the most advanced technologies in the world. Whether you’re visualizing data or building a new game, there’s a whole community and set of tools on GitHub that can get you to the next step. This course starts with the basics of GitHub, but we’ll dig into the rest later.</p>
+</section>
+<section id="octocat-understanding-the-github-flow">
+<h2>:octocat: Understanding the GitHub flow<a class="headerlink" href="#octocat-understanding-the-github-flow" title="Link to this heading">#</a></h2>
+<p>The GitHub flow is a lightweight workflow that allows you to experiment and collaborate on your projects easily, without the risk of losing your previous work.</p>
+<section id="repositories">
+<h3>Repositories<a class="headerlink" href="#repositories" title="Link to this heading">#</a></h3>
+<p>A repository is where your project work happens–think of it as your project folder. It contains all of your project’s files and revision history. You can work within a repository alone or invite others to collaborate with you on those files.</p>
+</section>
+<section id="cloning">
+<h3>Cloning<a class="headerlink" href="#cloning" title="Link to this heading">#</a></h3>
+<p>When a repository is created with GitHub, it’s stored remotely in the ☁️. You can clone a repository to create a local copy on your computer and then use Git to sync the two. This makes it easier to fix issues, add or remove files, and push larger commits. You can also use the editing tool of your choice as opposed to the GitHub UI. Cloning a repository also pulls down all the repository data that GitHub has at that point in time, including all versions of every file and folder for the project! This can be helpful if you experiment with your project and then realize you liked a previous version more.
+To learn more about cloning, read <a class="reference external" href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository">“Cloning a Repository”</a>.</p>
+</section>
+<section id="committing-and-pushing">
+<h3>Committing and pushing<a class="headerlink" href="#committing-and-pushing" title="Link to this heading">#</a></h3>
+<p><strong>Committing</strong> and <strong>pushing</strong> are how you can add the changes you made on your local machine to the remote repository in GitHub. That way your instructor and/or teammates can see your latest work when you’re ready to share it. You can make a commit when you have made changes to your project that you want to “checkpoint.” You can also add a helpful <strong>commit message</strong> to remind yourself or your teammates what work you did (e.g. “Added a README with information about our project”).</p>
+<p>Once you have a commit or multiple commits that you’re ready to add to your repository, you can use the push command to add those changes to your remote repository. Committing and pushing may feel new at first, but we promise you’ll get used to it 🙂</p>
+</section>
+</section>
+<section id="github-terms-to-know">
+<h2>💻 GitHub terms to know<a class="headerlink" href="#github-terms-to-know" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Repositories<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>We mentioned repositories already, they are where your project work happens, but let’s talk a bit more about the details of them! As you work more on GitHub you will have many repositories which may feel confusing at first. Fortunately, your <a class="reference external" href="https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/about-your-personal-dashboard">“GitHub dashboard”</a> helps to easily navigate to your repositories and see useful information about them. Make sure you’re logged in to see it!</p>
+<p>Repositories also contain <strong>README</strong>s. You can add a README file to your repository to tell other people why your project is useful, what they can do with your project, and how they can use it. We are using this README to communicate how to learn Git and GitHub with you. 😄
+To learn more about repositories read <a class="reference external" href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-repositories">“Creating, Cloning, and Archiving Repositories</a> and <a class="reference external" href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-readmes">“About README’s”</a>.</p>
+</section>
+<section id="branches">
+<h3>Branches<a class="headerlink" href="#branches" title="Link to this heading">#</a></h3>
+<p>You can use branches on GitHub to isolate work that you do not want merged into your final project just yet. Branches allow you to develop features, fix bugs, or safely experiment with new ideas in a contained area of your repository. Typically, you might create a new branch from the default branch of your repository—main. This makes a new working copy of your repository for you to experiment with. Once your new changes have been reviewed by a teammate, or you are satisfied with them, you can merge your changes into the default branch of your repository.
+To learn more about branching, read <a class="reference external" href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-branches">“About Branches”</a>.</p>
+</section>
+<section id="forks">
+<h3>Forks<a class="headerlink" href="#forks" title="Link to this heading">#</a></h3>
+<p>A fork is another way to copy a repository, but is usually used when you want to contribute to someone else’s project. Forking a repository allows you to freely experiment with changes without affecting the original project and is very popular when contributing to open source software projects!
+To learn more about forking, read <a class="reference external" href="https://docs.github.com/en/github/getting-started-with-github/fork-a-repo">“Fork a repo”</a>.</p>
+</section>
+<section id="pull-requests">
+<h3>Pull requests<a class="headerlink" href="#pull-requests" title="Link to this heading">#</a></h3>
+<p>When working with branches, you can use a pull request to tell others about the changes you want to make and ask for their feedback. Once a pull request is opened, you can discuss and review the potential changes with collaborators and add more changes if need be. You can add specific people as reviewers of your pull request which shows you want their feedback on your changes! Once a pull request is ready-to-go, it can be merged into your main branch.
+To learn more about pull requests, read <a class="reference external" href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">“About Pull Requests”</a>.</p>
+</section>
+<section id="issues">
+<h3>Issues<a class="headerlink" href="#issues" title="Link to this heading">#</a></h3>
+<p>Issues are a way to track enhancements, tasks, or bugs for your work on GitHub. Issues are a great way to keep track of all the tasks you want to work on for your project and let others know what you plan to work on. You can also use issues to tell a favorite open source project about a bug you found or a feature you think would be great to add!</p>
+<p>For larger projects, you can keep track of many issues on a project board. GitHub Projects help you organize and prioritize your work and you can read more about them <a class="reference external" href="https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards">in this “About Project boards document</a>. You won’t need a project board for your assignments, but once you move on to even bigger projects in the real world outside of this course, they’re a great way to organize your team’s work!
+You can also link together pull requests and issues to show that a fix is in progress and to automatically close the issue when someone merges the pull request.
+To learn more about issues and linking them to your pull requests, read <a class="reference external" href="https://docs.github.com/en/github/managing-your-work-on-github/about-issues">“About Issues”</a>.</p>
+</section>
+<section id="your-user-profile">
+<h3>Your user profile<a class="headerlink" href="#your-user-profile" title="Link to this heading">#</a></h3>
+<p>Your profile page tells people the story of your work through the repositories you’re interested in, the contributions you’ve made, and the conversations you’ve had. You can also give the world a unique view into who you are with your profile README. You can use your profile to let future employers know all about you!
+To learn more about your user profile and adding and updating your profile README, read <a class="reference external" href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme">“Managing Your Profile README”</a>.</p>
+</section>
+<section id="using-markdown-on-github">
+<h3>Using markdown on GitHub<a class="headerlink" href="#using-markdown-on-github" title="Link to this heading">#</a></h3>
+<p>You might have noticed already, but you can add some fun styling to your issues, pull requests, and files. <a class="reference external" href="https://guides.github.com/features/mastering-markdown/">“Markdown”</a> is an easy way to style your issues, pull requests, and files with some simple syntax. This can be helpful to organize your information and make it easier for others to read. You can also drop in gifs and images to help convey your point!
+To learn more about using GitHub’s flavor of markdown, read <a class="reference external" href="https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax">“Basic Writing and Formatting Syntax”</a>.</p>
+</section>
+<section id="engaging-with-the-github-community">
+<h3>Engaging with the GitHub community<a class="headerlink" href="#engaging-with-the-github-community" title="Link to this heading">#</a></h3>
+<p>The GitHub community is vast. There are many types of people who use GitHub in their day to day—students like you, professional developers, hobbyists working on open source projects, and explorers who are just jumping into the world of software development on their own. There are many ways you can interact with the larger GitHub community, but here are three places where you can start.</p>
+<section id="starring-repositories">
+<h4>Starring repositories<a class="headerlink" href="#starring-repositories" title="Link to this heading">#</a></h4>
+<p>If you find a repository interesting or you want to keep track of it, star it! When you star a repository it’s also used as a signal to surface better recommendations on <a class="reference external" href="http://github.com/explore">github.com/explore</a>. If you’d like to get back to your starred repositories you can do so via your user profile.
+To learn  more about starring repositories, read <a class="reference external" href="https://docs.github.com/en/github/getting-started-with-github/saving-repositories-with-stars">“Saving Repositories with Stars”</a>.</p>
+</section>
+<section id="following-users">
+<h4>Following users<a class="headerlink" href="#following-users" title="Link to this heading">#</a></h4>
+<p>You can follow people on GitHub to receive notifications about their activity and discover projects in their communities. When you follow a user, their public GitHub activity will show up on your dashboard so you can see all the cool things they are working on.
+To learn more about following users, read <a class="reference external" href="https://docs.github.com/en/github/getting-started-with-github/following-people">“Following People”</a>.</p>
+</section>
+<section id="browsing-github-explore">
+<h4>Browsing GitHub Explore<a class="headerlink" href="#browsing-github-explore" title="Link to this heading">#</a></h4>
+<p>GitHub Explore is a great place to do just that … explore :smile: You can find new projects, events, and developers to interact with.</p>
+<p>You can check out the GitHub Explore website <a class="reference external" href="https://github.com/explore">at github.com/explore</a>. The more you interact with GitHub the more tailored your Explore view will be.</p>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="assignment-instructions">
+<h1>📝 Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Create a branch called <code class="docutils literal notranslate"><span class="pre">branch1</span></code> and switch to that branch to do your local work. Open a Pull Request (PR) and let your teacher know that you’ve finished reading this assignment material in the Pull Request conversation. (25%)</p></li>
+<li><p>Create a new markdown file in this repository and name it <code class="docutils literal notranslate"><span class="pre">about_me.md</span></code>. In this markdown file, let your teacher know some basic information about yourself, such as your name, what you learned so far in the course and what you are still confused about! Experiment with different styles! Add and push that file to your branch so that it will be reflected in the open Pull Request. (25%)</p></li>
+<li><p>Create a new markdown file, name it <code class="docutils literal notranslate"><span class="pre">hw1.md</span></code> and write your name on it. Add and push it to your branch so that it is reflected on the open Pull Request for submission. Read documentation for <a class="reference external" href="https://git-scm.com/docs/git-merge"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code></a> and <a class="reference external" href="https://git-scm.com/docs/git-rebase.html"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span></code></a> commands and write in the PR conversation one sentence describing the difference between the two. (25%)</p></li>
+<li><p>Go to your GitHub user dashboard and create a new public repository. Name it “<code class="docutils literal notranslate"><span class="pre">COMP-526-HW1-repo</span></code>”. Experiment with the features within that repository to familiarize yourself with them and use different styles in the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file. (25%)</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="ec-question-10">
+<h1>📝 EC Question (+10%):<a class="headerlink" href="#ec-question-10" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">HEAD</span></code> is the symbolic name for the currently checked out commit – it’s essentially what commit you’re working on top of.</p>
+<p><code class="docutils literal notranslate"><span class="pre">HEAD</span></code> always points to the most recent commit which is reflected in the working tree. Most git commands which make changes to the working tree will start by changing <code class="docutils literal notranslate"><span class="pre">HEAD</span></code>.</p>
+<p>During this EC Question we will learn how to <em>rewrite history</em> with the <a class="reference external" href="https://git-scm.com/docs/git-reset"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code></a> and <a class="reference external" href="https://git-scm.com/docs/git-revert"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">revert</span></code></a> commands.</p>
+<ol class="arabic simple">
+<li><p>(+5%) <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> reverses changes by moving a branch reference backwards in time to an older commit. In this sense you can think of it as “rewriting history”; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> will move a branch backwards as if the commit had never been made in the first place. Starting from <code class="docutils literal notranslate"><span class="pre">branch1</span></code>, create a branch, called <code class="docutils literal notranslate"><span class="pre">local</span></code> and switch to that branch to do your local work. Modify the <code class="docutils literal notranslate"><span class="pre">hw1.md</span></code> file adding a new line: “<code class="docutils literal notranslate"><span class="pre">Local</span> <span class="pre">work.</span></code>”. Commit with the following commit message: “<code class="docutils literal notranslate"><span class="pre">Local</span> <span class="pre">commit</span></code>”. Erase the last commit by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code>. Inspect the sequence with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> and show the result of your log in the PR conversation (post screenshots - do not copy and paste). What is the last commit message? Answer this question in the PR conversation.</p></li>
+<li><p>(+5%) While resetting works great for local branches on your own machine, its method of “rewriting history” doesn’t work for remote branches that others are using. In order to reverse changes and share those reversed changes with others, we need to use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">revert</span></code>. Discard the latest uncommitted changes in your <code class="docutils literal notranslate"><span class="pre">hw1.md</span></code> file. Starting from <code class="docutils literal notranslate"><span class="pre">branch1</span></code>, create a branch, called <code class="docutils literal notranslate"><span class="pre">remote</span></code> and switch to that branch. Modify the <code class="docutils literal notranslate"><span class="pre">hw1.md</span></code> file adding a new line: “<code class="docutils literal notranslate"><span class="pre">Local</span> <span class="pre">work</span> <span class="pre">that</span> <span class="pre">I</span> <span class="pre">shared</span> <span class="pre">with</span> <span class="pre">others.</span></code>”. Commit with the following commit message: “<code class="docutils literal notranslate"><span class="pre">Remote</span> <span class="pre">commit</span></code>”. Erase the last commit with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">revert</span></code>. Leave the default commit message. Inspect the sequence with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reflog</span></code> and show the result of your log in the PR conversation.  What is the last commit message? Answer this question in the PR conversation.</p></li>
+</ol>
+<section id="resources">
+<h2>📚  Resources<a class="headerlink" href="#resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=w3jLJU7DT5E&amp;amp;feature=youtu.be">A short video explaining what GitHub is</a></p></li>
+<li><p><a class="reference external" href="https://docs.github.com/en/github/getting-started-with-github/git-and-github-learning-resources">Git and GitHub learning resources</a></p></li>
+<li><p><a class="reference external" href="https://guides.github.com/introduction/flow/">Understanding the GitHub flow</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=H5GJfcp3p4Q&amp;amp;feature=youtu.be">How to use GitHub branches</a></p></li>
+<li><p><a class="reference external" href="https://githubtraining.github.io/training-manual/#/01_getting_ready_for_class">Interactive Git training materials</a></p></li>
+<li><p><a class="reference external" href="https://lab.github.com/">GitHub’s Learning Lab</a></p></li>
+<li><p><a class="reference external" href="https://education.github.community/">Education community forum</a></p></li>
+<li><p><a class="reference external" href="https://github.community/">GitHub community forum</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "sdsu-comp526/fall25",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./grading-fall25/sdsu-comp526-fall25-assignment-1-git-github-starter-course/HW1/assignment-1-git-ssasmal1759"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">:wave: Reading: The Basics of GitHub</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-overview-and-learning-outcomes">🤓 Assignment overview and learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#octocat-git-and-github">:octocat: Git and GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#octocat-understanding-the-github-flow">:octocat: Understanding the GitHub flow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repositories">Repositories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning">Cloning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#committing-and-pushing">Committing and pushing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-terms-to-know">💻 GitHub terms to know</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Repositories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branches">Branches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forks">Forks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-requests">Pull requests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issues">Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-user-profile">Your user profile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-markdown-on-github">Using markdown on GitHub</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#engaging-with-the-github-community">Engaging with the GitHub community</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#starring-repositories">Starring repositories</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#following-users">Following users</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#browsing-github-explore">Browsing GitHub Explore</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">📝 Assignment instructions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ec-question-10">📝 EC Question (+10%):</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">📚  Resources</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

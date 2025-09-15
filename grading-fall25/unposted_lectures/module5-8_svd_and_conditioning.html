@@ -1,0 +1,963 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>19) SVD Geometry &#8212; Computational Methods for Scientists Fall 25</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'grading-fall25/unposted_lectures/module5-8_svd_and_conditioning';</script>
+    <link rel="icon" href="../../_static/SDSU-comp526_logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists Fall 25 - Home"/>
+    <script>document.write(`<img src="../../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists Fall 25 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures.html">Lectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25/issues/new?title=Issue%20on%20page%20%2Fgrading-fall25/unposted_lectures/module5-8_svd_and_conditioning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/grading-fall25/unposted_lectures/module5-8_svd_and_conditioning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>19) SVD Geometry</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-on-matrix-norm-and-condition-number">1. Recap on matrix norm and condition number</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-norms-induced-by-vector-norms">Matrix norms induced by vector norms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condition-number-via-svd">2. Condition number via SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-conditioning-and-singular-values">2.1 Relationship between conditioning and singular values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition-for-solving-systems">3. Singular Value Decomposition for solving systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#costs-of-decompositions-seen">4. Costs of decompositions seen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-gram-schmidt">4.1 Cost of Gram-Schmidt?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-flops-is-a-bad-model">Counting flops is a bad model</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-matrix-matrix-mulitply-libraries">Dense matrix-matrix mulitply libraries</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-qr-by-householder">4.2 Cost of QR (by Householder)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-cholesky">4.3 Cost of Cholesky</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-svd">4.4 Cost of SVD</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#svd-gives-the-unique-minimum-norm-solution-when-a-is-rank-deficient">SVD gives the unique minimum norm solution when <span class="math notranslate nohighlight">\(A\)</span> is rank deficient</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observation">Observation:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-video-to-watch-at-home">Recommended video to watch at home:</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="svd-geometry">
+<h1>19) SVD Geometry<a class="headerlink" href="#svd-geometry" title="Link to this heading">#</a></h1>
+<section id="last-time">
+<h2>Last time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Condition number of a matrix</p></li>
+<li><p>Least squares and normal equations</p></li>
+<li><p>Intro to SVD</p></li>
+<li><p>Geometry of the Singular Value Decomposition</p></li>
+</ul>
+</section>
+<section id="today">
+<h2>Today<a class="headerlink" href="#today" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Recap on matrix norm and condition number</p></li>
+<li><p>Condition number via SVD<br />
+2.1. Relationship between conditioning and singular values</p></li>
+<li><p>Singular Value Decomposition for solving systems</p></li>
+<li><p>Costs of decompositions seen</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
+<span class="n">default</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">legendfontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">isnothing</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="w">        </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">k</span>
+<span class="w">        </span><span class="n">V</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">x</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">V</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">gram_schmidt_naive</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">            </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span>
+<span class="w">            </span><span class="n">v</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span>
+<span class="w">            </span><span class="n">R</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">gram_schmidt_classical</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">qr_householder</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="c"># list of reflectors</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">])</span>
+<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sign</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="c"># &lt;--- here we pick the sign of v so that moves it the largest distance</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normalize</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">        </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">,</span><span class="n">j</span><span class="o">:</span><span class="n">end</span><span class="p">]</span>
+<span class="w">        </span><span class="n">push!</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">qr_chol</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cholesky</span><span class="p">(</span><span class="n">A</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">U</span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">R</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">qr_chol2</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr_chol</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qr_chol</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qr_chol2 (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recap-on-matrix-norm-and-condition-number">
+<h2>1. Recap on matrix norm and condition number<a class="headerlink" href="#recap-on-matrix-norm-and-condition-number" title="Link to this heading">#</a></h2>
+<p>The condition number of matrix-vector multiplication depends on the vector.  The condition number of the matrix is the worst case (maximum) of the condition number for any vector, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[ \kappa(A) = \max_{x \ne 0} \lVert A \rVert \frac{\lVert x \rVert}{\lVert A x \rVert} .\]</div>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> is <em>invertible</em>, then we can rephrase as</p>
+<div class="math notranslate nohighlight">
+\[ \kappa(A) = \max_{x \ne 0} \lVert A \rVert \frac{\lVert A^{-1} (A x) \rVert}{\lVert A x \rVert} =
+\max_{A x \ne 0} \lVert A \rVert \frac{\lVert A^{-1} (A x) \rVert}{\lVert A x \rVert} = \lVert A \rVert \lVert A^{-1} \rVert . \]</div>
+<p>Evidently multiplying by a matrix is just as ill-conditioned of an operation as solving a linear system using that matrix.</p>
+<section id="matrix-norms-induced-by-vector-norms">
+<h3>Matrix norms induced by vector norms<a class="headerlink" href="#matrix-norms-induced-by-vector-norms" title="Link to this heading">#</a></h3>
+<p>Recall</p>
+<div class="math notranslate nohighlight">
+\[ \lVert A \rVert = \max_{\lVert x \rVert = 1} \lVert A x \rVert . \]</div>
+</section>
+</section>
+<section id="condition-number-via-svd">
+<h2>2. Condition number via SVD<a class="headerlink" href="#condition-number-via-svd" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ \kappa(A) = \lVert A \rVert \ \lVert A^{-1} \rVert \]</div>
+<p>Or, in terms of the SVD</p>
+<div class="math notranslate nohighlight">
+\[ U \Sigma V^T = \texttt{svd}(A) \]</div>
+<p>where
+<div class="math notranslate nohighlight">
+\[\begin{split} \Sigma = \begin{bmatrix} \sigma_{\max} &amp;&amp; \\ &amp; \ddots &amp; \\ &amp;&amp; \sigma_{\min} \end{bmatrix}, \end{split}\]</div>
+</p>
+<p>where, <span class="math notranslate nohighlight">\((\sigma_{1}, \sigma_{2}, \ldots)\)</span> are the non-negative real numbers called <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value"><strong>singular values</strong></a> of <span class="math notranslate nohighlight">\(A\)</span> (usually listed in decreasing order).</p>
+<p>We have that the matrix condition number is given by:</p>
+<div class="math notranslate nohighlight">
+\[ \kappa(A) = \frac{\sigma_{\max}}{\sigma_{\min}} = \texttt{cond}(A) \]</div>
+</section>
+<section id="relationship-between-conditioning-and-singular-values">
+<h2>2.1 Relationship between conditioning and singular values<a class="headerlink" href="#relationship-between-conditioning-and-singular-values" title="Link to this heading">#</a></h2>
+<p>What makes a matrix ill-conditioned?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="mf">.9</span><span class="w"> </span><span class="mf">.5</span><span class="p">]</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">svdvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="c"># Julia built-in that returns singular values in decreasing order</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cond(A) = 252.116033572376
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-element Vector{Float64}:
+ 11.22755613596245
+  0.0445332888070338
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are two orders of magnitude difference between <span class="math notranslate nohighlight">\(\sigma_{\textrm{max}}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{\textrm{min}}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">svdvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cond(A) = 7.206778416853811e6
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20-element Vector{Float64}:
+ 11.510601491136654
+  8.993572449917352
+  5.907360126610745
+  3.6029154831946064
+  1.9769729310318853
+  1.098310376576986
+  0.5392322016751737
+  0.2820042230178553
+  0.12425066006852684
+  0.06183086124622112
+  0.024242929146349384
+  0.011556331531623212
+  0.003964435582121844
+  0.0018189836735690052
+  0.0005298822985647027
+  0.00023487660987952337
+  5.4870893944525604e-5
+  2.3566694052620285e-5
+  3.8286365250847765e-6
+  1.597190981232044e-6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Six orders of magnitude here!</p>
+<p>Since
+<div class="math notranslate nohighlight">
+\[ \kappa(A) = \frac{\sigma_{\max}}{\sigma_{\min}} = \texttt{cond}(A) \]</div>
+</p>
+<p>we can see how the larger the ratio between the largest and the smallest singular values is, the larger the condition number of a matrix is (hence, the more it is ill-conditioned).</p>
+</section>
+<section id="singular-value-decomposition-for-solving-systems">
+<h2>3. Singular Value Decomposition for solving systems<a class="headerlink" href="#singular-value-decomposition-for-solving-systems" title="Link to this heading">#</a></h2>
+<p>Recall <div class="math notranslate nohighlight">
+\[ U \Sigma V^T = A \]</div>
+
+where <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> have orthonormal columns and <span class="math notranslate nohighlight">\(\Sigma\)</span> is diagonal with nonnegative entries.</p>
+<p>The entries of <span class="math notranslate nohighlight">\(\Sigma\)</span> are called <strong>singular values</strong> and this decomposition is the <strong>singular value decomposition</strong> (SVD).
+It may remind you of an eigenvalue decomposition <span class="math notranslate nohighlight">\(X \Lambda X^{-1} = A\)</span>, but</p>
+<ul class="simple">
+<li><p>the SVD exists for all matrices (including non-square and deficient matrices)</p></li>
+<li><p><span class="math notranslate nohighlight">\(U,V\)</span> have orthogonal columns (while <span class="math notranslate nohighlight">\(X\)</span> can be arbitrarily ill-conditioned).</p></li>
+<li><p>Indeed, if a matrix is symmetric and positive definite (all positive eigenvalues), then <span class="math notranslate nohighlight">\(U=V\)</span> and <span class="math notranslate nohighlight">\(\Sigma = \Lambda\)</span>.</p></li>
+<li><p>Once you have the SVD decomposition of a matrix <span class="math notranslate nohighlight">\(A\)</span>, you can solve the linear system <span class="math notranslate nohighlight">\(Ax=b\)</span> pretty efficiently (more ont this in a bit).</p></li>
+</ul>
+</section>
+<section id="costs-of-decompositions-seen">
+<h2>4. Costs of decompositions seen<a class="headerlink" href="#costs-of-decompositions-seen" title="Link to this heading">#</a></h2>
+<p>Although I mentioned already in class that counting flops is a bad model for modern high-performance computing, it is not the focus of this course to go too much in depth in the performance models for modern architectures. Let’s review the costs in the classical sense of algorithm complexity (i.e., depending on problem size)</p>
+<p>Recall that we’d say an algorithm costs <span class="math notranslate nohighlight">\(O(n^2)\)</span> if its running time on input of size <span class="math notranslate nohighlight">\(n\)</span> is less than <span class="math notranslate nohighlight">\(c n^2\)</span> for some constant <span class="math notranslate nohighlight">\(c\)</span> and sufficiently large <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Sometimes we write <span class="math notranslate nohighlight">\(\operatorname{cost}(\texttt{algorithm}, n) = O(n^2)\)</span> or (preferably) <span class="math notranslate nohighlight">\(\operatorname{cost}(\texttt{algorithm}) \in O(n^2)\)</span>.</p>
+<p>Note that <span class="math notranslate nohighlight">\(O(\log n) \subset O(n) \subset O(n\log n) \subset O(n^2) \subset \dotsb\)</span>.</p>
+<p>We say the algorithm is in <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span> (“big theta”) if
+<div class="math notranslate nohighlight">
+\[ c_1 n^2 &lt; \operatorname{cost}(\texttt{algorithm}) &lt; c_2 n^2 \]</div>
+
+for some positive constants <span class="math notranslate nohighlight">\(c_1,c_2\)</span> and sufficiently large <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<section id="cost-of-gram-schmidt">
+<h3>4.1 Cost of Gram-Schmidt?<a class="headerlink" href="#cost-of-gram-schmidt" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We’ll count flops (addition, multiplication, division*)</p></li>
+<li><p>*division is special. Since most processors can do an addition, comparison, or multiplication in a single cycle, those are all counted as one flop. But division always takes longer. How much longer depends on the processor. (Also division can be performed as multiplication by the inverse).</p></li>
+<li><p>Inner product <span class="math notranslate nohighlight">\(\sum_{i=1}^m x_i y_i\)</span>?</p></li>
+<li><p>Vector “axpy”: <span class="math notranslate nohighlight">\(y_i = a x_i + y_i\)</span>, <span class="math notranslate nohighlight">\(i \in [1, 2, \dotsc, m]\)</span>.</p></li>
+<li><p>In the function <code class="docutils literal notranslate"><span class="pre">gram_schmidt_naive</span></code>, let’s look at the inner loop:</p></li>
+</ul>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span>
+<span class="w">    </span><span class="n">v</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span>
+<span class="w">    </span><span class="n">R</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<section id="counting-flops-is-a-bad-model">
+<h4>Counting flops is a bad model<a class="headerlink" href="#counting-flops-is-a-bad-model" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>We load a single entry (8 bytes) and do 2 flops (add + multiply). That’s an <strong>arithmetic intensity</strong> of 0.25 flops/byte.</p></li>
+<li><p>Current hardware can do about 10 flops per byte, so our best algorithms will run at about 2% efficiency.</p></li>
+<li><p>Need to focus on <strong>memory bandwidth</strong>, not flops.</p></li>
+</ul>
+</section>
+<section id="dense-matrix-matrix-mulitply-libraries">
+<h4>Dense matrix-matrix mulitply libraries<a class="headerlink" href="#dense-matrix-matrix-mulitply-libraries" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/flame/blis/">BLIS project</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.utexas.edu/users/flame/pubs/TOMS-BLIS-Analytical.pdf">Analytic modeling</a></p></li>
+</ul>
+</section>
+</section>
+<section id="cost-of-qr-by-householder">
+<h3>4.2 Cost of QR (by Householder)<a class="headerlink" href="#cost-of-qr-by-householder" title="Link to this heading">#</a></h3>
+<p>Solve <span class="math notranslate nohighlight">\(R x = Q^T b\)</span>.</p>
+<ul class="simple">
+<li><p>QR factorization costs <span class="math notranslate nohighlight">\(2 m n^2 - \frac 2 3 n^3\)</span> operations and is done once per matrix <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>Computing <span class="math notranslate nohighlight">\(Q^T b\)</span> costs <span class="math notranslate nohighlight">\(4 (m-n)n + 2 n^2 = 4 mn - 2n^2\)</span> (using the elementary reflectors, which are stable and lower storage than naive storage of <span class="math notranslate nohighlight">\(Q\)</span>).</p></li>
+<li><p>Solving with <span class="math notranslate nohighlight">\(R\)</span> costs <span class="math notranslate nohighlight">\(n^2\)</span> operations.</p></li>
+<li><p>Total cost per right hand side is thus <span class="math notranslate nohighlight">\(4 m n - n^2\)</span>.</p></li>
+</ul>
+<p>This method is stable and accurate.</p>
+</section>
+<section id="cost-of-cholesky">
+<h3>4.3 Cost of Cholesky<a class="headerlink" href="#cost-of-cholesky" title="Link to this heading">#</a></h3>
+<p>The mathematically equivalent form <span class="math notranslate nohighlight">\((A^T A) x = A^T b\)</span> are called the <strong>normal equations</strong>.  The solution process involves factoring the symmetric and positive definite <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(A^T A\)</span>.</p>
+<ul class="simple">
+<li><p>Computing <span class="math notranslate nohighlight">\(A^T A\)</span> costs <span class="math notranslate nohighlight">\(m n^2\)</span> flops, exploiting symmetry.</p></li>
+<li><p>Factoring <span class="math notranslate nohighlight">\(A^T A = R^T R\)</span> costs <span class="math notranslate nohighlight">\(\frac 1 3 n^3\)</span> flops.  The total factorization cost is thus <span class="math notranslate nohighlight">\(m n^2 + \frac 1 3 n^3\)</span>.</p></li>
+<li><p>Computing <span class="math notranslate nohighlight">\(A^T b\)</span> costs <span class="math notranslate nohighlight">\(2 m n\)</span>.</p></li>
+<li><p>Solving with <span class="math notranslate nohighlight">\(R^T\)</span> costs <span class="math notranslate nohighlight">\(n^2\)</span>.</p></li>
+<li><p>Solving with <span class="math notranslate nohighlight">\(R\)</span> costs <span class="math notranslate nohighlight">\(n^2\)</span>.</p></li>
+<li><p>Total cost per right hand side is thus <span class="math notranslate nohighlight">\(2 m n + 2 n^2\)</span>.</p></li>
+</ul>
+<p>The product <span class="math notranslate nohighlight">\(A^T A\)</span> is ill-conditioned: <span class="math notranslate nohighlight">\(\kappa(A^T A) = \kappa(A)^2\)</span> and can reduce the accuracy of a least squares solution.</p>
+</section>
+<section id="cost-of-svd">
+<h3>4.4 Cost of SVD<a class="headerlink" href="#cost-of-svd" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We saw that the SVD exists for all matrices (including non-square and deficient matrices)</p></li>
+<li><p><span class="math notranslate nohighlight">\(U,V\)</span> have orthogonal columns (while <span class="math notranslate nohighlight">\(X\)</span> can be arbitrarily ill-conditioned).</p></li>
+<li><p>Indeed, if a matrix is symmetric and positive definite (all positive eigenvalues), then <span class="math notranslate nohighlight">\(U=V\)</span> and <span class="math notranslate nohighlight">\(\Sigma = \Lambda\)</span>.</p></li>
+</ul>
+<p>Computing an SVD requires a somewhat complicated iterative algorithm, but a crude estimate of the cost is <span class="math notranslate nohighlight">\(2 m n^2 + 11 n^3\)</span>.  Note that this is similar to the cost of <span class="math notranslate nohighlight">\(QR\)</span> when <span class="math notranslate nohighlight">\(m \gg n\)</span>, but much more expensive for square matrices.</p>
+<p>Once you have the SVD decomposition of an <span class="math notranslate nohighlight">\(n \times n\)</span> square matrix <span class="math notranslate nohighlight">\(A\)</span>, then you can solve the linear system: <span class="math notranslate nohighlight">\(Ax=b\)</span>, which becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+(U \Sigma V^T)x = b
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x = (U \Sigma V^T)^{-1} b 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x = V \Sigma^{-1} U^T b 
+\]</div>
+<p>(since if <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> square matrix, then <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are orthogonal). Solving it with the SVD then involves:</p>
+<ul class="simple">
+<li><p>Compute <span class="math notranslate nohighlight">\(U^T b\)</span> at a cost of <span class="math notranslate nohighlight">\(2 m n\)</span>.</p></li>
+<li><p>Solve with the diagonal <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> at a cost of <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+<li><p>Apply <span class="math notranslate nohighlight">\(V\)</span> at a cost of <span class="math notranslate nohighlight">\(2 n^2\)</span>.</p></li>
+<li><p>The total cost per right hand side is thus <span class="math notranslate nohighlight">\(2 m n + n + 2n^2\)</span> (not bad at all).</p></li>
+</ul>
+<section id="svd-gives-the-unique-minimum-norm-solution-when-a-is-rank-deficient">
+<h4>SVD gives the unique minimum norm solution when <span class="math notranslate nohighlight">\(A\)</span> is rank deficient<a class="headerlink" href="#svd-gives-the-unique-minimum-norm-solution-when-a-is-rank-deficient" title="Link to this heading">#</a></h4>
+</section>
+<section id="observation">
+<h4>Observation:<a class="headerlink" href="#observation" title="Link to this heading">#</a></h4>
+<p>Orthogonal transformations don’t affect singular values (or conditioning).</p>
+<p>Recall the “Geometry of the Singular Value Decomposition” activity</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">default</span><span class="p">(</span><span class="n">aspect_ratio</span><span class="o">=</span><span class="ss">:equal</span><span class="p">)</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">peanut</span><span class="p">()</span>
+<span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="mf">.4</span><span class="o">*</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">.6</span><span class="o">*</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span>
+<span class="w">    </span><span class="n">r</span><span class="o">&#39;</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="p">[</span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)]</span><span class="o">&#39;</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">circle</span><span class="p">()</span>
+<span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="w">    </span><span class="p">[</span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)]</span><span class="o">&#39;</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">Aplot</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="s">&quot;Plot a transformation from X to Y, first applied to a peanut shape and then to a circle&quot;</span>
+<span class="w">    </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">peanut</span><span class="p">()</span>
+<span class="w">    </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;in&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">scatter!</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;out&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circle</span><span class="p">()</span>
+<span class="w">    </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span>
+<span class="w">    </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;in&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">scatter!</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;out&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Aplot (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">svd</span><span class="p">(</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">S</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">S</span><span class="p">[</span><span class="k">end</span><span class="p">]</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">diagm</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="w"> </span><span class="c"># create diagonal matrix with S values</span>
+<span class="n">Aplot</span><span class="p">(</span><span class="n">diagm</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S = [1.4589442933658676, 0.0440922799406787]
+S[1] / S[end] = 33.088429433195934
+diagm(S) = [1.4589442933658676 0.0; 0.0 0.0440922799406787]
+</pre></div>
+</div>
+<div class="output text_html"><img src="data:image/png;base64,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" /></div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="recommended-video-to-watch-at-home">
+<h2>Recommended video to watch at home:<a class="headerlink" href="#recommended-video-to-watch-at-home" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.mathworks.com/videos/the-singular-value-decomposition-saves-the-universe-1481294462044.html">The Singular Value Decomposition Saves the Universe</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "sdsu-comp526/fall25",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.10"
+        },
+        kernelOptions: {
+            name: "julia-1.10",
+            path: "./grading-fall25/unposted_lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.10'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-on-matrix-norm-and-condition-number">1. Recap on matrix norm and condition number</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-norms-induced-by-vector-norms">Matrix norms induced by vector norms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condition-number-via-svd">2. Condition number via SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-conditioning-and-singular-values">2.1 Relationship between conditioning and singular values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition-for-solving-systems">3. Singular Value Decomposition for solving systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#costs-of-decompositions-seen">4. Costs of decompositions seen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-gram-schmidt">4.1 Cost of Gram-Schmidt?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-flops-is-a-bad-model">Counting flops is a bad model</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-matrix-matrix-mulitply-libraries">Dense matrix-matrix mulitply libraries</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-qr-by-householder">4.2 Cost of QR (by Householder)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-cholesky">4.3 Cost of Cholesky</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-of-svd">4.4 Cost of SVD</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#svd-gives-the-unique-minimum-norm-solution-when-a-is-rank-deficient">SVD gives the unique minimum norm solution when <span class="math notranslate nohighlight">\(A\)</span> is rank deficient</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observation">Observation:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-video-to-watch-at-home">Recommended video to watch at home:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1123 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>25) Interpolation &#8212; Computational Methods for Scientists Fall 25</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'grading-fall25/unposted_lectures/module7-1_interpolation';</script>
+    <link rel="icon" href="../../_static/SDSU-comp526_logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists Fall 25 - Home"/>
+    <script>document.write(`<img src="../../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists Fall 25 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures.html">Lectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25/issues/new?title=Issue%20on%20page%20%2Fgrading-fall25/unposted_lectures/module7-1_interpolation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/grading-fall25/unposted_lectures/module7-1_interpolation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>25) Interpolation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolation-using-polynomials">1. Interpolation using polynomials</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-interpolation">What is interpolation?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-in">Data in</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-to-use-as-interpolants">Functions to use as interpolants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-interpolation">Polynomial interpolation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#poll-25-1-it-s-possible-to-find-a-unique-interpolating-polynomial-mathbf-p-in-p-n-when-which-of-the-following-are-true">Poll 25.1: It’s possible to find a unique interpolating polynomial <span class="math notranslate nohighlight">\(\mathbf p \in P_n\)</span> when which of the following are true?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-interpolation-with-a-vandermonde-matrix">Polynomial interpolation with a Vandermonde matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vandermonde-matrices-can-be-ill-conditioned">Vandermonde matrices can be ill-conditioned</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagrange-interpolating-polynomials">2. Lagrange Interpolating Polynomials</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lagrange-interpolation-in-code">Lagrange interpolation in code</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#we-don-t-have-cond-lagrange-x-y">We don’t have <code class="docutils literal notranslate"><span class="pre">cond(lagrange(x,</span> <span class="pre">y))</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-polynomials">3. Newton polynomials</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-vandermonde-matrix-structure">Newton Vandermonde matrix structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-is-the-conditioning-of-these-matrices">How is the conditioning of these matrices?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-well-conditioned-basis">A well-conditioned basis:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choice-of-points-and-choice-of-bases">4. Choice of points and choice of bases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-wrong-with-ill-conditioning">What’s wrong with ill-conditioning?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-worst-vector">The worst vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection-and-recommended-reading">Reflection and Recommended Reading:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="interpolation">
+<h1>25) Interpolation<a class="headerlink" href="#interpolation" title="Link to this heading">#</a></h1>
+<section id="last-time">
+<h2>Last time:<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Introduction to Fortran</p></li>
+</ul>
+</section>
+<section id="today">
+<h2>Today:<a class="headerlink" href="#today" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Interpolation using polynomials</p></li>
+<li><p>Lagrange Interpolating Polynomials</p></li>
+<li><p>Newton polynomials</p></li>
+<li><p>Choice of points and choice of bases</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
+<span class="k">using</span><span class="w"> </span><span class="n">LaTeXStrings</span>
+<span class="n">default</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">legendfontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">isnothing</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="w">        </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">k</span>
+<span class="w">        </span><span class="n">V</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">x</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">V</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">peanut</span><span class="p">()</span>
+<span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="mf">.4</span><span class="o">*</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">.6</span><span class="o">*</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span>
+<span class="w">    </span><span class="n">r</span><span class="o">&#39;</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="p">[</span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)]</span><span class="o">&#39;</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">circle</span><span class="p">()</span>
+<span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="w">    </span><span class="p">[</span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">)]</span><span class="o">&#39;</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">Aplot</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="s">&quot;Plot a transformation from X to Y&quot;</span>
+<span class="w">    </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">peanut</span><span class="p">()</span>
+<span class="w">    </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;in&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">scatter!</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;out&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circle</span><span class="p">()</span>
+<span class="w">    </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span>
+<span class="w">    </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;in&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">scatter!</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;out&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">aspect_ratio</span><span class="o">=</span><span class="ss">:equal</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">ArgumentError</span>: Package LaTeXStrings not found in current path.
+<span class="o">-</span> <span class="n">Run</span> <span class="err">`</span><span class="kn">import</span><span class="w"> </span><span class="nn">Pkg</span><span class="p">;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;LaTeXStrings&quot;</span><span class="p">)</span><span class="err">`</span> <span class="n">to</span> <span class="n">install</span> <span class="n">the</span> <span class="n">LaTeXStrings</span> <span class="n">package</span><span class="o">.</span>
+
+<span class="ne">Stacktrace</span>:
+ <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">macro</span> <span class="n">expansion</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1842</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">macro</span> <span class="n">expansion</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">lock</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">267</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">__require</span><span class="p">(</span><span class="n">into</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">mod</span><span class="p">::</span><span class="n">Symbol</span><span class="p">)</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1823</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="c1">#invoke_in_world#3</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">essentials</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">926</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="n">invoke_in_world</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">essentials</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">923</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="n">require</span><span class="p">(</span><span class="n">into</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">mod</span><span class="p">::</span><span class="n">Symbol</span><span class="p">)</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1816</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpolation-using-polynomials">
+<h2>1. Interpolation using polynomials<a class="headerlink" href="#interpolation-using-polynomials" title="Link to this heading">#</a></h2>
+<section id="what-is-interpolation">
+<h3>What is interpolation?<a class="headerlink" href="#what-is-interpolation" title="Link to this heading">#</a></h3>
+<p>Given data <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>, find a (smooth?) function <span class="math notranslate nohighlight">\(f(x)\)</span> such that <span class="math notranslate nohighlight">\(f(x_i) = y_i\)</span>.</p>
+</section>
+<section id="data-in">
+<h3>Data in<a class="headerlink" href="#data-in" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>direct field observations/measurement of a physical or social system</p></li>
+<li><p>numerically processed observations, perhaps by applying physical principles</p></li>
+<li><p>output from an expensive “exact” numerical computation</p></li>
+<li><p>output from an approximate numerical computation</p></li>
+</ul>
+</section>
+<section id="functions-to-use-as-interpolants">
+<h3>Functions to use as interpolants<a class="headerlink" href="#functions-to-use-as-interpolants" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Polynomials</p></li>
+<li><p>Piecewise polynomials (includes nearest-neighbor)</p></li>
+<li><p>Powers and exponentials</p></li>
+<li><p>Trigonometric functions (sine and cosine)</p></li>
+<li><p>Neural networks</p></li>
+</ul>
+<p>Interpolation fits the data exactly!</p>
+</section>
+<section id="polynomial-interpolation">
+<h3>Polynomial interpolation<a class="headerlink" href="#polynomial-interpolation" title="Link to this heading">#</a></h3>
+<p>Recall that in the <a class="reference external" href="https://sdsu-comp526.github.io/fall24/slides/module4-1_linear_algebra.html">Linear Algebra lecture</a>, we’ve seen how we can fit a polynomial using Vandermonde matrices, one column per basis function and one row per observation.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}  1 &amp; x_0 &amp; x_0^2 &amp; x_0^3 &amp; \ldots \\ 
+                    1 &amp; x_1 &amp; x_1^2 &amp; x_1^3 &amp; \ldots \\
+                    \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+                    1 &amp; x_n &amp; x_n^2 &amp; x_n^3 &amp; \ldots  \end{bmatrix}_{A \in \mathbb R^{(n+1) \times m}}
+\begin{bmatrix} p_0 \\ p_1 \\ \vdots \\ p_n \end{bmatrix} = 
+\begin{bmatrix} y_0 \\ y_1 \\ \vdots \\ y_n \end{bmatrix}
+\end{split}\]</div>
+<p>which is the matrix form of the system of equations:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e7c09917-938c-476a-9c5b-336355d9d93d">
+<span class="eqno">()<a class="headerlink" href="#equation-e7c09917-938c-476a-9c5b-336355d9d93d" title="Permalink to this equation">#</a></span>\[\begin{align}
+p(x_0) &amp;= a_0 + a_1 x_0 + a_2 x_0^2 + \ldots + a_n x_0^m = y_0\\
+p(x_1) &amp;= a_0 + a_1 x_1 + a_2 x_1^2 + \ldots + a_n x_1^m = y_1\\
+p(x_2) &amp;= a_0 + a_1 x_2 + a_2 x_2^2 + \ldots + a_n x_2^m = y_2\\ 
+\vdots &amp;  \\
+p(x_n) &amp;= a_0 + a_1 x_n + a_2 x_n^2 + \ldots + a_n x_n^m = y_n\\
+\end{align}\]</div>
+<section id="poll-25-1-it-s-possible-to-find-a-unique-interpolating-polynomial-mathbf-p-in-p-n-when-which-of-the-following-are-true">
+<h4><a class="reference external" href="https://PollEv.com/multiple_choice_polls/ABH24H6oH93cm4B7BEVtI/respond">Poll 25.1</a>: It’s possible to find a unique interpolating polynomial <span class="math notranslate nohighlight">\(\mathbf p \in P_n\)</span> when which of the following are true?<a class="headerlink" href="#poll-25-1-it-s-possible-to-find-a-unique-interpolating-polynomial-mathbf-p-in-p-n-when-which-of-the-following-are-true" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(m \le n+1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(m = n+1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(m \ge n+1\)</span></p></li>
+</ol>
+<p>Hint: <a class="reference external" href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_algebra">Fondamental Theorem of Algebra</a>.</p>
+</section>
+</section>
+<section id="polynomial-interpolation-with-a-vandermonde-matrix">
+<h3>Polynomial interpolation with a Vandermonde matrix<a class="headerlink" href="#polynomial-interpolation-with-a-vandermonde-matrix" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">\</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="c"># p = A^{-1} y</span>
+
+<span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">p</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vandermonde-matrices-can-be-ill-conditioned">
+<h3>Vandermonde matrices can be ill-conditioned<a class="headerlink" href="#vandermonde-matrices-can-be-ill-conditioned" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">))</span>
+<span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Reflection:</p>
+<ol class="arabic simple">
+<li><p>It’s because of the points <span class="math notranslate nohighlight">\(x\)</span>?</p></li>
+<li><p>It’s because of the basis functions <span class="math notranslate nohighlight">\(\{ 1, x, x^2, x^3, \dotsc \}\)</span>?</p></li>
+</ol>
+</section>
+</section>
+<section id="lagrange-interpolating-polynomials">
+<h2>2. <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_polynomial">Lagrange Interpolating Polynomials</a><a class="headerlink" href="#lagrange-interpolating-polynomials" title="Link to this heading">#</a></h2>
+<p>Suppose we are given function values <span class="math notranslate nohighlight">\(y_0, \dotsc, y_m\)</span> at the <em>distinct</em> points <span class="math notranslate nohighlight">\(x_0, \dotsc, x_m\)</span> and we would like to build a polynomial of degree <span class="math notranslate nohighlight">\(m\)</span> that goes through all these points. This explicit construction is attributed to Lagrange (though it is said that he was not first):</p>
+<div class="math notranslate nohighlight">
+\[
+l_i(x)= \frac{(x-x_0)(x-x_1) \cdots (x-x_{i-1})(x-x_{i+1}) \cdots (x-x_m)}{(x_i-x_0)(x_i-x_1) \cdots (x_i-x_{i-1})(x_i-x_{i+1}) \cdots (x_i-x_m)} \qquad , \; i=0, 1, \ldots, \, m \ .
+\]</div>
+<p>By construction, this is a degree <span class="math notranslate nohighlight">\(m\)</span> polynomial, with <span class="math notranslate nohighlight">\(l_i(x_j) = \delta_{ij}\)</span> (where <span class="math notranslate nohighlight">\(\delta_{ij}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_delta">Kronecker delta</a>). This just says that <span class="math notranslate nohighlight">\(l_i(x)\)</span> has zeros at all the <span class="math notranslate nohighlight">\(x_j\)</span>’s except <span class="math notranslate nohighlight">\(x_i\)</span>, where it is identically equal to <span class="math notranslate nohighlight">\(1\)</span>. Hence, we notice that the Lagrange basis for polynomials of degree <span class="math notranslate nohighlight">\(≤ m\)</span> for those nodes is the set of polynomials <span class="math notranslate nohighlight">\(\{l_0(x), l_1(x), \ldots, l_m(x) \}\)</span> which take values <span class="math notranslate nohighlight">\(l_j(x_k) = 0\)</span> if <span class="math notranslate nohighlight">\(k \neq j\)</span> and <span class="math notranslate nohighlight">\(l_j(x_j)=1\)</span>.</p>
+<p>Lagrange’s interpolating formula</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} p(x) = \sum_{i=0}^m y_i l_i(x)  \equiv  \sum_{i=0}^m y_i \prod^{m}_{\substack{i = 0\\i \ne j}} \frac{x - x_j}{x_i - x_j} \end{split}\]</div>
+<ul class="simple">
+<li><p>What is the degree of this polynomial?</p></li>
+<li><p>Why is <span class="math notranslate nohighlight">\(p(x_i) = y_i\)</span>?</p></li>
+<li><p>How expensive (in terms of <span class="math notranslate nohighlight">\(m\)</span>) is it to evaluate <span class="math notranslate nohighlight">\(p(x)\)</span>?</p></li>
+<li><p>How expensive (in terms of <span class="math notranslate nohighlight">\(m\)</span>) is it to convert to standard form <span class="math notranslate nohighlight">\(p(x) = \sum_{i=0}^m a_i x^i\)</span>?</p></li>
+<li><p>Can we easily evaluate the derivative <span class="math notranslate nohighlight">\(p'(x)\)</span>?</p></li>
+<li><p>What can go wrong? Is this formulation numerically stable?</p></li>
+</ul>
+<p>Let’s look at some concrete examples:</p>
+<ul class="simple">
+<li><p>Suppose we are given the three points <span class="math notranslate nohighlight">\((x_0, y_0), (x_1, y_1), (x_2, y_2)\)</span>. Then the polynomial</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ p_2(x) = y_0 \frac{(x-x_1)(x-x_2)}{(x_0-x_1)(x_0-x_2)} +  y_1 \frac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)} + y_2 \frac{(x-x_0)(x-x_1)}{(x_2-x_0)(x_2-x_1)}\]</div>
+<p>is the Lagrange’s interpolating for these points. First we notice that the polynomial exactly interpolate the data points. In fact, when <span class="math notranslate nohighlight">\(x_0\)</span> is substituted for <span class="math notranslate nohighlight">\(x\)</span>, the terms evaluate to <span class="math notranslate nohighlight">\(y_0 + 0 + 0 = y_0\)</span>. Second, notice that the polynomial is of degree 2 in the variable <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<section id="example">
+<h3>Example:<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>Find an interpolating polynomial for the data points <span class="math notranslate nohighlight">\((0, 1)\)</span>, <span class="math notranslate nohighlight">\((2, 2)\)</span>, and <span class="math notranslate nohighlight">\((3, 4)\)</span>. Substituting into Lagrange’s formula yields:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7fa1a476-aeb6-413c-8063-aeb074250535">
+<span class="eqno">()<a class="headerlink" href="#equation-7fa1a476-aeb6-413c-8063-aeb074250535" title="Permalink to this equation">#</a></span>\[\begin{align}
+p_2(x) =&amp; 1 \frac{(x-2)(x-3)}{(0-2)(0-3)} +2 \frac{(x-0)(x-3)}{(2-0)(2-3)} +4\frac{(x-0)(x-2)}{(3-0)(3-2)} = \\
+       =&amp; \frac{1}{6}(x^2 - 5x +6) +2\left(-\frac{1}{2} \right)(x^2 - 3x) +4\left( \frac{1}{3} \right) (x^2 -2x) = \\
+       =&amp; \frac{x^2}{2} - \frac{x}{2} +1.
+\end{align}\]</div>
+<p>Check that <span class="math notranslate nohighlight">\(p_2(0)=1\)</span>, <span class="math notranslate nohighlight">\(p_2(2)=2\)</span>, and <span class="math notranslate nohighlight">\(p_2(3)=4\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;(x_i, y_i)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lagrange-interpolation-in-code">
+<h3>Lagrange interpolation in code<a class="headerlink" href="#lagrange-interpolation-in-code" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">lagrange</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="k">function</span><span class="w"> </span><span class="n">p</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="w">        </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">        </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">yi</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">enumerate</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="w">            </span><span class="n">w</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">yi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">prod</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">prod</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">])</span>
+<span class="w">                </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">prod</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">prod</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">])))</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">        </span><span class="n">w</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">p</span>
+<span class="k">end</span>
+
+
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lagrange</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;(x_i, y_i)&quot;</span><span class="p">)</span>
+<span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">plot!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="p">(</span><span class="n">s</span><span class="p">)],</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;sin(x)&quot;</span><span class="w"> </span><span class="s">&quot;p(x)&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Notice how important this is</span>
+<span class="n">prod</span><span class="p">(</span><span class="kt">Float64</span><span class="p">[])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="we-don-t-have-cond-lagrange-x-y">
+<h4>We don’t have <code class="docutils literal notranslate"><span class="pre">cond(lagrange(x,</span> <span class="pre">y))</span></code><a class="headerlink" href="#we-don-t-have-cond-lagrange-x-y" title="Link to this heading">#</a></h4>
+<p>Recall that the relative condition number is just a function and we know
+<div class="math notranslate nohighlight">
+\[ \kappa(f) = \lvert f' \rvert \frac{|x|}{|f|} \]</div>
+
+but this definition depends on the input <span class="math notranslate nohighlight">\(x\)</span> and it’s difficult to explore that space.</p>
+<ul class="simple">
+<li><p>We also don’t have an easy way to evaluate derivatives.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">xx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">vander</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span><span class="w"> </span><span class="c"># 50×5 Matrix</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">)</span><span class="w"> </span><span class="c"># plot the columns of B</span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">zero</span><span class="o">.</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span><span class="w"> </span><span class="n">one</span><span class="o">.</span><span class="p">(</span><span class="n">xx</span><span class="p">)],</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="ss">:black</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="o">=</span><span class="ss">:none</span><span class="p">,</span><span class="w"> </span><span class="n">ylims</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="c"># a closer look xlims = (-1,1)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="newton-polynomials">
+<h2>3. Newton polynomials<a class="headerlink" href="#newton-polynomials" title="Link to this heading">#</a></h2>
+<p>Given the set of data points <span class="math notranslate nohighlight">\((x_0,y_0), (x_1,y_1), \ldots, (x_m,y_m)\)</span>, the <a class="reference external" href="https://en.wikipedia.org/wiki/Newton_polynomial">Newton interpolation polynomial</a> is a linear combination of Newton basis polynomials:</p>
+<div class="math notranslate nohighlight">
+\[
+N(x) = \sum_{k=0}^{m} a_k n_k(x)
+\]</div>
+<p>with the Newton basis polynomials defined as</p>
+<div class="math notranslate nohighlight">
+\[ n_k(x) = \prod_{i=0}^{k-1} (x - x_i) \]</div>
+<p>where no two <span class="math notranslate nohighlight">\(x_j\)</span> are the same. This inductively constructs the polynomial. The coefficient <span class="math notranslate nohighlight">\(a_k\)</span> only depends on the points up to <span class="math notranslate nohighlight">\(x_k\)</span>.</p>
+<p>The idea here is to build up the polynomial inductively, adding one point at a time. The added term will not “spoil” the previous work.</p>
+<p>This gives the Vandermonde interpolation problem as</p>
+<div class="math notranslate nohighlight">
+\[ \Big[ 1 \Big| (x - x_0) \Big| (x - x_0)(x - x_1) \Big| \dotsb \Big] \Big[ p \Big] = \Big[ y \Big] \]</div>
+<ul class="simple">
+<li><p>How does the Vandermonde procedure change if we replace the monomial <span class="math notranslate nohighlight">\(x^k\)</span> with <span class="math notranslate nohighlight">\(n_k(x)\)</span>?</p></li>
+<li><p>Does the matrix have recognizable structure?</p></li>
+<li><p>By the construction, adding a new point to the interpolation is easy because the coefficients already computed do not change.</p></li>
+<li><p>The Newton coefficients <span class="math notranslate nohighlight">\(a_k\)</span> are defined inductively via <em>divided differences</em> (check this <a class="reference external" href="https://en.wikipedia.org/wiki/Newton_polynomial">reference</a> for their tabulated form).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">vander_newton</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">abscissa</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">isnothing</span><span class="p">(</span><span class="n">abscissa</span><span class="p">)</span>
+<span class="w">        </span><span class="n">abscissa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">abscissa</span><span class="p">)</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ones</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="n">abscissa</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">A</span>
+<span class="k">end</span>
+
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander_newton</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">ylims</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;A_1&quot;</span><span class="w"> </span><span class="s">&quot;A_2&quot;</span><span class="w"> </span><span class="s">&quot;A_3&quot;</span><span class="w"> </span><span class="s">&quot;A_4&quot;</span><span class="p">])</span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">zero</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)],</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="ss">:black</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander_newton</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">\</span><span class="w"> </span><span class="n">y</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="w"> </span><span class="n">vander_newton</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">],</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;sin(x)&quot;</span><span class="w"> </span><span class="s">&quot;vander_newton p(x)&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="newton-vandermonde-matrix-structure">
+<h3>Newton Vandermonde matrix structure<a class="headerlink" href="#newton-vandermonde-matrix-structure" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How much does it cost to solve with a general <span class="math notranslate nohighlight">\(n\times n\)</span> dense matrix?</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(O(n \log n)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(O(n^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(O(n^3)\)</span></p></li>
+</ol>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">vander_newton</span><span class="p">(</span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>How much does it cost to solve with a Newton Vandermonde matrix?</p></li>
+</ul>
+<p>You can rearrange the Newton Vandermonde interpolation problem using <em>nested multiplications</em> that reduces the problem to <span class="math notranslate nohighlight">\(O(n^2)\)</span>.</p>
+<section id="how-is-the-conditioning-of-these-matrices">
+<h4>How is the conditioning of these matrices?<a class="headerlink" href="#how-is-the-conditioning-of-these-matrices" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">vcond</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">nmax</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">cond</span><span class="p">(</span><span class="n">mat</span><span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)))</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">nmax</span><span class="p">]</span>
+
+<span class="n">plot</span><span class="p">([</span><span class="n">vcond</span><span class="p">(</span><span class="n">vander</span><span class="p">,</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)],</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="o">=</span><span class="ss">:none</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="a-well-conditioned-basis">
+<h3>A well-conditioned basis:<a class="headerlink" href="#a-well-conditioned-basis" title="Link to this heading">#</a></h3>
+<p>Let’s construct the Vandermonde matrix, but instead of using the canonical basis for polynomials, we’ll use the <a class="reference external" href="https://en.wikipedia.org/wiki/Legendre_polynomials">Legendre polynomials</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">vander_legendre</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="nb">nothing</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">isnothing</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="w">        </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="c"># Square by default</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">k</span><span class="o">-</span><span class="mi">2</span>
+<span class="w">        </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="c"># definition of Legendre&#39;s polynomials via the generating function</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">Q</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">([</span><span class="n">vcond</span><span class="p">(</span><span class="n">vander_legendre</span><span class="p">,</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)],</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="choice-of-points-and-choice-of-bases">
+<h2>4. Choice of points and choice of bases<a class="headerlink" href="#choice-of-points-and-choice-of-bases" title="Link to this heading">#</a></h2>
+<p>Let’s look at different set of points and bases. <a class="reference external" href="https://en.wikipedia.org/wiki/Chebyshev_nodes">Chebyshev nodes</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># The following are called Chebyshev nodes</span>
+<span class="n">CosRange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="nb">pi</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">))</span>
+
+<span class="n">plot</span><span class="p">([</span><span class="n">vcond</span><span class="p">(</span><span class="n">vander</span><span class="p">,</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)],</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="o">=</span><span class="ss">:topleft</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="w"> </span><span class="s">&quot;vander LinRange&quot;</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">([</span><span class="n">vcond</span><span class="p">(</span><span class="n">vander</span><span class="p">,</span><span class="w"> </span><span class="n">CosRange</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)],</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;vander CosRange&quot;</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">([</span><span class="n">vcond</span><span class="p">(</span><span class="n">vander_legendre</span><span class="p">,</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)],</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;vander_legendre LinRange&quot;</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">([</span><span class="n">vcond</span><span class="p">(</span><span class="n">vander_legendre</span><span class="p">,</span><span class="w"> </span><span class="n">CosRange</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)],</span><span class="w"> </span><span class="n">yscale</span><span class="o">=</span><span class="ss">:log10</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s">&quot;vander_legendre CosRange&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="what-s-wrong-with-ill-conditioning">
+<h3>What’s wrong with ill-conditioning?<a class="headerlink" href="#what-s-wrong-with-ill-conditioning" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">runge1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">x_lin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
+<span class="n">x_cos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CosRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
+<span class="n">y_lin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runge1</span><span class="o">.</span><span class="p">(</span><span class="n">x_lin</span><span class="p">)</span>
+<span class="n">y_cos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runge1</span><span class="o">.</span><span class="p">(</span><span class="n">x_cos</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">runge1</span><span class="p">,</span><span class="w"> </span><span class="n">xlims</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">x_lin</span><span class="p">,</span><span class="w"> </span><span class="n">y_lin</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">runge1</span><span class="p">,</span><span class="w"> </span><span class="n">xlims</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">x_cos</span><span class="p">,</span><span class="w"> </span><span class="n">y_cos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">ourvander</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander_legendre</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ourvander</span><span class="p">(</span><span class="n">x_lin</span><span class="p">)</span><span class="w"> </span><span class="o">\</span><span class="w"> </span><span class="n">y_lin</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">x_lin</span><span class="p">,</span><span class="w"> </span><span class="n">y_lin</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;(x_i,y_i)&quot;</span><span class="p">)</span>
+<span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">runge1</span><span class="o">.</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;runge&quot;</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">ourvander</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x_lin</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;vander_legendre&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;equi-spaced points&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># let&#39;s try again with the Chebyshev nodes</span>
+<span class="n">ourvander</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vander_legendre</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ourvander</span><span class="p">(</span><span class="n">x_cos</span><span class="p">)</span><span class="w"> </span><span class="o">\</span><span class="w"> </span><span class="n">y_cos</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">x_cos</span><span class="p">,</span><span class="w"> </span><span class="n">y_cos</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;(x_i,y_i)&quot;</span><span class="p">)</span>
+<span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">runge1</span><span class="o">.</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;runge&quot;</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">ourvander</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x_cos</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;vander_legendre&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Chebyshev nodes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># let&#39;s look at what happened with the linear (equi-spaced points)</span>
+<span class="n">ourvander</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x_lin</span><span class="p">))</span><span class="w"> </span><span class="c"># 100×20 matrix</span>
+<span class="n">ourvander</span><span class="p">(</span><span class="n">x_lin</span><span class="p">)</span><span class="w"> </span><span class="c"># 20x20 matrix</span>
+<span class="n">ourvander</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x_lin</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ourvander</span><span class="p">(</span><span class="n">x_lin</span><span class="p">)</span><span class="w"> </span><span class="c"># 100×20 matrix</span>
+<span class="n">cond</span><span class="p">(</span><span class="n">ourvander</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x_lin</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ourvander</span><span class="p">(</span><span class="n">x_lin</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">cond</span><span class="p">(</span><span class="n">ourvander</span><span class="p">(</span><span class="n">x_lin</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The take-home message here is that equally spaced interpolants of high degree can be disastrous (and should be avoided if possible). However, with the <em>right</em> choice of points, high degree interpolants can work.</p>
+</div>
+</section>
+<section id="the-worst-vector">
+<h3>The worst vector<a class="headerlink" href="#the-worst-vector" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ourvander</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x_lin</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ourvander</span><span class="p">(</span><span class="n">x_lin</span><span class="p">)</span>
+
+<span class="n">U</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="c"># Vt factor is 20×20</span>
+<span class="n">V</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="c"># extract first column</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x_lin</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nd">@show</span><span class="w"> </span><span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reflection-and-recommended-reading">
+<h3>Reflection and Recommended Reading:<a class="headerlink" href="#reflection-and-recommended-reading" title="Link to this heading">#</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Read the following Wiki page.</p>
+<p>This is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Runge%27s_phenomenon">Runge’s phenomenon</a>.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "sdsu-comp526/fall25",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.10"
+        },
+        kernelOptions: {
+            name: "julia-1.10",
+            path: "./grading-fall25/unposted_lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.10'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolation-using-polynomials">1. Interpolation using polynomials</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-interpolation">What is interpolation?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-in">Data in</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-to-use-as-interpolants">Functions to use as interpolants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-interpolation">Polynomial interpolation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#poll-25-1-it-s-possible-to-find-a-unique-interpolating-polynomial-mathbf-p-in-p-n-when-which-of-the-following-are-true">Poll 25.1: It’s possible to find a unique interpolating polynomial <span class="math notranslate nohighlight">\(\mathbf p \in P_n\)</span> when which of the following are true?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-interpolation-with-a-vandermonde-matrix">Polynomial interpolation with a Vandermonde matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vandermonde-matrices-can-be-ill-conditioned">Vandermonde matrices can be ill-conditioned</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagrange-interpolating-polynomials">2. Lagrange Interpolating Polynomials</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lagrange-interpolation-in-code">Lagrange interpolation in code</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#we-don-t-have-cond-lagrange-x-y">We don’t have <code class="docutils literal notranslate"><span class="pre">cond(lagrange(x,</span> <span class="pre">y))</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-polynomials">3. Newton polynomials</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-vandermonde-matrix-structure">Newton Vandermonde matrix structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-is-the-conditioning-of-these-matrices">How is the conditioning of these matrices?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-well-conditioned-basis">A well-conditioned basis:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choice-of-points-and-choice-of-bases">4. Choice of points and choice of bases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-wrong-with-ill-conditioning">What’s wrong with ill-conditioning?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-worst-vector">The worst vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection-and-recommended-reading">Reflection and Recommended Reading:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
