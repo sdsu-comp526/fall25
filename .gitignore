@@ -3,3 +3,5 @@ _build/
 re
 lectures/.ipynb_checkpoints/
 sys
+edoras.md
+grading-fall25/*
