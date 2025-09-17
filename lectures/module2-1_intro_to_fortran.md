@@ -45,7 +45,7 @@ It is important that you understand what is happening here:
 
 The simplest Fortran program is what might be called a "do-nothing" program. It contains all of the required parts of a Fortran program. The program is as follows:
 
-```{literalinclude} ../fortran_programs/module6-1_intro_to_fortran/do_nothing.f
+```{literalinclude} ../fortran_programs/module2-1_intro_to_fortran/do_nothing.f
 :language: fortran
 :linenos: true
 ```
@@ -69,7 +69,7 @@ Create your first "do nothing" Fortran program.
 
 The next simplest Fortran program is something programmers call the "Hello World" program. This is the simplest program that actually produces some output. An example of the "Hello World!" program in Fortran is:
 
-```{literalinclude} ../fortran_programs/module6-1_intro_to_fortran/hello_world.f
+```{literalinclude} ../fortran_programs/module2-1_intro_to_fortran/hello_world.f
 :language: fortran
 :linenos: true
 ```
@@ -136,7 +136,7 @@ Additionally, your variable names should adhere to the following conventions:
 
 Following is a program that illustrates some of the differences between real and integer variables:
 
-```{literalinclude} ../fortran_programs/module6-1_intro_to_fortran/variables.f
+```{literalinclude} ../fortran_programs/module2-1_intro_to_fortran/variables.f
 :language: fortran
 :linenos: true
 ```
@@ -223,7 +223,7 @@ General form of user-defined functions:
 
 Example:
 
-```{literalinclude} ../fortran_programs/module6-1_intro_to_fortran/larger_root_function.f
+```{literalinclude} ../fortran_programs/module2-1_intro_to_fortran/larger_root_function.f
 :language: fortran
 :linenos: true
 ```

@@ -5,7 +5,7 @@ title: Computational Methods for Scientists Fall 25
 author: Valeria Barra
 logo: img/SDSU-comp526_logo.svg
 
-exclude_patterns: [VENV/*, README.md, activities/*, nbgrader/*, portfolio/*]
+exclude_patterns: [VENV/*, README.md, activities/*, nbgrader/*, portfolio/*, grading-fall25/*]
 
 parse:
   myst_enable_extensions:
