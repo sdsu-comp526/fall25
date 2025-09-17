@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>11) Stability &#8212; Computational Methods for Scientists Fall 25</title>
+    <title>Exercise 10.2 &#8212; Computational Methods for Scientists Fall 25</title>
   
   
   
@@ -59,7 +59,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'grading-fall25/unposted_lectures/module3-7_stability';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'grading-fall25/unposted_lectures/module3-4_root_finding_exercises';</script>
     <link rel="icon" href="../../_static/SDSU-comp526_logo.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -302,7 +302,7 @@
       
       
       
-      <li><a href="https://github.com/sdsu-comp526/fall25/issues/new?title=Issue%20on%20page%20%2Fgrading-fall25/unposted_lectures/module3-7_stability.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/sdsu-comp526/fall25/issues/new?title=Issue%20on%20page%20%2Fgrading-fall25/unposted_lectures/module3-4_root_finding_exercises.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +332,7 @@
       
       
       
-      <li><a href="../../_sources/grading-fall25/unposted_lectures/module3-7_stability.ipynb" target="_blank"
+      <li><a href="../../_sources/grading-fall25/unposted_lectures/module3-4_root_finding_exercises.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -403,9 +403,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -416,38 +414,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>11) Stability</h1>
+    <h1>Exercise 10.2</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Stability</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-stability">(Forward) Stability</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-stability">Backward Stability</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-what-is-numerical-stability">Reading: What is Numerical Stability?</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-of-backward-stable-algorithms-theorem">Accuracy of backward stable algorithms (Theorem)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lax-equivalence-theorem">2. Lax equivalence theorem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-and-q-a">3. Recap and Q/A</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-good-but-in-praxtice">All good, but in praxtice?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-measurement-of-convergence">Empirical measurement of convergence</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solutions-mms">Method of Manufactured Solutions (MMS):</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -457,127 +428,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="stability">
-<h1>11) Stability<a class="headerlink" href="#stability" title="Link to this heading">#</a></h1>
-<section id="last-time">
-<h2>Last time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Newton’s method</p></li>
-<li><p>Convergence of fixed-point method</p></li>
-<li><p>Different formulation of Newton’s method</p></li>
-</ul>
-</section>
-<section id="today">
-<h2>Today<a class="headerlink" href="#today" title="Link to this heading">#</a></h2>
+  <section id="exercise-10-2">
+<h1>Exercise 10.2<a class="headerlink" href="#exercise-10-2" title="Link to this heading">#</a></h1>
 <ol class="arabic simple">
-<li><p>Forward and backward stability</p></li>
-<li><p>Lax equivalence theorem</p></li>
-<li><p>Recap and Q/A</p></li>
+<li><p>Find an interval of length <span class="math notranslate nohighlight">\(1\)</span> with integer endpoints on which a solution to <span class="math notranslate nohighlight">\(x^3=9\)</span> lies. Then use the bisection code starting with this interval to find the solution within a <span class="math notranslate nohighlight">\(10^{-4}\)</span> tolerance.</p></li>
+<li><p>Find an interval of length <span class="math notranslate nohighlight">\(1\)</span> with integer endpoints on which a solution to <span class="math notranslate nohighlight">\(6 + \cos^2{x} = x\)</span> lies. Then use the bisection code starting with this interval to find the solution within a <span class="math notranslate nohighlight">\(10^{-4}\)</span> tolerance.</p></li>
+<li><p>Suppose we want to know what interest rate we would need to achieve (assuming constant interest rates) such that the initial deposit of <span class="math notranslate nohighlight">\(\$50,000\)</span> and annual contribution of <span class="math notranslate nohighlight">\(\$10,000\)</span> will grow to <span class="math notranslate nohighlight">\(\$1,000,000\)</span> in <span class="math notranslate nohighlight">\(20\)</span> years. Thus we need to solve <span class="math notranslate nohighlight">\(1000000 = \left( 50000 + \frac{10000}{r}  \right) e^{20r} - \frac{10000}{r}\)</span> for the interest rate, <span class="math notranslate nohighlight">\(r\)</span>. Find a reasonable interval on which the solution ought to lie and use the bisection code to find <span class="math notranslate nohighlight">\(r\)</span> to within <span class="math notranslate nohighlight">\(10^{-6}\)</span>.</p></li>
+<li><p>Find appropriate intervals and use the bisection code to find ALL the root(s) of <span class="math notranslate nohighlight">\(|x|e^{x}= 0.25\)</span>.</p></li>
+<li><p>Use the bisection code to find the root of <span class="math notranslate nohighlight">\(27 x^3 - 27 x^2 + 9x = 1\)</span>  on <span class="math notranslate nohighlight">\([0, 1]\)</span> to within <span class="math notranslate nohighlight">\(10^{-6}\)</span>.</p></li>
+<li><p>Use the bisection code to find the root of <span class="math notranslate nohighlight">\(64 x^3 - 48x^2 + 12x = 1\)</span>  on <span class="math notranslate nohighlight">\([0, 1]\)</span> to within <span class="math notranslate nohighlight">\(10^{-6}\)</span>.</p></li>
 </ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
-<span class="n">default</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">legendfontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id1">
-<h2>1. Stability<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Reading on <a class="reference external" href="https://fncbook.com/stability/#backward-error">forward vs backward error and stability</a></p></li>
-</ul>
-<img src="https://fncbook.com/build/backwarderror-55621e558c526e24b8fc1d61b00b65a3.svg" width="90%" /><section id="forward-stability">
-<h3>(Forward) Stability<a class="headerlink" href="#forward-stability" title="Link to this heading">#</a></h3>
-<p><strong>“nearly the right answer to nearly the right question”</strong>
-<div class="math notranslate nohighlight">
-\[ \frac{\lvert \tilde f(x) - f(\tilde x) \rvert}{| f(\tilde x) |} \in O(\epsilon_{\text{machine}}) \]</div>
-
-for some <span class="math notranslate nohighlight">\(\tilde x\)</span> that is close to <span class="math notranslate nohighlight">\(x\)</span></p>
-</section>
-<section id="backward-stability">
-<h3>Backward Stability<a class="headerlink" href="#backward-stability" title="Link to this heading">#</a></h3>
-<p><strong>“exactly the right answer to nearly the right question”</strong>
-<div class="math notranslate nohighlight">
-\[ \tilde f(x) = f(\tilde x) \]</div>
-
-for some <span class="math notranslate nohighlight">\(\tilde x\)</span> that is close to <span class="math notranslate nohighlight">\(x\)</span></p>
-<p>Note:</p>
-<ul class="simple">
-<li><p>Every backward stable algorithm is (<span class="math notranslate nohighlight">\(\implies\)</span>) stable.</p></li>
-<li><p>Not every stable algorithm is backward stable.</p></li>
-<li><p>The difference is in the <em>focus</em>: forward analysis is concerned with what the method reaches, while backward analysis looks at the problem being solved (which is why we can speak of ill-conditioned methods and ill-conditioned problems).</p></li>
-<li><p>In a backward stable algorithm the errors introduced during the algorithm have the same effect as a small perturbation in the data.</p></li>
-<li><p>If the backward error is the same size as any uncertainty in the data then the algorithm produces as good a result as we can expect.</p></li>
-</ul>
-<section id="reading-what-is-numerical-stability">
-<h4>Reading: <a class="reference external" href="https://nhigham.com/2020/08/04/what-is-numerical-stability/">What is Numerical Stability?</a><a class="headerlink" href="#reading-what-is-numerical-stability" title="Link to this heading">#</a></h4>
-</section>
-</section>
-<section id="accuracy-of-backward-stable-algorithms-theorem">
-<h3>Accuracy of backward stable algorithms (Theorem)<a class="headerlink" href="#accuracy-of-backward-stable-algorithms-theorem" title="Link to this heading">#</a></h3>
-<p>A backward stable algorithm for computing <span class="math notranslate nohighlight">\(f(x)\)</span> has relative accuracy
-<div class="math notranslate nohighlight">
-\[ \left\lvert \frac{\tilde f(x) - f(x)}{f(x)} \right\rvert \lesssim \kappa(f) \epsilon_{\text{machine}} . \]</div>
-
-Backward stability is generally the best we can hope for.</p>
-<p>In practice, it is rarely possible for a function to be backward stable when the output space is higher dimensional than the input space.</p>
-</section>
-</section>
-<section id="lax-equivalence-theorem">
-<h2>2. Lax equivalence theorem<a class="headerlink" href="#lax-equivalence-theorem" title="Link to this heading">#</a></h2>
-<p>In summary:</p>
-<ul class="simple">
-<li><p><strong>Consistency</strong>: describes how well the numerical scheme aproximates the PDE (if it is at least of order 1 <span class="math notranslate nohighlight">\(\implies\)</span> it is consistent — The residual reduces under grid refinement).</p></li>
-<li><p><strong>Stability</strong>: Numerical stability concerns how errors introduced during the execution of an algorithm affect the result. It is a property of an algorithm rather than the problem being solved \cite{Higham}. This gets subtle for problems like incompressible materials or contact mechanics.</p></li>
-<li><p><strong>Convergence</strong>: When the solution of the approximated equation approaches the actual solution of the continuous equation.</p></li>
-</ul>
-<div class="admonition-lax-equivalence-theorem-https-en-wikipedia-org-wiki-lax-equivalence-theorem admonition">
-<p class="admonition-title"><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Lax_equivalence_theorem">Lax equivalence Theorem</a></strong>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Consistency + Convergence $\implies$ Stability
-
-Consistency + Stability $\implies$ Convergence
-
-Hence, 
-
-Consistency + Convergence $\iff $ Stability
-</pre></div>
-</div>
-</div>
-</section>
-<section id="recap-and-q-a">
-<h2>3. Recap and Q/A<a class="headerlink" href="#recap-and-q-a" title="Link to this heading">#</a></h2>
-<section id="all-good-but-in-praxtice">
-<h3>All good, but in praxtice?<a class="headerlink" href="#all-good-but-in-praxtice" title="Link to this heading">#</a></h3>
-<p>These are foundational theoretical tools, and can often be tested in practice, but</p>
-<ul class="simple">
-<li><p>it doesn’t establish that the code works</p></li>
-<li><p>it’s not possible to prove convergence for many real-world problems</p></li>
-<li><p>there are open research questions about whether numerous important problems are even well-posed</p></li>
-</ul>
-</section>
-<section id="empirical-measurement-of-convergence">
-<h3>Empirical measurement of convergence<a class="headerlink" href="#empirical-measurement-of-convergence" title="Link to this heading">#</a></h3>
-<p>Convergence on a problem with an analytical solution:</p>
-<ul class="simple">
-<li><p>These can be great, but analytical solutions of nonlinear equations are extremely hard to find.</p></li>
-<li><p>Such solutions usually have many symmetries and rarely activate all terms.</p></li>
-</ul>
-<p>Self-convergence:</p>
-<ul class="simple">
-<li><p>Just set up a problem and solve it on a sequence of meshes, use a refined solution as reference (perhaps using Richardson extrapolation), then plot error.</p></li>
-<li><p>You’ve checked that the code convergences to <em>some</em> solution, not the <em>correct</em> solution. (You could have a factor of 2 typo, or more serious mistakes.)</p></li>
-</ul>
-<section id="method-of-manufactured-solutions-mms">
-<h4>Method of Manufactured Solutions (MMS):<a class="headerlink" href="#method-of-manufactured-solutions-mms" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p>Errors that affect solution accuracy can easily be detected.</p></li>
-<li><p>There are some technical issues with singular or under-resolved problems (shocks, material discontinuities).</p></li>
-</ul>
-</section>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -589,16 +449,16 @@ Consistency + Convergence $\iff $ Stability
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.10"
+            mode: "python"
         },
         kernelOptions: {
-            name: "julia-1.10",
+            name: "python3",
             path: "./grading-fall25/unposted_lectures"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.10'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -616,40 +476,6 @@ Consistency + Convergence $\iff $ Stability
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Stability</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-stability">(Forward) Stability</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-stability">Backward Stability</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-what-is-numerical-stability">Reading: What is Numerical Stability?</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-of-backward-stable-algorithms-theorem">Accuracy of backward stable algorithms (Theorem)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lax-equivalence-theorem">2. Lax equivalence theorem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-and-q-a">3. Recap and Q/A</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-good-but-in-praxtice">All good, but in praxtice?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-measurement-of-convergence">Empirical measurement of convergence</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solutions-mms">Method of Manufactured Solutions (MMS):</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

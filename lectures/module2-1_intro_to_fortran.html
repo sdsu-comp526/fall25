@@ -482,6 +482,11 @@ document.write(`
 <section id="the-simplest-fortran-program">
 <h2>2. The simplest Fortran program<a class="headerlink" href="#the-simplest-fortran-program" title="Link to this heading">#</a></h2>
 <p>The simplest Fortran program is what might be called a “do-nothing” program. It contains all of the required parts of a Fortran program. The program is as follows:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w">      </span><span class="k">PROGRAM </span><span class="n">MAIN</span>
+<span class="linenos">2</span><span class="w">      </span><span class="k">STOP</span>
+<span class="linenos">3</span><span class="k">      END</span>
+</pre></div>
+</div>
 <p>The program simply starts and stops. It has a beginning (the <code class="docutils literal notranslate"><span class="pre">PROGRAM</span></code> instruction), and then tells the system to halt execution (<code class="docutils literal notranslate"><span class="pre">STOP</span></code>). Notice that there is both <code class="docutils literal notranslate"><span class="pre">STOP</span></code> and <code class="docutils literal notranslate"><span class="pre">END</span></code>. The difference is that <code class="docutils literal notranslate"><span class="pre">STOP</span></code> tells the system to halt the execution of the program, while <code class="docutils literal notranslate"><span class="pre">END</span></code> identifies the end of your instructions - that is, <code class="docutils literal notranslate"><span class="pre">END</span></code> will always appear as the last line of a program.</p>
 <p>Complex programs may have more than one <code class="docutils literal notranslate"><span class="pre">STOP</span></code> instruction; for example, execution may be halted if an error occurs or a limit is reached. A single instruction in Fortran is usually called a <em>statement</em>.</p>
 <p>Although seemingly trivial, writing and executing this program illustrates some of the basic rules of writing Fortran programs:</p>
@@ -499,6 +504,12 @@ document.write(`
 <section id="hello-world-and-simple-i-o">
 <h2>3. Hello, World! and Simple I/O<a class="headerlink" href="#hello-world-and-simple-i-o" title="Link to this heading">#</a></h2>
 <p>The next simplest Fortran program is something programmers call the “Hello World” program. This is the simplest program that actually produces some output. An example of the “Hello World!” program in Fortran is:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w">      </span><span class="k">PROGRAM </span><span class="n">HelloWorld</span>
+<span class="linenos">2</span><span class="w">      </span><span class="k">IMPLICIT NONE</span><span class="w"> </span><span class="c">! requires you to explicitly define the type for every variable that you use in your program, so to avoid undefined variables</span>
+<span class="linenos">3</span><span class="w">      </span><span class="k">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Hello, world!&#39;</span><span class="w"> </span><span class="c">! this prints out on the screen</span>
+<span class="linenos">4</span><span class="w">      </span><span class="k">END PROGRAM </span><span class="n">HelloWorld</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Notice that we used the <code class="docutils literal notranslate"><span class="pre">WRITE</span></code> statement rather than the <code class="docutils literal notranslate"><span class="pre">PRINT</span></code> statement.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">WRITE</span></code> statement writes output to the screen when the program is run interactively. In fact it writes to something called “standard output,” which defaults to the screen.</p></li>
@@ -561,6 +572,25 @@ document.write(`
 <li><p>In standard Fortran 77 each variable name has to be six characters or less, but almost all modern systems will accept longer variable names.</p></li>
 </ul>
 <p>Following is a program that illustrates some of the differences between real and integer variables:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">      </span><span class="k">PROGRAM </span><span class="n">MAIN</span>
+<span class="linenos"> 2</span><span class="w">      </span><span class="kt">INTEGER </span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="n">INTPI</span><span class="p">,</span><span class="w"> </span><span class="n">INTE</span>
+<span class="linenos"> 3</span><span class="w">      </span><span class="kt">REAL </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">REALPI</span><span class="p">,</span><span class="w"> </span><span class="n">REALE</span>
+<span class="linenos"> 4</span><span class="w">      </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos"> 5</span><span class="w">      </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos"> 6</span><span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;THE VALUE OF 1 AS A REAL IS&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">X</span>
+<span class="linenos"> 7</span><span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;THE VALUE OF 1 AS AN INTEGER IS&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">I</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="n">REALPI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.1416</span>
+<span class="linenos"> 9</span><span class="w">      </span><span class="n">INTPI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">REALPI</span>
+<span class="linenos">10</span><span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;THE VALUE OF PI AS A REAL IS&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">REALPI</span>
+<span class="linenos">11</span><span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;THE VALUE OF PI AS AN INTEGER IS&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">INTPI</span>
+<span class="linenos">12</span><span class="w">      </span><span class="n">REALE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.71828</span>
+<span class="linenos">13</span><span class="w">      </span><span class="n">INTE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">REALE</span>
+<span class="linenos">14</span><span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;THE VALUE OF E AS A REAL IS&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">REALE</span>
+<span class="linenos">15</span><span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;THE VALUE OF E AS AN INTEGER IS&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">INTE</span>
+<span class="linenos">16</span><span class="w">      </span><span class="k">STOP</span>
+<span class="linenos">17</span><span class="k">      END</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Any text that you want to print out is inside single quotes, but when printing the value of a variable you don’t put it in quotes.</p></li>
 <li><p>If you want to print multiple things (whether text or values) separate them with a comma.</p></li>
@@ -657,6 +687,31 @@ document.write(`
 <li><p>The meaning of <code class="docutils literal notranslate"><span class="pre">INTENT(IN)</span></code> indicates that the function will only use this argument as input and must not change its value.</p></li>
 </ul>
 <p>Example:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">      </span><span class="kt">REAL </span><span class="k">FUNCTION </span><span class="n">LargerRoot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="w">        </span><span class="k">IMPLICIT NONE</span><span class="w"> </span><span class="c">! Remember that this tells the compiler that we will define all variables we will use</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="w">        </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
+<span class="linenos"> 6</span><span class="w">        </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span>
+<span class="linenos"> 7</span><span class="w">        </span><span class="kt">REAL</span><span class="p">,</span><span class="w"> </span><span class="k">INTENT</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="kt">REAL</span><span class="w">             </span><span class="kd">::</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="n">r2</span><span class="w"> </span><span class="c">! Some temporary auxiliary variables needed that will live only inside this function</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w">        </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">4.0</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">        </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">+</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">        </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">-</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">        </span><span class="k">IF</span><span class="p">(</span><span class="n">r1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">r2</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="linenos">18</span><span class="k">          </span><span class="n">LargerRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r1</span>
+<span class="linenos">19</span><span class="w">        </span><span class="k">ELSE</span>
+<span class="linenos">20</span><span class="k">          </span><span class="n">LargerRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r2</span>
+<span class="linenos">21</span><span class="w">        </span><span class="k">END IF</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="k">      END FUNCTION </span><span class="n">LargerRoot</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Remember that to be able to call this function, we need at least a <code class="docutils literal notranslate"><span class="pre">main</span></code> <code class="docutils literal notranslate"><span class="pre">PROGRAM</span></code>.</p>
