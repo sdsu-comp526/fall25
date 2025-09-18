@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/SDSU-comp526_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9) Convergence classes" href="module3-5_convergence_classes.html" />
     <link rel="prev" title="7) Conditioning" href="module3-3_conditioning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -197,6 +198,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module3-2_function_errors.html">6) Function errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-3_conditioning.html">7) Conditioning</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">8) Rootfinding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-5_convergence_classes.html">9) Convergence classes</a></li>
 </ul>
 </details></li>
 </ul>
@@ -428,13 +430,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-forward-and-backward-error">1. Introduction to forward and backward error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-10-1">Exercise 10.1</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-8-1">Exercise 8.1</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading-fnc-introduction">Further reading: FNC Introduction</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-demo-volume-of-a-polygon">2. Stability demo: Volume of a polygon</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Rootfinding</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-10-2">Exercise 10.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-8-2">Exercise 8.2</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-queueing">Example: Queueing</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#departure-rate-given-wait">Departure rate given wait</a></li>
 </ul>
@@ -532,8 +534,8 @@ document.write(`
 <li><p>If an algorithm always produces small backward errors, then it is <strong>stable</strong>. But the converse is not always true: some stable algorithms may produce a large backward error.</p></li>
 </ul>
 </section>
-<section id="exercise-10-1">
-<h2>Exercise 10.1<a class="headerlink" href="#exercise-10-1" title="Link to this heading">#</a></h2>
+<section id="exercise-8-1">
+<h2>Exercise 8.1<a class="headerlink" href="#exercise-8-1" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Find a function <span class="math notranslate nohighlight">\(f(x)\)</span> that models something you’re interested in</p></li>
 <li><p>Plot its condition number <span class="math notranslate nohighlight">\(\kappa\)</span> as a function of <span class="math notranslate nohighlight">\(x\)</span></p></li>
@@ -599,8 +601,8 @@ rotated_vol = pvolume(Y) = 9.25
 <div><p>Given <span class="math notranslate nohighlight">\(f(x)\)</span>, find <span class="math notranslate nohighlight">\(x_{\star}\)</span> such that <span class="math notranslate nohighlight">\(f(x_{\star}) = 0\)</span>.</p>
 </div></blockquote>
 <p>We’ll work with scalars (<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(x\)</span> are just numbers) for now, but keep in mind that they can be vector-valued.</p>
-<section id="exercise-10-2">
-<h3>Exercise 10.2<a class="headerlink" href="#exercise-10-2" title="Link to this heading">#</a></h3>
+<section id="exercise-8-2">
+<h3>Exercise 8.2<a class="headerlink" href="#exercise-8-2" title="Link to this heading">#</a></h3>
 <p>Solve for <span class="math notranslate nohighlight">\(x\)</span></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x; b) = x^2 - b\)</span></p>
@@ -669,6 +671,9 @@ rotated_vol = pvolume(Y) = 9.25
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">    Updating</span> registry at `~/.julia/registries/General.toml`
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
 </pre></div>
 </div>
@@ -925,6 +930,15 @@ rotated_vol = pvolume(Y) = 9.25
         <p class="prev-next-title">7) Conditioning</p>
       </div>
     </a>
+    <a class="right-next"
+       href="module3-5_convergence_classes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">9) Convergence classes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -944,13 +958,13 @@ rotated_vol = pvolume(Y) = 9.25
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-forward-and-backward-error">1. Introduction to forward and backward error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-10-1">Exercise 10.1</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-8-1">Exercise 8.1</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading-fnc-introduction">Further reading: FNC Introduction</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-demo-volume-of-a-polygon">2. Stability demo: Volume of a polygon</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Rootfinding</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-10-2">Exercise 10.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-8-2">Exercise 8.2</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-queueing">Example: Queueing</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#departure-rate-given-wait">Departure rate given wait</a></li>
 </ul>
