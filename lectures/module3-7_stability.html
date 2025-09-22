@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/SDSU-comp526_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="10) Newton methods" href="module3-6_newton.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -182,9 +181,9 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures.html">Lectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../lectures.html">Lectures</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="module1-1_first_class.html">1) First Class: Reproducibility and Git</a></li>
 
 
@@ -196,6 +195,11 @@
 
 
 <li class="toctree-l2"><a class="reference internal" href="module3-2_function_errors.html">6) Function errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-3_conditioning.html">7) Conditioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-4_root_finding.html">8) Rootfinding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-5_convergence_classes.html">9) Convergence classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-6_newton.html">10) Newton methods</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">11) Stability</a></li>
 </ul>
 </details></li>
 </ul>
@@ -435,7 +439,15 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-of-backward-stable-algorithms-theorem">Accuracy of backward stable algorithms (Theorem)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-and-q-a">2. Recap and Q/A</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lax-equivalence-theorem">2. Lax equivalence theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-and-q-a">3. Recap and Q/A</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-good-but-in-praxtice">All good, but in praxtice?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-measurement-of-convergence">Empirical measurement of convergence</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solutions-mms">Method of Manufactured Solutions (MMS):</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -461,6 +473,7 @@ document.write(`
 <h2>Today<a class="headerlink" href="#today" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Forward and backward stability</p></li>
+<li><p>Lax equivalence theorem</p></li>
 <li><p>Recap and Q/A</p></li>
 </ol>
 <div class="cell docutils container">
@@ -514,8 +527,58 @@ Backward stability is generally the best we can hope for.</p>
 <p>In practice, it is rarely possible for a function to be backward stable when the output space is higher dimensional than the input space.</p>
 </section>
 </section>
+<section id="lax-equivalence-theorem">
+<h2>2. Lax equivalence theorem<a class="headerlink" href="#lax-equivalence-theorem" title="Link to this heading">#</a></h2>
+<p>In summary:</p>
+<ul class="simple">
+<li><p><strong>Consistency</strong>: describes how well the numerical scheme aproximates the PDE (if it is at least of order 1 <span class="math notranslate nohighlight">\(\implies\)</span> it is consistent — The residual reduces under grid refinement).</p></li>
+<li><p><strong>Stability</strong>: Numerical stability concerns how errors introduced during the execution of an algorithm affect the result. It is a property of an algorithm rather than the problem being solved \cite{Higham}. This gets subtle for problems like incompressible materials or contact mechanics.</p></li>
+<li><p><strong>Convergence</strong>: When the solution of the approximated equation approaches the actual solution of the continuous equation.</p></li>
+</ul>
+<div class="admonition-lax-equivalence-theorem-https-en-wikipedia-org-wiki-lax-equivalence-theorem admonition">
+<p class="admonition-title"><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Lax_equivalence_theorem">Lax equivalence Theorem</a></strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Consistency + Convergence $\implies$ Stability
+
+Consistency + Stability $\implies$ Convergence
+
+Hence, 
+
+Consistency + Convergence $\iff $ Stability
+</pre></div>
+</div>
+</div>
+</section>
 <section id="recap-and-q-a">
-<h2>2. Recap and Q/A<a class="headerlink" href="#recap-and-q-a" title="Link to this heading">#</a></h2>
+<h2>3. Recap and Q/A<a class="headerlink" href="#recap-and-q-a" title="Link to this heading">#</a></h2>
+<section id="all-good-but-in-praxtice">
+<h3>All good, but in praxtice?<a class="headerlink" href="#all-good-but-in-praxtice" title="Link to this heading">#</a></h3>
+<p>These are foundational theoretical tools, and can often be tested in practice, but</p>
+<ul class="simple">
+<li><p>it doesn’t establish that the code works</p></li>
+<li><p>it’s not possible to prove convergence for many real-world problems</p></li>
+<li><p>there are open research questions about whether numerous important problems are even well-posed</p></li>
+</ul>
+</section>
+<section id="empirical-measurement-of-convergence">
+<h3>Empirical measurement of convergence<a class="headerlink" href="#empirical-measurement-of-convergence" title="Link to this heading">#</a></h3>
+<p>Convergence on a problem with an analytical solution:</p>
+<ul class="simple">
+<li><p>These can be great, but analytical solutions of nonlinear equations are extremely hard to find.</p></li>
+<li><p>Such solutions usually have many symmetries and rarely activate all terms.</p></li>
+</ul>
+<p>Self-convergence:</p>
+<ul class="simple">
+<li><p>Just set up a problem and solve it on a sequence of meshes, use a refined solution as reference (perhaps using Richardson extrapolation), then plot error.</p></li>
+<li><p>You’ve checked that the code convergences to <em>some</em> solution, not the <em>correct</em> solution. (You could have a factor of 2 typo, or more serious mistakes.)</p></li>
+</ul>
+<section id="method-of-manufactured-solutions-mms">
+<h4>Method of Manufactured Solutions (MMS):<a class="headerlink" href="#method-of-manufactured-solutions-mms" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Errors that affect solution accuracy can easily be detected.</p></li>
+<li><p>There are some technical issues with singular or under-resolved problems (shocks, material discontinuities).</p></li>
+</ul>
+</section>
+</section>
 </section>
 </section>
 
@@ -549,6 +612,15 @@ Backward stability is generally the best we can hope for.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="module3-6_newton.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">10) Newton methods</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -576,7 +648,15 @@ Backward stability is generally the best we can hope for.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-of-backward-stable-algorithms-theorem">Accuracy of backward stable algorithms (Theorem)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-and-q-a">2. Recap and Q/A</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lax-equivalence-theorem">2. Lax equivalence theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-and-q-a">3. Recap and Q/A</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-good-but-in-praxtice">All good, but in praxtice?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-measurement-of-convergence">Empirical measurement of convergence</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solutions-mms">Method of Manufactured Solutions (MMS):</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
