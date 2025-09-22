@@ -535,18 +535,12 @@ Backward stability is generally the best we can hope for.</p>
 <li><p><strong>Stability</strong>: Numerical stability concerns how errors introduced during the execution of an algorithm affect the result. It is a property of an algorithm rather than the problem being solved (check <a class="reference external" href="https://nhigham.com/2020/08/04/what-is-numerical-stability/">Higham’s blog</a> again). This gets subtle for problems like incompressible materials or contact mechanics.</p></li>
 <li><p><strong>Convergence</strong>: When the solution of the approximated equation approaches the actual solution of the continuous equation.</p></li>
 </ul>
-<div class="admonition-lax-equivalence-theorem-https-en-wikipedia-org-wiki-lax-equivalence-theorem admonition">
-<p class="admonition-title"><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Lax_equivalence_theorem">Lax equivalence Theorem</a></strong>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Consistency + Convergence $\implies$ Stability
-
-Consistency + Stability $\implies$ Convergence
-
-Hence, 
-
-Consistency + Convergence $\iff $ Stability
-</pre></div>
-</div>
-</div>
+<blockquote>
+<div><p>Consistency + Convergence <span class="math notranslate nohighlight">\(\implies\)</span> Stability <br />
+Consistency + Stability <span class="math notranslate nohighlight">\(\implies\)</span> Convergence<br />
+Hence, <br />
+Consistency + Convergence <span class="math notranslate nohighlight">\(\iff \)</span> Stability</p>
+</div></blockquote>
 </section>
 <section id="recap-and-q-a">
 <h2>3. Recap and Q/A<a class="headerlink" href="#recap-and-q-a" title="Link to this heading">#</a></h2>
