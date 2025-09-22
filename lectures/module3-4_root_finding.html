@@ -199,6 +199,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module3-3_conditioning.html">7) Conditioning</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">8) Rootfinding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module3-5_convergence_classes.html">9) Convergence classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-6_newton.html">10) Newton methods</a></li>
 </ul>
 </details></li>
 </ul>
@@ -448,6 +449,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-fast-does-it-converge">How fast does it converge?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-bisection-an-optimized-algorithm">Iterative bisection: an optimized algorithm</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-plot-the-error">Let’s plot the error</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-8-3">Exercise 8.3</a></li>
 </ul>
 </li>
 </ul>
@@ -671,6 +673,9 @@ rotated_vol = pvolume(Y) = 9.25
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">    Updating</span> registry at `~/.julia/registries/General.toml`
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
 </pre></div>
 </div>
@@ -884,6 +889,17 @@ rotated_vol = pvolume(Y) = 9.25
 <li><p>The absolute error is <strong>halved</strong> at each step so the method converges <strong>linearly</strong>. But is this all there is to it? We’ll see more next time.</p></li>
 </ul>
 </section>
+<section id="exercise-8-3">
+<h4>Exercise 8.3<a class="headerlink" href="#exercise-8-3" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Find an interval of length <span class="math notranslate nohighlight">\(1\)</span> with integer endpoints on which a solution to <span class="math notranslate nohighlight">\(x^3=9\)</span> lies. Then use the bisection code starting with this interval to find the solution within a <span class="math notranslate nohighlight">\(10^{-4}\)</span> tolerance.</p></li>
+<li><p>Find an interval of length <span class="math notranslate nohighlight">\(1\)</span> with integer endpoints on which a solution to <span class="math notranslate nohighlight">\(6 + \cos^2{x} = x\)</span> lies. Then use the bisection code starting with this interval to find the solution within a <span class="math notranslate nohighlight">\(10^{-4}\)</span> tolerance.</p></li>
+<li><p>Suppose we want to know what interest rate we would need to achieve (assuming constant interest rates) such that the initial deposit of <span class="math notranslate nohighlight">\(\$50,000\)</span> and annual contribution of <span class="math notranslate nohighlight">\(\$10,000\)</span> will grow to <span class="math notranslate nohighlight">\(\$1,000,000\)</span> in <span class="math notranslate nohighlight">\(20\)</span> years. Thus we need to solve <span class="math notranslate nohighlight">\(1000000 = \left( 50000 + \frac{10000}{r}  \right) e^{20r} - \frac{10000}{r}\)</span> for the interest rate, <span class="math notranslate nohighlight">\(r\)</span>. Find a reasonable interval on which the solution ought to lie and use the bisection code to find <span class="math notranslate nohighlight">\(r\)</span> to within <span class="math notranslate nohighlight">\(10^{-6}\)</span>.</p></li>
+<li><p>Find appropriate intervals and use the bisection code to find ALL the root(s) of <span class="math notranslate nohighlight">\(|x|e^{x}= 0.25\)</span>.</p></li>
+<li><p>Use the bisection code to find the root of <span class="math notranslate nohighlight">\(27 x^3 - 27 x^2 + 9x = 1\)</span>  on <span class="math notranslate nohighlight">\([0, 1]\)</span> to within <span class="math notranslate nohighlight">\(10^{-6}\)</span>.</p></li>
+<li><p>Use the bisection code to find the root of <span class="math notranslate nohighlight">\(64 x^3 - 48x^2 + 12x = 1\)</span>  on <span class="math notranslate nohighlight">\([0, 1]\)</span> to within <span class="math notranslate nohighlight">\(10^{-6}\)</span>.</p></li>
+</ol>
+</section>
 </section>
 </section>
 </section>
@@ -973,6 +989,7 @@ rotated_vol = pvolume(Y) = 9.25
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-fast-does-it-converge">How fast does it converge?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-bisection-an-optimized-algorithm">Iterative bisection: an optimized algorithm</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-plot-the-error">Let’s plot the error</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-8-3">Exercise 8.3</a></li>
 </ul>
 </li>
 </ul>
