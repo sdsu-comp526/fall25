@@ -19,7 +19,7 @@ chapters:
   - file: lectures/module3-6_newton.ipynb
   - file: lectures/module3-7_stability.ipynb
   - file: lectures/module4-1_intro_to_c.md
-  # - file: lectures/module4-2_c_pointers.md
+  - file: lectures/module4-2_c_pointers.md
   # - file: lectures/module4-3_c_structs_and_functions.md
   # - file: lectures/module4-4_c_memory.md
   # - file: lectures/module5-1_linear_algebra.ipynb
