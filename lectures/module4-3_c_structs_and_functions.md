@@ -103,11 +103,11 @@ arr_car[2].model = "Legacy";
 
 Most of this section material is adopted from this [resource](http://www.faqs.org/docs/learnc/c178.html).
 
-_Functions_ can be thought of as named blocks of code that (if good software design principles are followed) perform one task. When you write a program you will write many functions to perform the tasks you need. There are, however, a lot of common tasks such as displaying text to the screen that a lot of programmers will need. Instead of having everyone reinventing the wheel, GNU systems (Unix-like operating system) come with libraries of pre-defined functions for many of these tasks. Over the years, thousands of such functions have accumulated.
+_Functions_ can be thought of as named blocks of code that (if good software design principles are followed) perform one task. When you write a program you will write many functions to perform the tasks you need. There are, however, a lot of common tasks such as displaying text to the screen that a lot of programmers will need. Instead of having everyone reinventing the wheel, GNU systems (Unix-like operating system) come with libraries of pre-defined functions for many of these tasks. Over the years, thousands of such functions have accumulated in (standard) libraries.
 
 Every C program must have a function called `main()`, this is where execution of the program begins. In principle, the code of a program could be completely contained in `main()` but it is more usual and practical to split a program into many small functions that perform single tasks.
 
-First you must _define_ the function, just like we defined `main()` in the examples so far. Also you you must `declare` it. Declaring a function is like telling the compiler to expect it, we didn't have to declare `main()` because it is a special function and the compiler knows to expect it. The name, or identifier, you give to a function must appear in both the definition and the declaration.
+First you must _define_ the function, just like we defined `main()` in the examples so far. Also you you must `declare` it. Declaring a function is like telling the compiler to expect it; we didn't have to declare `main()` because it is a special function and the compiler knows to expect it. The name, or identifier, you give to a function must appear in both the definition and the declaration.
 
 - Functions identifiers can be made up of the alphabetic characters "a"-"z" and "A"-"Z", the numeric characters "0"-"9" and the underscore character "_". These can be used in any order so long as the first character of the identifier is not a number. As for variables, C is **case-sensitive** so `My_Function` is completely different to `my_function`. A function identifier must be unique. Identifiers can safely be up to 63 characters long or as short as 1 character.
 
@@ -120,6 +120,12 @@ Example:
 :linenos: true
 ```
 
-In the above example we wrote `first_function()`, which does nothing and `goodbye()`, which displays a message. Functions must be declared _before_ they are called. In our case this means they must appear before our definition of `main()`. In practice, function declarations are generally grouped at the top of a file after any `#include` lines and before any function definitions or can be in their own header file included with the `#include` directive.
+In the above example we wrote `first_function()`, which does nothing and `goodbye()`, which displays a message. 
 
-- Keeping track of function declarations can get messy, for this reason _header files_ are used to house C code that you wish to appear in multiple files. You have actually already used a header file. `stdio.h` is a header file which contains many function declarations, it contains the function declarations for `printf()` and `printf()`. Once you have placed the function declarations you wish to share into a header file you can `#include` your header in each C file that needs the information. The only difference being that you surround your filename in quotes instead of angle brackets (`"my_header.h"` instead of `<system_header.h>`).
+- Functions must be declared _before_ they are called. 
+
+In our case this means they must appear before our definition of `main()`. In practice, function declarations are generally grouped at the top of a file after any `#include` lines and before any function definitions or can be in their own _header_ file included with the `#include` directive. Once you have placed the function declarations you wish to share into a header file you can `#include` your header in each C file that needs the information 
+
+- Keeping track of function declarations can get messy, for this reason _header files_ are used to house C code that you wish to appear in multiple files. You have actually already used a header file. `stdio.h` is a header file which contains many function declarations, it contains the function declarations for `printf()` among others. 
+
+- Once you have placed the function declarations you wish to share into a header file you can `#include` your header in each C file that needs the information. The only difference being that you surround your filename in quotes instead of angle brackets (`"my_header.h"` instead of `<system_header.h>`).
