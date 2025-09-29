@@ -61,6 +61,7 @@
     <link rel="icon" href="../_static/SDSU-comp526_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="15) C memory" href="module4-4_c_memory.html" />
     <link rel="prev" title="13) Intro to C pointers" href="module4-2_c_pointers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -201,6 +202,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module4-1_intro_to_c.html">12) Intro to C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module4-2_c_pointers.html">13) Intro to C pointers</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">14) C structs and functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-4_c_memory.html">15) C memory</a></li>
 </ul>
 </details></li>
 </ul>
@@ -518,9 +520,9 @@ document.write(`
 <section id="functions">
 <h2>2. Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
 <p>Most of this section material is adopted from this <a class="reference external" href="http://www.faqs.org/docs/learnc/c178.html">resource</a>.</p>
-<p><em>Functions</em> can be thought of as named blocks of code that (if good software design principles are followed) perform one task. When you write a program you will write many functions to perform the tasks you need. There are, however, a lot of common tasks such as displaying text to the screen that a lot of programmers will need. Instead of having everyone reinventing the wheel, GNU systems (Unix-like operating system) come with libraries of pre-defined functions for many of these tasks. Over the years, thousands of such functions have accumulated.</p>
+<p><em>Functions</em> can be thought of as named blocks of code that (if good software design principles are followed) perform one task. When you write a program you will write many functions to perform the tasks you need. There are, however, a lot of common tasks such as displaying text to the screen that a lot of programmers will need. Instead of having everyone reinventing the wheel, GNU systems (Unix-like operating system) come with libraries of pre-defined functions for many of these tasks. Over the years, thousands of such functions have accumulated in (standard) libraries.</p>
 <p>Every C program must have a function called <code class="docutils literal notranslate"><span class="pre">main()</span></code>, this is where execution of the program begins. In principle, the code of a program could be completely contained in <code class="docutils literal notranslate"><span class="pre">main()</span></code> but it is more usual and practical to split a program into many small functions that perform single tasks.</p>
-<p>First you must <em>define</em> the function, just like we defined <code class="docutils literal notranslate"><span class="pre">main()</span></code> in the examples so far. Also you you must <code class="docutils literal notranslate"><span class="pre">declare</span></code> it. Declaring a function is like telling the compiler to expect it, we didn’t have to declare <code class="docutils literal notranslate"><span class="pre">main()</span></code> because it is a special function and the compiler knows to expect it. The name, or identifier, you give to a function must appear in both the definition and the declaration.</p>
+<p>First you must <em>define</em> the function, just like we defined <code class="docutils literal notranslate"><span class="pre">main()</span></code> in the examples so far. Also you you must <code class="docutils literal notranslate"><span class="pre">declare</span></code> it. Declaring a function is like telling the compiler to expect it; we didn’t have to declare <code class="docutils literal notranslate"><span class="pre">main()</span></code> because it is a special function and the compiler knows to expect it. The name, or identifier, you give to a function must appear in both the definition and the declaration.</p>
 <ul class="simple">
 <li><p>Functions identifiers can be made up of the alphabetic characters “a”-“z” and “A”-“Z”, the numeric characters “0”-“9” and the underscore character “_”. These can be used in any order so long as the first character of the identifier is not a number. As for variables, C is <strong>case-sensitive</strong> so <code class="docutils literal notranslate"><span class="pre">My_Function</span></code> is completely different to <code class="docutils literal notranslate"><span class="pre">my_function</span></code>. A function identifier must be unique. Identifiers can safely be up to 63 characters long or as short as 1 character.</p></li>
 </ul>
@@ -558,9 +560,14 @@ document.write(`
 <span class="linenos">30</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>In the above example we wrote <code class="docutils literal notranslate"><span class="pre">first_function()</span></code>, which does nothing and <code class="docutils literal notranslate"><span class="pre">goodbye()</span></code>, which displays a message. Functions must be declared <em>before</em> they are called. In our case this means they must appear before our definition of <code class="docutils literal notranslate"><span class="pre">main()</span></code>. In practice, function declarations are generally grouped at the top of a file after any <code class="docutils literal notranslate"><span class="pre">#include</span></code> lines and before any function definitions or can be in their own header file included with the <code class="docutils literal notranslate"><span class="pre">#include</span></code> directive.</p>
+<p>In the above example we wrote <code class="docutils literal notranslate"><span class="pre">first_function()</span></code>, which does nothing and <code class="docutils literal notranslate"><span class="pre">goodbye()</span></code>, which displays a message.</p>
 <ul class="simple">
-<li><p>Keeping track of function declarations can get messy, for this reason <em>header files</em> are used to house C code that you wish to appear in multiple files. You have actually already used a header file. <code class="docutils literal notranslate"><span class="pre">stdio.h</span></code> is a header file which contains many function declarations, it contains the function declarations for <code class="docutils literal notranslate"><span class="pre">printf()</span></code> and <code class="docutils literal notranslate"><span class="pre">printf()</span></code>. Once you have placed the function declarations you wish to share into a header file you can <code class="docutils literal notranslate"><span class="pre">#include</span></code> your header in each C file that needs the information. The only difference being that you surround your filename in quotes instead of angle brackets (<code class="docutils literal notranslate"><span class="pre">&quot;my_header.h&quot;</span></code> instead of <code class="docutils literal notranslate"><span class="pre">&lt;system_header.h&gt;</span></code>).</p></li>
+<li><p>Functions must be declared <em>before</em> they are called.</p></li>
+</ul>
+<p>In our case this means they must appear before our definition of <code class="docutils literal notranslate"><span class="pre">main()</span></code>. In practice, function declarations are generally grouped at the top of a file after any <code class="docutils literal notranslate"><span class="pre">#include</span></code> lines and before any function definitions or can be in their own <em>header</em> file included with the <code class="docutils literal notranslate"><span class="pre">#include</span></code> directive. Once you have placed the function declarations you wish to share into a header file you can <code class="docutils literal notranslate"><span class="pre">#include</span></code> your header in each C file that needs the information</p>
+<ul class="simple">
+<li><p>Keeping track of function declarations can get messy, for this reason <em>header files</em> are used to house C code that you wish to appear in multiple files. You have actually already used a header file. <code class="docutils literal notranslate"><span class="pre">stdio.h</span></code> is a header file which contains many function declarations, it contains the function declarations for <code class="docutils literal notranslate"><span class="pre">printf()</span></code> among others.</p></li>
+<li><p>Once you have placed the function declarations you wish to share into a header file you can <code class="docutils literal notranslate"><span class="pre">#include</span></code> your header in each C file that needs the information. The only difference being that you surround your filename in quotes instead of angle brackets (<code class="docutils literal notranslate"><span class="pre">&quot;my_header.h&quot;</span></code> instead of <code class="docutils literal notranslate"><span class="pre">&lt;system_header.h&gt;</span></code>).</p></li>
 </ul>
 </section>
 </section>
@@ -603,6 +610,15 @@ document.write(`
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">13) Intro to C pointers</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="module4-4_c_memory.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">15) C memory</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
