@@ -1,7 +1,7 @@
 // C program to illustrate call by value
 #include <stdio.h>
 
-// Function Prototype
+// Function declaration (or prototype/signature) 
 void swapx(int x, int y);
 
 // Main function

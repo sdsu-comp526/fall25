@@ -5,7 +5,7 @@ int x; // global variable, stored in the static pool
 
 int main(void)
 {
-    int y;      // dynamic stack storage
+    int y;      // (dynamic) stack storage
     char *str;  // pointer to type char
 
     y = 4;
@@ -14,6 +14,7 @@ int main(void)
     str = malloc(100*sizeof(char)); // create heap storage (a contiguous block) and assign its address to str
     str[0] = 'm'; // str can be seen as an array, and we assign the character 'm' to its first entry
     printf("heap memory: %c\n", str[0]);
-    free(str);
+    
+    free(str); // remember to always free heap-allocated memory!
     return 0;
 }
