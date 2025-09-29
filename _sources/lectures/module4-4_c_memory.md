@@ -98,7 +98,9 @@ C has three different pools of memory.
 int int_var;
 ```
 
-On many systems this variable uses 4 bytes of memory. This memory can come from one of two places. If a variable is declared _outside_ of a function, it is considered global, meaning it is accessible anywhere in the program. Global variables are **static**, and there is only one copy for the entire program. Inside a function the variable is allocated on the _stack_.
+On many systems this variable uses 4 bytes of memory. This memory can come from one of two places:
+- If a variable is declared _outside_ of a function, it is considered global, meaning it is accessible anywhere in the program. Global variables are **static**, and there is only one copy for the entire program. 
+- Inside a function the variable is allocated on the _stack_.
 - It is also possible to force a variable to be static using the `static` clause. For example, the same variable created inside a function using the `static` clause would allow it to be stored in static memory.
 
 ```c
