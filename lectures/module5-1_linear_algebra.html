@@ -207,6 +207,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module4-4_c_memory.html">15) C memory</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">16) Linear Algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module5-2_gram_schmidt.html">17) Gram-Schmidt and QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-3_householder.html">18) Householder QR</a></li>
 </ul>
 </details></li>
 </ul>
@@ -708,8 +709,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000004 seconds (1 allocation: 80 bytes)
-  0.000005 seconds (4 allocations: 368 bytes)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000005 seconds (1 allocation: 80 bytes)
+  0.000006 seconds (4 allocations: 368 bytes)
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
@@ -787,7 +788,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000004 seconds (1 allocation: 80 bytes)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000005 seconds (1 allocation: 80 bytes)
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
@@ -1041,10 +1042,10 @@ P(p + q) = Polynomial(1 - x + 3*x^2 + 9*x^3)
 <span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.9/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>B = [-0.44431566679499224 0.08774959031151802 0.0977415906331014 -0.6941870256811767; 0.08774959031151802 0.3577493866885033 0.5105122021089089 -0.02005987593025166; 0.0977415906331014 0.5105122021089089 0.7851844956813814 -0.1758407244621305; -0.6941870256811767 -0.02005987593025166 -0.1758407244621305 -0.6986182155748925]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>B = [-0.9450654511007417 -0.6045887849914938 0.003608160681828787 -0.12247822227814587; -0.6045887849914938 0.11176311903055969 0.33241294067544547 0.31349766966159553; 0.003608160681828787 0.33241294067544547 0.7672003352381647 0.7532811167113769; -0.12247822227814587 0.31349766966159553 0.7532811167113769 0.06610199683201734]
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.15881397628370944
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.00589346576033096
 </pre></div>
 </div>
 </div>
@@ -1066,10 +1067,10 @@ Meanwhile, <span class="math notranslate nohighlight">\(x = A^{-1} y\)</span> me
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
- 0.421124  0.945983  0.259356  0.554761
- 0.492943  0.933765  0.104225  0.290495
- 0.478197  0.505465  0.179617  0.198769
- 0.362224  0.134293  0.223884  0.209136
+ 0.984008  0.313834  0.969002  0.290994
+ 0.586343  0.863473  0.817233  0.210986
+ 0.308976  0.208227  0.631706  0.493717
+ 0.868583  0.853651  0.791004  0.662782
 </pre></div>
 </div>
 </div>
@@ -1082,10 +1083,10 @@ Meanwhile, <span class="math notranslate nohighlight">\(x = A^{-1} y\)</span> me
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
-  1.0           0.0   1.73205e-16  -6.193e-16
-  4.73955e-16   1.0  -1.50885e-16   3.57678e-16
-  1.36975e-15   0.0   1.0           1.32239e-15
- -9.90122e-16  -0.0   3.59156e-16   1.0
+  1.0           0.0          -1.99481e-16  -1.14548e-16
+ -8.33785e-17   1.0          -8.20603e-17  -5.79464e-17
+ -2.40335e-16  -2.42024e-17   1.0           1.92376e-16
+  8.03536e-17  -1.73982e-17  -1.49433e-16   1.0
 </pre></div>
 </div>
 </div>
@@ -1098,10 +1099,10 @@ Meanwhile, <span class="math notranslate nohighlight">\(x = A^{-1} y\)</span> me
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
-  1.0           6.77415e-16   1.82035e-16  -3.24867e-16
-  1.09711e-16   1.0          -9.3604e-17    3.58124e-16
- -1.71494e-15  -3.03058e-15   1.0           5.01155e-16
- -6.42547e-17  -5.48014e-16   4.71283e-16   1.0
+  1.0          -2.18986e-16  -6.07297e-16  -3.22406e-16
+ -2.03278e-16   1.0          -1.4335e-16   -6.73132e-17
+ -2.6834e-16    1.05388e-16   1.0           2.61482e-16
+  1.9253e-17   -3.88279e-16  -2.34016e-16   1.0
 </pre></div>
 </div>
 </div>
