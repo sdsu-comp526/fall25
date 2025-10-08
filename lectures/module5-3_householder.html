@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/SDSU-comp526_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="19) Cholesky QR" href="module5-4_cholesky_qr.html" />
     <link rel="prev" title="17) Gram-Schmidt and QR" href="module5-2_gram_schmidt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -207,6 +208,8 @@
 <li class="toctree-l2"><a class="reference internal" href="module5-1_linear_algebra.html">16) Linear Algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module5-2_gram_schmidt.html">17) Gram-Schmidt and QR</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">18) Householder QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-4_cholesky_qr.html">19) Cholesky QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-5_solving_systems.html">20) Solving Systems</a></li>
 </ul>
 </details></li>
 </ul>
@@ -533,8 +536,8 @@ document.write(`
 <section id="gram-schmidt-with-more-parallelism">
 <h3>Gram-Schmidt with more parallelism<a class="headerlink" href="#gram-schmidt-with-more-parallelism" title="Link to this heading">#</a></h3>
 <p>We are performing the following (from right to left):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f2d5a5c-01fe-4fda-b895-d7e196055326">
-<span class="eqno">(5)<a class="headerlink" href="#equation-7f2d5a5c-01fe-4fda-b895-d7e196055326" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2bbab1b6-1091-4140-bacf-1a1319afb190">
+<span class="eqno">(5)<a class="headerlink" href="#equation-2bbab1b6-1091-4140-bacf-1a1319afb190" title="Permalink to this equation">#</a></span>\[\begin{align}
 w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
 &amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
 \end{align}\]</div>
@@ -590,8 +593,8 @@ norm(Q * R - A) = 7.350692433565389e-16
 <section id="why-does-the-order-of-operations-matter">
 <h4>Why does the order of operations matter?<a class="headerlink" href="#why-does-the-order-of-operations-matter" title="Link to this heading">#</a></h4>
 <p>We are performing the following (from right to left):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-91c2c7ba-ac24-4580-a67d-aaa3ea50df58">
-<span class="eqno">(6)<a class="headerlink" href="#equation-91c2c7ba-ac24-4580-a67d-aaa3ea50df58" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c96cc896-8180-43c7-8698-800c6a7e9e89">
+<span class="eqno">(6)<a class="headerlink" href="#equation-c96cc896-8180-43c7-8698-800c6a7e9e89" title="Permalink to this equation">#</a></span>\[\begin{align}
 w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
 &amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
 \end{align}\]</div>
@@ -775,14 +778,14 @@ This transformation is a <em>reflection</em> across a plane with normal <span cl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(v) = 2.1321724925290404
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(v) = 2.3566379346219684
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
-  2.13217       2.06223    2.28852    2.60879
-  3.36305e-17   0.652286  -0.470962   0.039715
- -2.0931e-17    0.160607   0.197154   1.09785
- -9.67613e-17  -0.29367   -0.0710795  0.00929617
+  2.35664       1.92839    2.46975    1.90422
+ -1.39773e-16   0.449742   0.239557  -0.383048
+ -4.26939e-16  -1.35204   -1.12371   -1.4517
+ -1.79027e-16  -1.39907   -1.1813     0.122153
 </pre></div>
 </div>
 </div>
@@ -800,10 +803,10 @@ This transformation is a <em>reflection</em> across a plane with normal <span cl
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Float64}:
-  2.13217       2.06223       2.28852    2.60879
-  3.36305e-17   0.733154     -0.347354   0.272109
- -2.0931e-17   -2.77556e-17  -0.0483393  0.636298
- -9.67613e-17   2.77556e-17   0.377804   0.853236
+  2.35664      1.92839      2.46975     1.90422
+ -1.39773e-16  1.99691      1.64241     0.811043
+ -4.26939e-16  1.11022e-16  0.102217   -0.408214
+ -1.79027e-16  3.33067e-16  0.0872634   1.20194
 </pre></div>
 </div>
 </div>
@@ -977,7 +980,10 @@ norm(Q * R - A) = 7.562760794606217e-15
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tau = [2.0, 2.0]
-V1 = [[1.0, 0.0], [1.0]]
+V1 = 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.0, 0.0], [1.0]]
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2×2 Matrix{Int64}:
@@ -1114,6 +1120,15 @@ norm(v) = 1.4245900685395503
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">17) Gram-Schmidt and QR</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="module5-4_cholesky_qr.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">19) Cholesky QR</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

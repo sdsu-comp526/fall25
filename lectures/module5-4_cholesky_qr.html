@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>15) Cholesky QR &#8212; Computational Methods for Scientists Fall 25</title>
+    <title>19) Cholesky QR &#8212; Computational Methods for Scientists Fall 25</title>
   
   
   
@@ -63,6 +63,8 @@
     <link rel="icon" href="../_static/SDSU-comp526_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="20) Solving Systems" href="module5-5_solving_systems.html" />
+    <link rel="prev" title="18) Householder QR" href="module5-3_householder.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,8 +127,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -182,9 +182,9 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures.html">Lectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../lectures.html">Lectures</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="module1-1_first_class.html">1) First Class: Reproducibility and Git</a></li>
 
 
@@ -196,6 +196,20 @@
 
 
 <li class="toctree-l2"><a class="reference internal" href="module3-2_function_errors.html">6) Function errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-3_conditioning.html">7) Conditioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-4_root_finding.html">8) Rootfinding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-5_convergence_classes.html">9) Convergence classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-6_newton.html">10) Newton methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-7_stability.html">11) Stability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-1_intro_to_c.html">12) Intro to C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-2_c_pointers.html">13) Intro to C pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-3_c_structs_and_functions.html">14) C structs and functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-4_c_memory.html">15) C memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-1_linear_algebra.html">16) Linear Algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-2_gram_schmidt.html">17) Gram-Schmidt and QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-3_householder.html">18) Householder QR</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">19) Cholesky QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-5_solving_systems.html">20) Solving Systems</a></li>
 </ul>
 </details></li>
 </ul>
@@ -414,7 +428,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>15) Cholesky QR</h1>
+    <h1>19) Cholesky QR</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -456,7 +470,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cholesky-qr">
-<h1>15) Cholesky QR<a class="headerlink" href="#cholesky-qr" title="Link to this heading">#</a></h1>
+<h1>19) Cholesky QR<a class="headerlink" href="#cholesky-qr" title="Link to this heading">#</a></h1>
 <section id="last-time">
 <h2>Last time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -806,8 +820,8 @@ norm(v) = 1.4245900685395503
 </section>
 <section id="composition-of-reflectors">
 <h2>2. Composition of reflectors<a class="headerlink" href="#composition-of-reflectors" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-87e2b188-63fe-4737-983d-eff9ac317722">
-<span class="eqno">()<a class="headerlink" href="#equation-87e2b188-63fe-4737-983d-eff9ac317722" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3b13ce8d-5fb8-4b29-b96f-bdf4c3dd72a8">
+<span class="eqno">(7)<a class="headerlink" href="#equation-3b13ce8d-5fb8-4b29-b96f-bdf4c3dd72a8" title="Permalink to this equation">#</a></span>\[\begin{align}
 (I - 2 v v^T) (I - 2 w w^T) &amp;= I - 2 v v^T - 2 w w^T + 4 v (v^T w) w^T \\
 &amp;= I - \Bigg[v \Bigg| w \Bigg] \begin{bmatrix} 2 &amp; -4 v^T w \\ 0 &amp; 2 \end{bmatrix} \begin{bmatrix} v^T \\ w^T \end{bmatrix}
 \end{align}\]</div>
@@ -1624,6 +1638,24 @@ if (typeof require === 'function' && define.amd) {
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="module5-3_householder.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">18) Householder QR</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="module5-5_solving_systems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">20) Solving Systems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

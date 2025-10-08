@@ -203,6 +203,13 @@
 <li class="toctree-l2"><a class="reference internal" href="module3-7_stability.html">11) Stability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module4-1_intro_to_c.html">12) Intro to C</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module4-2_c_pointers.html">13) Intro to C pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-3_c_structs_and_functions.html">14) C structs and functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-4_c_memory.html">15) C memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-1_linear_algebra.html">16) Linear Algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-2_gram_schmidt.html">17) Gram-Schmidt and QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-3_householder.html">18) Householder QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-4_cholesky_qr.html">19) Cholesky QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-5_solving_systems.html">20) Solving Systems</a></li>
 </ul>
 </details></li>
 </ul>
@@ -466,6 +473,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-fresh-derivation-of-newton-s-method-via-convergence-theory">4. A fresh derivation of Newton’s method via convergence theory</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quadratic-convergence">Quadratic convergence!</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rootfinding-summary-and-outlook">Rootfinding summary and outlook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-10-2">Exercise 10.2:</a></li>
 </ul>
 </li>
 </ul>
@@ -699,8 +707,8 @@ Suppose that there exists a fixed point <span class="math notranslate nohighligh
 \[ g(x_k) = g(x_*) + g'(x_*)(x_k - x_*) + O((x_k-x_*)^2) \]</div>
 
 and thus</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7870ece8-ca1d-44ae-8183-390afc0eedc2">
-<span class="eqno">(1)<a class="headerlink" href="#equation-7870ece8-ca1d-44ae-8183-390afc0eedc2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-68cc2e8f-5b02-4a14-ae17-9176feeb27ad">
+<span class="eqno">(1)<a class="headerlink" href="#equation-68cc2e8f-5b02-4a14-ae17-9176feeb27ad" title="Permalink to this equation">#</a></span>\[\begin{align}
 x_{k+1} - x_* &amp;= g(x_k) - g(x_*) \\
 &amp;= g'(x_*) (x_k - x_*) + O((x_k - x_*)^2).
 \end{align}\]</div>
@@ -747,8 +755,8 @@ for some positive constants <span class="math notranslate nohighlight">\(c_1,c_2
 <div class="math notranslate nohighlight">
 \[ \lim_{h\to 0} \frac{\operatorname{term}(h)}{h^2} &lt; \infty . \]</div>
 <p>Big <span class="math notranslate nohighlight">\(O\)</span> terms can be manipulated as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-68931193-05a1-42a7-9137-cede58bbdc0e">
-<span class="eqno">(2)<a class="headerlink" href="#equation-68931193-05a1-42a7-9137-cede58bbdc0e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5462f1b0-46f7-4e60-8fd0-c239c10475a2">
+<span class="eqno">(2)<a class="headerlink" href="#equation-5462f1b0-46f7-4e60-8fd0-c239c10475a2" title="Permalink to this equation">#</a></span>\[\begin{align}
 h O(h^k) &amp;= O(h^{k+1}) \\
 O(h^k)/h &amp;= O(h^{k-1}) \\
 c O(h^k) &amp;= O(h^k) \\
@@ -1037,6 +1045,13 @@ for any smooth <span class="math notranslate nohighlight">\(h(x) \ne 0\)</span>.
 </li>
 </ul>
 </section>
+<section id="exercise-10-2">
+<h3>Exercise 10.2:<a class="headerlink" href="#exercise-10-2" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Solve the fixed point iteration <span class="math notranslate nohighlight">\(g(x_n) = (2+{(x_n - 2)}^2)\)</span>, up to a tolerance <span class="math notranslate nohighlight">\(10^{-6}\)</span> or maximum number of iterations <span class="math notranslate nohighlight">\(N=50\)</span>, with (a) <span class="math notranslate nohighlight">\(x_0 = 2.8\)</span>,  (b) <span class="math notranslate nohighlight">\(x_0 = 3.1\)</span>. Which execution is better? And why?</p></li>
+<li><p>Solve the fixed point iteration <span class="math notranslate nohighlight">\(g(x_n) = (2+{(x_n - 2)}^3)\)</span>, up to a tolerance <span class="math notranslate nohighlight">\(10^{-6}\)</span> or maximum number of iterations <span class="math notranslate nohighlight">\(N=50\)</span>, with (a) <span class="math notranslate nohighlight">\(x_0 = 2.8\)</span>, (b) <span class="math notranslate nohighlight">\(x_0 = 3.1\)</span>. Which execution is better? And why?</p></li>
+</ol>
+</section>
 </section>
 </section>
 
@@ -1139,6 +1154,7 @@ for any smooth <span class="math notranslate nohighlight">\(h(x) \ne 0\)</span>.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-fresh-derivation-of-newton-s-method-via-convergence-theory">4. A fresh derivation of Newton’s method via convergence theory</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quadratic-convergence">Quadratic convergence!</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rootfinding-summary-and-outlook">Rootfinding summary and outlook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-10-2">Exercise 10.2:</a></li>
 </ul>
 </li>
 </ul>
