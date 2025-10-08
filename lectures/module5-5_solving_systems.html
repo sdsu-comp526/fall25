@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/SDSU-comp526_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="21) Matrix condition number and SVD" href="module5-6_matrix_conditioning_and_svd.html" />
     <link rel="prev" title="19) Cholesky QR" href="module5-4_cholesky_qr.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -209,6 +210,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module5-3_householder.html">18) Householder QR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module5-4_cholesky_qr.html">19) Cholesky QR</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">20) Solving Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-6_matrix_conditioning_and_svd.html">21) Matrix condition number and SVD</a></li>
 </ul>
 </details></li>
 </ul>
@@ -684,16 +686,17 @@ M = \frac{1}{\omega (2-\omega)}( D+\omega L  ) D^{-1} \left( D+\omega U  \right)
 \[
 \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}
 \]</div>
-<p>Consider a <span class="math notranslate nohighlight">\(1D\)</span> domain <span class="math notranslate nohighlight">\([0,L]\)</span> (can represent a rod), where the temperature function <span class="math notranslate nohighlight">\(u=u(x,t)\)</span> varies in time and space.</p>
-<p>We define uniformly equi-spaced points in the domain <span class="math notranslate nohighlight">\(x_i = x_0 + i \Delta x \)</span>, with <span class="math notranslate nohighlight">\(x_0=0\)</span> and <span class="math notranslate nohighlight">\(x_{m}=L\)</span>.</p>
+<p>Consider a <span class="math notranslate nohighlight">\(1D\)</span> domain <span class="math notranslate nohighlight">\([a,b]\)</span> (can represent a rod), where the temperature function <span class="math notranslate nohighlight">\(u=u(x,t)\)</span> varies in time and space.</p>
+<p>We define uniformly equi-spaced points in the domain <span class="math notranslate nohighlight">\(x_i = x_0 + i \Delta x \)</span>, with <span class="math notranslate nohighlight">\(x_0=a\)</span> and <span class="math notranslate nohighlight">\(x_{m+1}=b\)</span>.</p>
+<p><img alt="1D uniformily discretized domain." src="../_images/1D_domain.png" /></p>
 <p>Then, at a given point in space and time, we approximate our solution by</p>
 <div class="math notranslate nohighlight">
 \[
 u^n_i \sim u(t=t^n, x=x_i) = u(t_0 + n \Delta t, x_0 + i \Delta x)
 \]</div>
-<p>This define our solution vector, where we consider Dirichelet (homogeneous) boundary conditions: <span class="math notranslate nohighlight">\(u_0 = u(x_0) = 0\)</span> and  <span class="math notranslate nohighlight">\(u_m = u(x_m) = 0\)</span>, for all times <span class="math notranslate nohighlight">\(t\)</span></p>
+<p>This define our solution vector, where we consider Dirichelet (homogeneous) boundary conditions: <span class="math notranslate nohighlight">\(u_0 = u(x_0) = 0\)</span> and  <span class="math notranslate nohighlight">\(u_m = u(x_{m+1}) = 0\)</span>, for all times <span class="math notranslate nohighlight">\(t\)</span></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\mathbf{u} = \begin{bmatrix} u_0 = 0 \\ u_1 \\ u_2 \\ \vdots \\ u_{m-1} \\ u_m = 0 \end{bmatrix}
+\[\begin{split}\mathbf{u} = \begin{bmatrix} u_0 = 0 \\ u_1 \\ u_2 \\ \vdots \\ u_{m-1} \\ u_{m} \\ u_{m+1} = 0 \end{bmatrix}
 \end{split}\]</div>
 <section id="finite-differences">
 <h3>Finite Differences<a class="headerlink" href="#finite-differences" title="Link to this heading">#</a></h3>
@@ -721,10 +724,10 @@ u_{i-1} = u(x_i - \Delta x) \approx u(x_i) - \Delta x \partial_x u \bigg\rvert_i
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial^2 u^C_i}{\partial x^2} = \frac{\frac{\partial u_{i+\frac{i}{2}}^F}{\partial x} -\frac{ \partial u_{i-\frac{i}{2}}^B}{\partial x} }{\Delta x} \approx  \frac{u_{i-1} -2 u_i + u_{i+1}}{\Delta x^2} + O(\Delta x^2)\]</div>
-<p>If we do this for all points <span class="math notranslate nohighlight">\(x_i \in [0,L]\)</span>, we obtain a matrix representation of the second-order finite difference centered operator:</p>
+<p>If we do this for all interior points <span class="math notranslate nohighlight">\(x_i \in (a,b)\)</span>, we obtain a matrix representation of the second-order finite difference centered operator:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-A = \frac{1}{\Delta x^2} \begin{bmatrix} -2 &amp; 1 &amp; 0 &amp; &amp; 0  \\ 1 &amp; -2 &amp; 1 &amp; &amp; \vdots  \\ 0 &amp; 1 &amp; -2 &amp;  \\ &amp; &amp; &amp;  \ddots &amp; 1 \\ 0 &amp; \ldots &amp; &amp; 1 &amp; -2\end{bmatrix}
+A = \frac{1}{\Delta x^2} \begin{bmatrix} -2 &amp; 1 &amp; 0 &amp; &amp; 0  \\ 1 &amp; -2 &amp; 1 &amp; &amp; \vdots  \\ 0 &amp; 1 &amp; -2 &amp;  \\ &amp; &amp; &amp;  \ddots &amp; 1 \\ 0 &amp; \ldots &amp; &amp; 1 &amp; -2\end{bmatrix}_{m \times m}
 \end{split}\]</div>
 <p>(We can factor out the <span class="math notranslate nohighlight">\(\frac{1}{\Delta x^2}\)</span> term in front and from now on we’ll consider the matrix of coefficients only)</p>
 <div class="admonition note">
@@ -822,6 +825,15 @@ N = \begin{bmatrix} (\omega-1) &amp; -\omega &amp; 0 &amp; &amp; 0  \\ 0 &amp; (
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">19) Cholesky QR</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="module5-6_matrix_conditioning_and_svd.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">21) Matrix condition number and SVD</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
