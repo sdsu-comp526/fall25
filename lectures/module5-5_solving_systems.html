@@ -710,12 +710,12 @@ u_{i+1} = u(x_i + \Delta x) \approx u(x_i) + \Delta x \partial_x u \bigg\rvert_i
 \[
 u_{i-1} = u(x_i - \Delta x) \approx u(x_i) - \Delta x \partial_x u \bigg\rvert_i + \frac{1}{2} \Delta x^2 \partial^2_x u \bigg\rvert_i - \frac{1}{6} \Delta x^3 \partial^3_x u \bigg\rvert_i + O(\Delta x^4)
 \]</div>
-<p>We can define the first-order derivative at the point <span class="math notranslate nohighlight">\(x_i\)</span> using the <strong>forward</strong> difference:</p>
+<p>We can define the first-order derivative at the point <span class="math notranslate nohighlight">\(x_i\)</span> using the first-order <strong>forward</strong> difference:</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial u_i^F}{\partial x} \approx \frac{ u_{i+1} - u_{i}}{\Delta x}
 \]</div>
-<p>Similarly, we can define the first-order derivative at the point <span class="math notranslate nohighlight">\(x_i\)</span> using the <strong>backward</strong> difference:</p>
+<p>Similarly, we can define the first-order derivative at the point <span class="math notranslate nohighlight">\(x_i\)</span> using the first-order <strong>backward</strong> difference:</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial u_{i}^B}{\partial x} \approx \frac{ u_{i} - u_{i-1}}{\Delta x}
@@ -728,8 +728,12 @@ u_{i-1} = u(x_i - \Delta x) \approx u(x_i) - \Delta x \partial_x u \bigg\rvert_i
 <div class="math notranslate nohighlight">
 \[\begin{split}
 A = \frac{1}{\Delta x^2} \begin{bmatrix} -2 &amp; 1 &amp; 0 &amp; &amp; 0  \\ 1 &amp; -2 &amp; 1 &amp; &amp; \vdots  \\ 0 &amp; 1 &amp; -2 &amp;  \\ &amp; &amp; &amp;  \ddots &amp; 1 \\ 0 &amp; \ldots &amp; &amp; 1 &amp; -2\end{bmatrix}_{m \times m}
+\begin{bmatrix} u_1 \\ u_2 \\  \vdots \\  u_{m-1}\\ u_m
+\end{bmatrix}_{m \times 1} =
+\begin{bmatrix} f(x_1) \\ f(x_2) \\  \vdots \\  f(x_{m-1})\\ f(x_m)
+\end{bmatrix}_{m \times 1}
 \end{split}\]</div>
-<p>(We can factor out the <span class="math notranslate nohighlight">\(\frac{1}{\Delta x^2}\)</span> term in front and from now on we’ll consider the matrix of coefficients only)</p>
+<p>(We can factor out the <span class="math notranslate nohighlight">\(\frac{1}{\Delta x^2}\)</span> term in front, and usually we multiply it by the right-hand-side vector <span class="math notranslate nohighlight">\(f(x)\)</span> since it’s a known constant value, and from now on we’ll consider the matrix of coefficients only)</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In Physics, it is customary to write the problem with a negative sign:</p>
@@ -738,6 +742,7 @@ A = \frac{1}{\Delta x^2} \begin{bmatrix} -2 &amp; 1 &amp; 0 &amp; &amp; 0  \\ 1 
 \frac{\partial u}{\partial t} = -\frac{\partial^2 u}{\partial x^2}
 \]</div>
 <p>This way, your matrix A is SPD.</p>
+<p>But for now, let’s keep the current notation.</p>
 </div>
 <ul class="simple">
 <li><p>To solve this with <strong>Jacobi</strong>’s method:</p></li>
