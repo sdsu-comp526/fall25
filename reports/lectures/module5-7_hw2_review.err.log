@@ -1,0 +1,72 @@
+Traceback (most recent call last):
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/vbarra/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+using Plots
+default(linewidth=4, legendfontsize=12)
+
+#### Part 4: Conditioning 
+f(x) = exp(-x) * ( 3.2 * sin(x) - 0.5 * cos(x) ) - 3.0
+
+plot(f, label = "f(x)")
+
+fprime(x) = -exp(-x)*(3.2*sin(x)- 0.5*cos(x)) + exp(-x)*(3.2*cos(x)+0.5*sin(x))
+
+kappa(x) = abs(fprime(x)) * abs(x) / abs(f(x))
+
+plot(x -> kappa(x), ylims=(0,20), label = "kappa for f(x)")
+savefig("kappa.png")
+
+### EC: Convergence rate
+
+hist = zeros(15)
+
+# open output.txt data and store values in the array called hist
+open("../fortran_programs/module5-7_hw2_review/output.txt","r") do f
+    line = 1
+    while ! eof(f)
+        l = readline(f)
+        hist[line] = parse.(Float64,l)
+        line += 1
+    end
+end
+
+r = hist[end]
+scatter( abs.(hist .- r) .+ eps(Float64), yscale=:log10)
+ks = 1:length(hist)
+plot!(ks, 7 * (.5 .^ ks))
+savefig("error_plot.png")
+
+
+------------------
+
+
+  [36mCell[39m[36m [39m[32mIn[1][39m[32m, line 1[39m
+[31m    [39m[31musing Plots[39m
+          ^
+[31mSyntaxError[39m[31m:[39m invalid syntax
+
+
