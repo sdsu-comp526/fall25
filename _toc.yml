@@ -28,6 +28,7 @@ chapters:
   - file: lectures/module5-4_cholesky_qr.ipynb
   - file: lectures/module5-5_solving_systems.ipynb
   - file: lectures/module5-6_matrix_conditioning_and_svd.ipynb
+  - file: lectures/module5-7_hw2_review.ipynb
   # - file: lectures/module5-7_svd_and_conditioning.ipynb
   # - file: lectures/module5-8_low_rank.ipynb
   # - file: lectures/module6-1_interpolation.ipynb
