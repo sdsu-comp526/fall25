@@ -31,7 +31,7 @@ chapters:
   - file: lectures/module5-7_hw2_review.ipynb
   - file: lectures/module5-8_svd_and_conditioning.ipynb
   - file: lectures/module5-9_low_rank.ipynb
-  # - file: lectures/module6-1_interpolation.ipynb
+  - file: lectures/module6-1_interpolation.ipynb
   # - file: lectures/module6-2_chebyshev_poly.ipynb
   # - file: lectures/module6-3_splines.ipynb
   # # - file: lectures/module6-4_midterm_sol.md
