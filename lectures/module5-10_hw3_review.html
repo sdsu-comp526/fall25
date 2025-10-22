@@ -1,0 +1,892 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>25) HW3 Review &#8212; Computational Methods for Scientists Fall 25</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/module5-10_hw3_review';</script>
+    <link rel="icon" href="../_static/SDSU-comp526_logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="26) Interpolation" href="module6-1_interpolation.html" />
+    <link rel="prev" title="24) Low Rank" href="module5-9_low_rank.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-light" alt="Computational Methods for Scientists Fall 25 - Home"/>
+    <script>document.write(`<img src="../_static/SDSU-comp526_logo.svg" class="logo__image only-dark" alt="Computational Methods for Scientists Fall 25 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../lectures.html">Lectures</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="module1-1_first_class.html">1) First Class: Reproducibility and Git</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="module1-2_linux.html">2) The Linux Filesystem and commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module1-3_community_projects.html">3) Community Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module2-1_intro_to_fortran.html">4) Introduction to Fortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-1_functions_and_fpa.html">5) Functions</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="module3-2_function_errors.html">6) Function errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-3_conditioning.html">7) Conditioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-4_root_finding.html">8) Rootfinding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-5_convergence_classes.html">9) Convergence classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-6_newton.html">10) Newton methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module3-7_stability.html">11) Stability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-1_intro_to_c.html">12) Intro to C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-2_c_pointers.html">13) Intro to C pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-3_c_structs_and_functions.html">14) C structs and functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module4-4_c_memory.html">15) C memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-1_linear_algebra.html">16) Linear Algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-2_gram_schmidt.html">17) Gram-Schmidt and QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-3_householder.html">18) Householder QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-4_cholesky_qr.html">19) Cholesky QR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-5_solving_systems.html">20) Solving Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-6_matrix_conditioning_and_svd.html">21) Matrix condition number and SVD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-7_hw2_review.html">22) HW2 Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-8_svd_and_conditioning.html">23) SVD Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-9_low_rank.html">24) Low Rank</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">25) HW3 Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-1_interpolation.html">26) Interpolation</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sdsu-comp526/fall25/issues/new?title=Issue%20on%20page%20%2Flectures/module5-10_hw3_review.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/module5-10_hw3_review.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>25) HW3 Review</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-of-hw3">1. Review of HW3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">Common mistakes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-expectations-and-reminders">2. Submission expectations and reminders</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reminder-about-the-ai-policy-in-this-course">Reminder about the AI policy in this course</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hw3-review">
+<h1>25) HW3 Review<a class="headerlink" href="#hw3-review" title="Link to this heading">#</a></h1>
+<section id="today">
+<h2>Today<a class="headerlink" href="#today" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>Review of HW3</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Submission expectations and reminders</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="review-of-hw3">
+<h2>1. Review of HW3<a class="headerlink" href="#review-of-hw3" title="Link to this heading">#</a></h2>
+<p>Solution to HW3. Here is my C code:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>
+<span class="linenos">  2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;argp.h&gt;</span>
+<span class="linenos">  3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="linenos">  4</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+<span class="linenos">  5</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdbool.h&gt;</span>
+<span class="linenos">  6</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="linenos">  7</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="linenos">  8</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="linenos">  9</span>
+<span class="linenos"> 10</span><span class="k">struct</span><span class="w"> </span><span class="nc">Args</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 11</span><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">length</span><span class="p">;</span>
+<span class="linenos"> 12</span><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nreps</span><span class="p">;</span>
+<span class="linenos"> 13</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">block</span><span class="p">;</span>
+<span class="linenos"> 14</span><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">unroll_factor</span><span class="p">;</span>
+<span class="linenos"> 15</span><span class="p">};</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span><span class="c1">// static memory variable declared here</span>
+<span class="linenos"> 18</span><span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">argp_option</span><span class="w"> </span><span class="n">options</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 19</span><span class="w">  </span><span class="p">{</span><span class="s">&quot;length&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;S&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;size_t&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Length of each vector&quot;</span><span class="p">},</span>
+<span class="linenos"> 20</span><span class="w">  </span><span class="p">{</span><span class="s">&quot;nreps&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;r&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;size_t&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Number of repetitions&quot;</span><span class="p">},</span>
+<span class="linenos"> 21</span><span class="w">  </span><span class="p">{</span><span class="s">&quot;block&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Compute block dot products (versus a single dot product)&quot;</span><span class="p">}</span>
+<span class="linenos"> 22</span><span class="p">};</span>
+<span class="linenos"> 23</span>
+<span class="linenos"> 24</span><span class="k">static</span><span class="w"> </span><span class="n">error_t</span><span class="w"> </span><span class="nf">parse_opt</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">argp_state</span><span class="w"> </span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
+<span class="linenos"> 25</span><span class="p">{</span>
+<span class="linenos"> 26</span><span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">Args</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="o">-&gt;</span><span class="n">input</span><span class="p">;</span>
+<span class="linenos"> 27</span><span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 28</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ARGP_KEY_INIT</span><span class="p">:</span>
+<span class="linenos"> 29</span><span class="w">    </span><span class="n">args</span><span class="o">-&gt;</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">24</span><span class="p">;</span>
+<span class="linenos"> 30</span><span class="w">    </span><span class="n">args</span><span class="o">-&gt;</span><span class="n">nreps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="linenos"> 31</span><span class="w">    </span><span class="n">args</span><span class="o">-&gt;</span><span class="n">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos"> 32</span><span class="w">    </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 33</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="sc">&#39;S&#39;</span><span class="p">:</span>
+<span class="linenos"> 34</span><span class="w">    </span><span class="n">args</span><span class="o">-&gt;</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtol</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos"> 35</span><span class="w">    </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 36</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="sc">&#39;r&#39;</span><span class="p">:</span>
+<span class="linenos"> 37</span><span class="w">    </span><span class="n">args</span><span class="o">-&gt;</span><span class="n">nreps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtol</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos"> 38</span><span class="w">    </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 39</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="sc">&#39;b&#39;</span><span class="p">:</span>
+<span class="linenos"> 40</span><span class="w">    </span><span class="n">args</span><span class="o">-&gt;</span><span class="n">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos"> 41</span><span class="w">    </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 42</span><span class="w">  </span><span class="k">default</span><span class="o">:</span>
+<span class="linenos"> 43</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ARGP_ERR_UNKNOWN</span><span class="p">;</span>
+<span class="linenos"> 44</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 45</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 46</span><span class="p">}</span>
+<span class="linenos"> 47</span>
+<span class="linenos"> 48</span><span class="kt">int</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="linenos"> 49</span><span class="kt">int</span><span class="w"> </span><span class="n">J</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="linenos"> 50</span><span class="kt">double</span><span class="w"> </span><span class="n">tol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-6</span><span class="p">;</span>
+<span class="linenos"> 51</span>
+<span class="linenos"> 52</span><span class="kt">int</span><span class="w"> </span><span class="n">c_length</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">};</span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span>
+<span class="linenos"> 55</span><span class="c1">// Function declarations here</span>
+<span class="linenos"> 56</span><span class="kt">double</span><span class="w"> </span><span class="nf">dot_product</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">);</span>
+<span class="linenos"> 57</span><span class="kt">double</span><span class="w"> </span><span class="nf">vector_norm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">);</span>
+<span class="linenos"> 58</span><span class="kt">int</span><span class="w"> </span><span class="nf">is_orthogonal</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tol</span><span class="p">);</span>
+<span class="linenos"> 59</span><span class="kt">void</span><span class="w"> </span><span class="nf">bdot</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">J</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">);</span>
+<span class="linenos"> 60</span>
+<span class="linenos"> 61</span><span class="kt">double</span><span class="w"> </span><span class="nf">dot_product</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 64</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">S</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="linenos"> 65</span><span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+<span class="linenos"> 68</span><span class="p">}</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="kt">double</span><span class="w"> </span><span class="nf">vector_norm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">){</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 73</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">S</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="linenos"> 74</span><span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos"> 75</span>
+<span class="linenos"> 76</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
+<span class="linenos"> 77</span><span class="p">}</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span><span class="kt">int</span><span class="w"> </span><span class="nf">is_orthogonal</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tol</span><span class="p">){</span>
+<span class="linenos"> 80</span><span class="w">    </span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">dot_product</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">tol</span><span class="p">));</span>
+<span class="linenos"> 82</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="c1">// Performs the operation</span>
+<span class="linenos"> 85</span><span class="c1">//   P = M * N</span>
+<span class="linenos"> 86</span><span class="c1">// where M and N have shape (I,S) and (S,J) respectively.</span>
+<span class="linenos"> 87</span><span class="c1">// This version stores M as row-major and N as column-major.</span>
+<span class="linenos"> 88</span><span class="kt">void</span><span class="w"> </span><span class="nf">bdot</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">J</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">){</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">I</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 91</span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;</span><span class="n">J</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 92</span><span class="w">            </span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">J</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dot_product</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">S</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span><span class="p">[</span><span class="n">j</span><span class="o">*</span><span class="n">S</span><span class="p">]);</span>
+<span class="linenos"> 93</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos"> 94</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 95</span><span class="p">}</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init_bdot</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">J</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="o">&lt;</span><span class="n">S</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 99</span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">I</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="linenos">100</span><span class="w">            </span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">S</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">101</span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;</span><span class="n">J</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="linenos">102</span><span class="w">            </span><span class="n">n</span><span class="p">[</span><span class="n">j</span><span class="o">*</span><span class="n">S</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">103</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">104</span><span class="p">}</span>
+<span class="linenos">105</span>
+<span class="linenos">106</span>
+<span class="linenos">107</span><span class="c1">// Reference matrix-matrix multiply product implementation</span>
+<span class="linenos">108</span><span class="kt">void</span><span class="w"> </span><span class="nf">matrix_ref</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">J</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">){</span>
+<span class="linenos">109</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">I</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">110</span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;</span><span class="n">J</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">111</span><span class="w">            </span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">J</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos">112</span><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="o">&lt;</span><span class="n">S</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">113</span><span class="w">                </span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">J</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">S</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="p">[</span><span class="n">j</span><span class="o">*</span><span class="n">S</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">];</span>
+<span class="linenos">114</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos">115</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">116</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">117</span><span class="p">}</span>
+<span class="linenos">118</span>
+<span class="linenos">119</span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">report_dot</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">ref_result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ref_result</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1e-10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">122</span><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Result = %f failed to validate with expected value %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">ref_result</span><span class="p">);</span>
+<span class="linenos">123</span><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos">124</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">125</span><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s matches the reference result.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<span class="linenos">126</span><span class="p">}</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">report_is_orthogonal</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ref_result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">129</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ref_result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">130</span><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Result = %d failed to validate with expected value %d </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">ref_result</span><span class="p">);</span>
+<span class="linenos">131</span><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos">132</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">133</span><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s matches the reference result. The two vectors are %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">ref_result</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;orthogonal.&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;not orthogonal.&quot;</span><span class="p">);</span>
+<span class="linenos">134</span><span class="p">}</span>
+<span class="linenos">135</span>
+<span class="linenos">136</span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">report_vector_norm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">ref_result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">137</span>
+<span class="linenos">138</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ref_result</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1e-10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">139</span><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Result = %f failed to validate with expected value %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">ref_result</span><span class="p">);</span>
+<span class="linenos">140</span><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos">141</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">142</span><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s matches the reference result.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<span class="linenos">143</span><span class="p">}</span>
+<span class="linenos">144</span>
+<span class="linenos">145</span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">report_bdot</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">J</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">ref_result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">146</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ref_result</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ref_result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">147</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">I</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">148</span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;</span><span class="n">J</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">149</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">J</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ref_result</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">J</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1e-10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">150</span><span class="w">          </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Result[%d,%d] = %f failed to validate with expected value %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">J</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">ref_result</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">J</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]);</span>
+<span class="linenos">151</span><span class="w">          </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos">152</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">153</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">154</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">155</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">156</span><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s matches the reference result.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<span class="linenos">157</span><span class="p">}</span>
+<span class="linenos">158</span>
+<span class="linenos">159</span>
+<span class="linenos">160</span><span class="cp">#define REPORT_BDOT(f, I, S, J, m, n, p, p_ref) do { \</span>
+<span class="linenos">161</span><span class="cp">        f(I, S, J, m, n, p);                         \</span>
+<span class="linenos">162</span><span class="cp">        report_bdot(#f, I, J, p, p_ref);             \</span>
+<span class="linenos">163</span><span class="cp">} while (0)</span>
+<span class="linenos">164</span>
+<span class="linenos">165</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+<span class="linenos">166</span>
+<span class="linenos">167</span><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Args</span><span class="w"> </span><span class="n">args</span><span class="p">;</span>
+<span class="linenos">168</span><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">argp</span><span class="w"> </span><span class="n">argp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">options</span><span class="p">,</span><span class="w"> </span><span class="n">parse_opt</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">};</span>
+<span class="linenos">169</span><span class="w">    </span><span class="n">argp_parse</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argp</span><span class="p">,</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">args</span><span class="p">);</span>
+<span class="linenos">170</span><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">length</span><span class="p">;</span>
+<span class="linenos">171</span>
+<span class="linenos">172</span><span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">block</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">173</span><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">false</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// single dot product case</span>
+<span class="linenos">174</span><span class="w">        </span><span class="c1">// stack memory variable declarations here</span>
+<span class="linenos">175</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">a1</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+<span class="linenos">176</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">b1</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+<span class="linenos">177</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">a2</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">};</span>
+<span class="linenos">178</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">b2</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span>
+<span class="linenos">179</span>
+<span class="linenos">180</span><span class="w">        </span><span class="c1">// result of (a1,b1) and (a2,b2) dot products and reference values</span>
+<span class="linenos">181</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">;</span>
+<span class="linenos">182</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">c1_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">183</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">c2_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="linenos">184</span>
+<span class="linenos">185</span><span class="w">        </span><span class="c1">// result of is_orthogonal </span>
+<span class="linenos">186</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">flag1</span><span class="p">,</span><span class="w"> </span><span class="n">flag2</span><span class="p">;</span>
+<span class="linenos">187</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">flag1_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// a1 and b1 are orthogonal</span>
+<span class="linenos">188</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">flag2_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// a2 and b2 are not orthogonal</span>
+<span class="linenos">189</span>
+<span class="linenos">190</span><span class="w">        </span><span class="c1">// result for vector_norm</span>
+<span class="linenos">191</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">na1</span><span class="p">,</span><span class="w"> </span><span class="n">na2</span><span class="p">,</span><span class="w"> </span><span class="n">nb1</span><span class="p">,</span><span class="w"> </span><span class="n">nb2</span><span class="p">;</span>
+<span class="linenos">192</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">na1_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="linenos">193</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">na2_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.477225575051661</span><span class="p">;</span>
+<span class="linenos">194</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">nb1_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="linenos">195</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">nb2_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+<span class="linenos">196</span>
+<span class="linenos">197</span><span class="w">        </span><span class="c1">// calls to your functions by reference here</span>
+<span class="linenos">198</span><span class="w">        </span><span class="c1">// print statements to show results</span>
+<span class="linenos">199</span><span class="w">        </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dot_product</span><span class="p">(</span><span class="n">c_length</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">b1</span><span class="p">);</span><span class="w">                               </span>
+<span class="linenos">200</span><span class="w">        </span><span class="n">report_dot</span><span class="p">(</span><span class="s">&quot;dot_product of a1 and b1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c1_ref</span><span class="p">);</span><span class="w"> </span>
+<span class="linenos">201</span><span class="w">        </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dot_product</span><span class="p">(</span><span class="n">c_length</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">b2</span><span class="p">);</span><span class="w">                               </span>
+<span class="linenos">202</span><span class="w">        </span><span class="n">report_dot</span><span class="p">(</span><span class="s">&quot;dot_product of a2 and b2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="n">c2_ref</span><span class="p">);</span><span class="w"> </span>
+<span class="linenos">203</span>
+<span class="linenos">204</span><span class="w">        </span><span class="n">flag1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">is_orthogonal</span><span class="p">(</span><span class="n">c_length</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">b1</span><span class="p">,</span><span class="w"> </span><span class="n">tol</span><span class="p">);</span>
+<span class="linenos">205</span><span class="w">        </span><span class="n">report_is_orthogonal</span><span class="p">(</span><span class="s">&quot;is_orthogonal between a1 and b1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">flag1</span><span class="p">,</span><span class="w"> </span><span class="n">flag1_ref</span><span class="p">);</span><span class="w"> </span>
+<span class="linenos">206</span><span class="w">        </span><span class="n">flag2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">is_orthogonal</span><span class="p">(</span><span class="n">c_length</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">b2</span><span class="p">,</span><span class="w"> </span><span class="n">tol</span><span class="p">);</span>
+<span class="linenos">207</span><span class="w">        </span><span class="n">report_is_orthogonal</span><span class="p">(</span><span class="s">&quot;is_orthogonal between a2 and b2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">flag2</span><span class="p">,</span><span class="w"> </span><span class="n">flag2_ref</span><span class="p">);</span><span class="w"> </span>
+<span class="linenos">208</span>
+<span class="linenos">209</span><span class="w">        </span><span class="n">na1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector_norm</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">c_length</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="linenos">210</span><span class="w">        </span><span class="n">nb1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector_norm</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span><span class="w"> </span><span class="n">c_length</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="linenos">211</span><span class="w">        </span><span class="n">na2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector_norm</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">c_length</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="linenos">212</span><span class="w">        </span><span class="n">nb2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector_norm</span><span class="p">(</span><span class="n">b2</span><span class="p">,</span><span class="w"> </span><span class="n">c_length</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="linenos">213</span><span class="w">        </span><span class="n">report_vector_norm</span><span class="p">(</span><span class="s">&quot;vector_norm of a1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">na1</span><span class="p">,</span><span class="w"> </span><span class="n">na1_ref</span><span class="p">);</span>
+<span class="linenos">214</span><span class="w">        </span><span class="n">report_vector_norm</span><span class="p">(</span><span class="s">&quot;vector_norm of a2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">na2</span><span class="p">,</span><span class="w"> </span><span class="n">na2_ref</span><span class="p">);</span>
+<span class="linenos">215</span><span class="w">        </span><span class="n">report_vector_norm</span><span class="p">(</span><span class="s">&quot;vector_norm of b1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nb1</span><span class="p">,</span><span class="w"> </span><span class="n">nb1_ref</span><span class="p">);</span>
+<span class="linenos">216</span><span class="w">        </span><span class="n">report_vector_norm</span><span class="p">(</span><span class="s">&quot;vector_norm of b2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nb2</span><span class="p">,</span><span class="w"> </span><span class="n">nb2_ref</span><span class="p">);</span>
+<span class="linenos">217</span>
+<span class="linenos">218</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos">219</span><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">true</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// blocked dot product case</span>
+<span class="linenos">220</span><span class="w">            </span><span class="c1">// Initialize the matrices (as flattened vectors)</span>
+<span class="linenos">221</span><span class="w">            </span><span class="c1">// heap memory allocations here</span>
+<span class="linenos">222</span><span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">I</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<span class="linenos">223</span><span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">J</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<span class="linenos">224</span><span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">I</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">J</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<span class="linenos">225</span><span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">p_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">I</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">J</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<span class="linenos">226</span>
+<span class="linenos">227</span><span class="w">            </span><span class="n">init_bdot</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">J</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="linenos">228</span><span class="w">            </span><span class="n">matrix_ref</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">J</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p_ref</span><span class="p">);</span>
+<span class="linenos">229</span><span class="w">            </span><span class="n">REPORT_BDOT</span><span class="p">(</span><span class="n">bdot</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">J</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">p_ref</span><span class="p">);</span>
+<span class="linenos">230</span>
+<span class="linenos">231</span><span class="w">            </span><span class="c1">// free allocated heap memory here</span>
+<span class="linenos">232</span><span class="w">            </span><span class="n">free</span><span class="p">(</span><span class="n">m</span><span class="p">);</span><span class="w"> </span><span class="n">free</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="n">free</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="n">free</span><span class="p">(</span><span class="n">p_ref</span><span class="p">);</span>
+<span class="linenos">233</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos">234</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">235</span>
+<span class="linenos">236</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">237</span><span class="p">}</span>
+<span class="linenos">238</span>
+</pre></div>
+</div>
+<p>This program can be compiled with the GNU C compiler with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="n">dot</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">o</span> <span class="n">dot</span>
+</pre></div>
+</div>
+<p>and executed with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">dot</span>
+</pre></div>
+</div>
+<section id="common-mistakes">
+<h3>Common mistakes<a class="headerlink" href="#common-mistakes" title="Link to this heading">#</a></h3>
+<p>Here is a list of common mistakes that a few people made:</p>
+<ul class="simple">
+<li><p>Part 4: Not really implementing a blocked dot product between the rows of <span class="math notranslate nohighlight">\(M\)</span> and the columns of <span class="math notranslate nohighlight">\(N\)</span>. The best way would have been reusing the <code class="docutils literal notranslate"><span class="pre">dot_product</span></code> function that was implemented for Part 1. This allows for code re-use, which a good practice.</p></li>
+<li><p>E.C.: not safely initialized to zero the output variable for the triple nested loop matrix-matrix multiplication. You could have achieved this by either invoking <code class="docutils literal notranslate"><span class="pre">calloc</span></code> instead of <code class="docutils literal notranslate"><span class="pre">malloc</span></code> or by manually initialized to zero all entries of the output variable (typically this is done right before the inner-most loop).</p></li>
+</ul>
+</section>
+</section>
+<section id="submission-expectations-and-reminders">
+<h2>2. Submission expectations and reminders<a class="headerlink" href="#submission-expectations-and-reminders" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In general, when you receive an Assignment via a GitHub Classroom link, you want to clone your assignment repository, by doing</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>your_assignment_repository_url
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You can also work on a back-up repository or directory of your choice if you want to, for your scrap work, but you <em>have to</em> clone the assignment repository and submit your work there to be considered for submission and grading.</p></li>
+<li><p>As soon as you clone your Assignment repository, move to that repository</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>your_assignment_repository
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create a new feature branch and switch to that. You can do this in two ways:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">name_of_your_branch</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">name_of_your_branch</span></code> and then <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">name_of_your_branch</span></code></p></li>
+</ul>
+</li>
+<li><p>Do <strong>NOT</strong> work directly off <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p>You can work on your feature branch as much as you like and create repeated incremental snapshots of your work via <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>. Always remember to use meaningful commit messages to remind yourself (and others) about your work in that moment in time. In a terminal you can simply do this by</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your commit message&quot;</span>
+</pre></div>
+</div>
+<p>You can also write multi-line more detailed commit messages if you want. Just simply separate them with a space, and repeat the <code class="docutils literal notranslate"><span class="pre">-m</span></code> option, as in:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your commit message&quot;</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your more detailed message on a new line&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>When you are satisfied with your committed work, you can push it to your working branch via:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>your_branch_name
+</pre></div>
+</div>
+<p>If it is the first time you are doing this, <code class="docutils literal notranslate"><span class="pre">git</span></code> will automatically tell you that you can open a Pull Request with your changes. Just CTRL-click on the URL that git shows you in the terminal and you will be sent to your Pull Request web interface.</p>
+<p>Any successive changes that you want to push to your branch, they will be automatically reflected on the open PR.</p>
+<ul class="simple">
+<li><p>Only changes made within the deadline (including the lateness window) will be graded.</p></li>
+<li><p>Remember not to attempt to close or merge your PR without any Reviewer (in this case your instructor) approval.</p></li>
+<li><p>Always remember to double check the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">changed</span></code> tab in your PR. If you see files that should not belong there (e.g., files automatically created by your IDE or virtual environment files) remove them.</p></li>
+<li><p>If you are using an IDE that automatically creates hidden project files that you might inadvertently push to your branch, it is always a good practice to use a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file that specify which files you do <em>not</em> want to be tracked by <code class="docutils literal notranslate"><span class="pre">git</span></code>, and therefore, pushed to your branch. Recall that we covered this in our <a class="reference external" href="https://sdsu-comp526.github.io/fall24/slides/module1-1_first_class.html#keeping-track-with-git">first lecture</a>.</p></li>
+</ul>
+<section id="reminder-about-the-ai-policy-in-this-course">
+<h3>Reminder about the AI policy in this course<a class="headerlink" href="#reminder-about-the-ai-policy-in-this-course" title="Link to this heading">#</a></h3>
+<p>A friendly reminder that in this course, we follow the University Senate’s extended definition of plagiarism that includes the un-cited use of generative AI applications, specifically: “representing work produced by generative Artificial Intelligence as one’s own.”</p>
+<p>I provided in the <a class="reference external" href="https://sdsu-comp526.github.io/fall25/syllabus.html#use-of-ai">Syllabus</a> examples of how to properly cite the use of any genAI or LLM tool.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "sdsu-comp526/fall25",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="module5-9_low_rank.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">24) Low Rank</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="module6-1_interpolation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">26) Interpolation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-of-hw3">1. Review of HW3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">Common mistakes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-expectations-and-reminders">2. Submission expectations and reminders</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reminder-about-the-ai-policy-in-this-course">Reminder about the AI policy in this course</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
