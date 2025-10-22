@@ -25,6 +25,13 @@ and executed with
 ./dot
 ```
 
+or 
+
+```
+./dot -b
+```
+to test the blocked version.
+
 ### Common mistakes
 
 Here is a list of common mistakes that a few people made:
