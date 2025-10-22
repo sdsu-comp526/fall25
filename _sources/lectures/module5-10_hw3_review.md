@@ -35,7 +35,7 @@ to test the blocked version.
 ### Common mistakes
 
 Here is a list of common mistakes that a few people made:
-- Part 4: Not really implementing a blocked dot product between the rows of $M$ and the columns of $N$. The best way would have been reusing the `dot_product` function that was implemented for Part 1. This allows for code re-use, which a good practice.
+- Part 4: Not really implementing a blocked dot product between the rows of $M$ and the columns of $N$. The best way would have been reusing the `dot_product` function that was implemented for Part 1. This allows for code re-use, which is a good practice.
 - E.C.: not safely initialized to zero the output variable for the triple nested loop matrix-matrix multiplication. You could have achieved this by either invoking `calloc` instead of `malloc` or by manually initialized to zero all entries of the output variable (typically this is done right before the inner-most loop).
 
 ## 2. Submission expectations and reminders
