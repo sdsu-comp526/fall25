@@ -210,6 +210,14 @@
 <li class="toctree-l2"><a class="reference internal" href="module5-3_householder.html">18) Householder QR</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">19) Cholesky QR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module5-5_solving_systems.html">20) Solving Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-6_matrix_conditioning_and_svd.html">21) Matrix condition number and SVD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-7_hw2_review.html">22) HW2 Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-8_svd_and_conditioning.html">23) SVD Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-9_low_rank.html">24) Low Rank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-10_hw3_review.html">25) HW3 Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-1_interpolation.html">26) Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-2_chebyshev_poly.html">27) Chebyshev Polynomials and Piecewise Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-3_splines.html">28) Spline Interpolation</a></li>
 </ul>
 </details></li>
 </ul>
@@ -520,32 +528,6 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Precompilation will be skipped for dependencies in this cycle:
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.9/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">Precompiling</span> packages...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    381.5 ms<span class=" -Color -Color-Green">  ✓ </span>Qt6ShaderTools_jll
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    751.7 ms<span class=" -Color -Color-Green">  ✓ </span>Qt6Declarative_jll
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    375.1 ms<span class=" -Color -Color-Green">  ✓ </span>Qt6Wayland_jll
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   1465.4 ms<span class=" -Color -Color-Green">  ✓ </span>Plots → UnitfulExt
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   1168.4 ms<span class=" -Color -Color-Green">  ✓ </span>Plots → IJuliaExt
-  5 dependencies successfully precompiled in 4 seconds. 151 already precompiled. 2 skipped due to circular dependency.
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gram_schmidt_classical (generic function with 1 method)
 </pre></div>
 </div>
@@ -725,8 +707,8 @@ norm(v) = 1.4245900685395503
 </section>
 <section id="composition-of-reflectors">
 <h2>2. Composition of reflectors<a class="headerlink" href="#composition-of-reflectors" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-d21740aa-05a4-4f8a-a529-ef175bfae3d7">
-<span class="eqno">(7)<a class="headerlink" href="#equation-d21740aa-05a4-4f8a-a529-ef175bfae3d7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-daebdd13-49ec-4072-b398-2ec0739288d7">
+<span class="eqno">(7)<a class="headerlink" href="#equation-daebdd13-49ec-4072-b398-2ec0739288d7" title="Permalink to this equation">#</a></span>\[\begin{align}
 (I - 2 v v^T) (I - 2 w w^T) &amp;= I - 2 v v^T - 2 w w^T + 4 v (v^T w) w^T \\
 &amp;= I - \Bigg[v \Bigg| w \Bigg] \begin{bmatrix} 2 &amp; -4 v^T w \\ 0 &amp; 2 \end{bmatrix} \begin{bmatrix} v^T \\ w^T \end{bmatrix}
 \end{align}\]</div>
@@ -784,15 +766,15 @@ R factor:
 size(Matrix(Q)) = (1000000, 5)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q * R - A) = 1.0446588626486593e-12
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q * R - A) = 1.7468725066072653e-12
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5×5 Matrix{Float64}:
- -577.278  -432.657  -432.792  -432.742  -433.018
-    0.0    -381.624  -163.66   -163.1    -163.226
-    0.0       0.0    -344.837  -103.739  -103.643
-    0.0       0.0       0.0    -329.031   -76.28
-    0.0       0.0       0.0       0.0     320.171
+ -577.054  -433.166  -433.047  -432.711  -432.796
+    0.0    -382.124  -163.454  -164.445  -163.409
+    0.0       0.0     344.959   103.274   103.326
+    0.0       0.0       0.0     329.444    75.6903
+    0.0       0.0       0.0       0.0    -320.274
 </pre></div>
 </div>
 </div>
@@ -869,11 +851,11 @@ size(Matrix(Q)) = (1000000, 5)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q&#39; * Q - I) = 3.293339156204095e-15
-norm(Q * R - A) = 2.1499376424746292e-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(Q&#39; * Q - I) = 1.7670923486870405e-15
+norm(Q * R - A) = 3.040470972244059e-16
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.1499376424746292e-16
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.040470972244059e-16
 </pre></div>
 </div>
 </div>
@@ -907,11 +889,11 @@ norm(Q * R - A) = 7.092119431498881e-16
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5×5 Matrix{Float64}:
- 0.165159  0.290921  1.06258   1.03038   1.3736
- 0.0       0.404661  1.07645   0.776216  0.923703
- 0.0       0.0       0.695147  1.25977   0.791944
- 0.0       0.0       0.0       0.523937  0.730339
- 0.0       0.0       0.0       0.0       0.18127
+ 0.124596  0.274111   0.434188  0.889027  1.19569
+ 0.0       0.0154414  0.128089  0.629223  1.39614
+ 0.0       0.0        0.172603  0.80148   1.63116
+ 0.0       0.0        0.0       0.177641  0.506153
+ 0.0       0.0        0.0       0.0       0.772633
 </pre></div>
 </div>
 </div>
@@ -953,7 +935,7 @@ norm(Q * R - A) = 7.622613303296868e-16
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.495318 seconds (7 allocations: 77.393 MiB, 19.51% gc time)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.392931 seconds (7 allocations: 77.393 MiB, 0.67% gc time)
 </pre></div>
 </div>
 </div>
@@ -966,7 +948,7 @@ norm(Q * R - A) = 7.622613303296868e-16
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.619845 seconds (7 allocations: 137.329 MiB, 16.44% gc time)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.609776 seconds (7 allocations: 137.329 MiB, 14.86% gc time)
 </pre></div>
 </div>
 </div>
@@ -992,130 +974,124 @@ norm(Q * R - A) = 7.622613303296868e-16
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/Dropbox/SDSU/Teaching/Comp526/fall25/Project.toml`
 <span class=" -Color -Color-Bold -Color-Bold-Green">  No Changes</span> to `~/Dropbox/SDSU/Teaching/Comp526/fall25/Manifest.toml`
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
 <span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Precompilation will be skipped for dependencies in this cycle:
 <span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
 <span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
 <span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.9/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">Precompiling</span> 
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>packages...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   1269.1 ms<span class=" -Color -Color-Green">  ✓ </span>FlameGraphs
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    464.4 ms<span class=" -Color -Color-Green">  ✓ </span>TimerOutputs → FlameGraphsExt
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    522.8 ms<span class=" -Color -Color-Green">  ✓ </span>ProfileSVG
-  3 dependencies successfully precompiled in 2 seconds. 313 already precompiled. 2 skipped due to circular dependency.
-</pre></div>
-</div>
 <div class="output text_html"><!DOCTYPE html>
 <html>
 <body>
 <svg version="1.1" width="960" height="316" viewBox="0 0 960 316"
-     xmlns="http://www.w3.org/2000/svg" id="fig-c9d3cdc6eebe4ecc91a3469103c96226">
+     xmlns="http://www.w3.org/2000/svg" id="fig-a82a40d916054e23b0c37de5eb3baf30">
 <defs>
-    <clipPath id="fig-c9d3cdc6eebe4ecc91a3469103c96226-clip">
+    <clipPath id="fig-a82a40d916054e23b0c37de5eb3baf30-clip">
         <rect x="0" y="0" width="960" height="316"/>
     </clipPath>
 </defs>
 <style type="text/css">
-    #fig-c9d3cdc6eebe4ecc91a3469103c96226 text {
+    #fig-a82a40d916054e23b0c37de5eb3baf30 text {
         pointer-events: none;
         font-family: inherit;
         font-size: 12px;
         fill: #000000;
     }
-    text#fig-c9d3cdc6eebe4ecc91a3469103c96226-title {
+    text#fig-a82a40d916054e23b0c37de5eb3baf30-title {
         font-size: 16.8px;
         fill: #000000;
         text-anchor: middle;
     }
-    #fig-c9d3cdc6eebe4ecc91a3469103c96226-bg {
+    #fig-a82a40d916054e23b0c37de5eb3baf30-bg {
         fill: #FFFFFF;
     }
-    #fig-c9d3cdc6eebe4ecc91a3469103c96226-viewport rect, #fig-c9d3cdc6eebe4ecc91a3469103c96226-viewport path {
+    #fig-a82a40d916054e23b0c37de5eb3baf30-viewport rect, #fig-a82a40d916054e23b0c37de5eb3baf30-viewport path {
         vector-effect: non-scaling-stroke;
         fill-opacity: 1;
     }
-    #fig-c9d3cdc6eebe4ecc91a3469103c96226-viewport text {
+    #fig-a82a40d916054e23b0c37de5eb3baf30-viewport text {
         stroke: #000000;
         stroke-width: 0;
         stroke-opacity: 0.35;
     }
-    #fig-c9d3cdc6eebe4ecc91a3469103c96226-viewport rect:hover, #fig-c9d3cdc6eebe4ecc91a3469103c96226-viewport path:hover {
+    #fig-a82a40d916054e23b0c37de5eb3baf30-viewport rect:hover, #fig-a82a40d916054e23b0c37de5eb3baf30-viewport path:hover {
         fill-opacity: 0.75;
         stroke: #000000;
         stroke-width: 0.5;
     }
-    #fig-c9d3cdc6eebe4ecc91a3469103c96226-viewport + rect {
+    #fig-a82a40d916054e23b0c37de5eb3baf30-viewport + rect {
         fill: #FFFFFF;
         opacity: 0.8;
     }
-    text#fig-c9d3cdc6eebe4ecc91a3469103c96226-details{
+    text#fig-a82a40d916054e23b0c37de5eb3baf30-details{
         fill: #000000;
     }
 </style>
-<g id="fig-c9d3cdc6eebe4ecc91a3469103c96226-frame" clip-path="url(#fig-c9d3cdc6eebe4ecc91a3469103c96226-clip)">
-<rect id="fig-c9d3cdc6eebe4ecc91a3469103c96226-bg" x="0" y="0" width="960" height="316"/>
-<text id="fig-c9d3cdc6eebe4ecc91a3469103c96226-title" x="480" y="24">Profile results</text>
-<g id="fig-c9d3cdc6eebe4ecc91a3469103c96226-viewport" transform="scale(1)">
-<rect x="10" y="263" width="940.16" height="15" rx="2" fill="#F3004D" data-dinfo=""/>
+<g id="fig-a82a40d916054e23b0c37de5eb3baf30-frame" clip-path="url(#fig-a82a40d916054e23b0c37de5eb3baf30-clip)">
+<rect id="fig-a82a40d916054e23b0c37de5eb3baf30-bg" x="0" y="0" width="960" height="316"/>
+<text id="fig-a82a40d916054e23b0c37de5eb3baf30-title" x="480" y="24">Profile results</text>
+<g id="fig-a82a40d916054e23b0c37de5eb3baf30-viewport" transform="scale(1)">
+<rect x="10" y="263" width="939.47" height="15" rx="2" fill="#F3004D" data-dinfo=""/>
 <text x="10" dx="4" y="274.25"> in :-1</text>
-<rect x="10" y="248" width="295.36" height="15" rx="2" fill="#00B58B" data-dinfo="/home/vbarra/.julia/packages/IJulia/GFGaR/src/"/>
+<rect x="10" y="248" width="278.53" height="15" rx="2" fill="#00B58B" data-dinfo="/home/vbarra/.julia/packages/IJulia/GFGaR/src/"/>
 <text x="10" dx="4" y="259.25">#33 in eventloop.jl:70</text>
-<rect x="10" y="233" width="295.36" height="15" rx="2" fill="#E1B2FF" data-dinfo="/home/vbarra/.julia/packages/IJulia/GFGaR/src/"/>
+<rect x="10" y="233" width="278.53" height="15" rx="2" fill="#E1B2FF" data-dinfo="/home/vbarra/.julia/packages/IJulia/GFGaR/src/"/>
 <text x="10" dx="4" y="244.25">eventloop in eventloop.jl:25</text>
-<rect x="10" y="218" width="295.36" height="15" rx="2" fill="#00B58B" data-dinfo="./"/>
+<rect x="10" y="218" width="278.53" height="15" rx="2" fill="#00B58B" data-dinfo="./"/>
 <text x="10" dx="4" y="229.25">invokelatest in essentials.jl:889</text>
-<rect x="10" y="203" width="295.36" height="15" rx="2" fill="#F3004D" data-dinfo="./"/>
+<rect x="10" y="203" width="278.53" height="15" rx="2" fill="#F3004D" data-dinfo="./"/>
 <text x="10" dx="4" y="214.25">#invokelatest#2 in essentials.jl:892</text>
-<rect x="10" y="188" width="295.36" height="15" rx="2" fill="#00B58B" data-dinfo="/home/vbarra/.julia/packages/IJulia/GFGaR/src/"/>
+<rect x="10" y="188" width="278.53" height="15" rx="2" fill="#00B58B" data-dinfo="/home/vbarra/.julia/packages/IJulia/GFGaR/src/"/>
 <text x="10" dx="4" y="199.25">execute_request in execute_request.jl:84</text>
-<rect x="10" y="173" width="295.36" height="15" rx="2" fill="#E1B2FF" data-dinfo="./"/>
+<rect x="10" y="173" width="278.53" height="15" rx="2" fill="#E1B2FF" data-dinfo="./"/>
 <text x="10" dx="4" y="184.25">include_string in loading.jl:2146</text>
-<rect x="10" y="158" width="295.36" height="15" rx="2" fill="#D42137" data-dinfo="./"/>
+<rect x="10" y="158" width="278.53" height="15" rx="2" fill="#D42137" data-dinfo="./"/>
 <text x="10" dx="4" y="169.25">eval in boot.jl:385</text>
-<rect x="10" y="143" width="280.8" height="15" rx="2" fill="#E1B2FF" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
+<rect x="10" y="143" width="267.47" height="15" rx="2" fill="#E1B2FF" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
 <text x="10" dx="4" y="154.25">qr in qr.jl:417</text>
-<rect x="10" y="128" width="116.48" height="15" rx="2" fill="#00B58B" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
+<rect x="10" y="128" width="59.68" height="15" rx="2" fill="#00B58B" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
 <text x="10" dx="4" y="139.25">#qr#222 in qr.jl:419</text>
-<rect x="10" y="113" width="116.48" height="15" rx="2" fill="#E1B2FF" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
+<rect x="10" y="113" width="59.68" height="15" rx="2" fill="#E1B2FF" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
 <text x="10" dx="4" y="124.25">copy_similar in LinearAlgebra.jl:398</text>
-<rect x="10" y="98" width="56.16" height="15" rx="2" fill="#00B58B" data-dinfo="./"/>
+<rect x="10" y="98" width="59.68" height="15" rx="2" fill="#00B58B" data-dinfo="./"/>
 <text x="10" dx="4" y="109.25">copyto! in array.jl:388</text>
-<rect x="10" y="83" width="56.16" height="15" rx="2" fill="#E1B2FF" data-dinfo="./"/>
+<rect x="10" y="83" width="59.68" height="15" rx="2" fill="#E1B2FF" data-dinfo="./"/>
 <text x="10" dx="4" y="94.25">copyto! in array.jl:368</text>
-<rect x="10" y="68" width="56.16" height="15" rx="2" fill="#00B58B" data-dinfo="./"/>
+<rect x="10" y="68" width="59.68" height="15" rx="2" fill="#00B58B" data-dinfo="./"/>
 <text x="10" dx="4" y="79.25">_copyto_impl! in array.jl:376</text>
-<rect x="10" y="53" width="56.16" height="15" rx="2" fill="#E1B2FF" data-dinfo="./"/>
+<rect x="10" y="53" width="59.68" height="15" rx="2" fill="#E1B2FF" data-dinfo="./"/>
 <text x="10" dx="4" y="64.25">unsafe_copyto! in array.jl:337</text>
-<rect x="10" y="38" width="56.16" height="15" rx="2" fill="#00B58B" data-dinfo="./"/>
+<rect x="10" y="38" width="59.68" height="15" rx="2" fill="#00B58B" data-dinfo="./"/>
 <text x="10" dx="4" y="49.25">memmove in cmem.jl:26</text>
-<rect x="66.16" y="98" width="60.32" height="15" rx="2" fill="#2CA3FF" data-dinfo="./"/>
-<text x="66.16" dx="4" y="109.25">similar in array.jl:420</text>
-<rect x="66.16" y="83" width="60.32" height="15" rx="2" fill="#6FDC91" data-dinfo="./"/>
-<text x="66.16" dx="4" y="94.25">Array in boot.jl:487</text>
-<rect x="66.16" y="68" width="60.32" height="15" rx="2" fill="#C5312F" data-dinfo="./"/>
-<text x="66.16" dx="4" y="79.25">Array in boot.jl:479</text>
-<rect x="126.48" y="128" width="164.32" height="15" rx="2" fill="#2CA3FF" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
-<text x="126.48" dx="4" y="139.25">#qr#222 in qr.jl:420</text>
-<rect x="126.48" y="113" width="164.32" height="15" rx="2" fill="#6FDC91" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
-<text x="126.48" dx="4" y="124.25">qr! in qr.jl:336</text>
-<rect x="126.48" y="98" width="164.32" height="15" rx="2" fill="#00B58B" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
-<text x="126.48" dx="4" y="109.25">qr! in qr.jl:291</text>
-<rect x="126.48" y="83" width="164.32" height="15" rx="2" fill="#E1B2FF" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
-<text x="126.48" dx="4" y="94.25">#qr!#221 in qr.jl:291</text>
-<rect x="126.48" y="68" width="164.32" height="15" rx="2" fill="#00B58B" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
-<text x="126.48" dx="4" y="79.25">geqrt! in lapack.jl:722</text>
-<rect x="126.48" y="53" width="164.32" height="15" rx="2" fill="#6FDC91" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
-<text x="126.48" dx="4" y="64.25">geqrt! in lapack.jl:456</text>
+<rect x="69.68" y="128" width="207.79" height="15" rx="2" fill="#2CA3FF" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
+<text x="69.68" dx="4" y="139.25">#qr#222 in qr.jl:420</text>
+<rect x="69.68" y="113" width="207.79" height="15" rx="2" fill="#6FDC91" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
+<text x="69.68" dx="4" y="124.25">qr! in qr.jl:336</text>
+<rect x="69.68" y="98" width="207.79" height="15" rx="2" fill="#2CA3FF" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
+<text x="69.68" dx="4" y="109.25">qr! in qr.jl:291</text>
+<rect x="69.68" y="83" width="207.79" height="15" rx="2" fill="#6FDC91" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
+<text x="69.68" dx="4" y="94.25">#qr!#221 in qr.jl:291</text>
+<rect x="69.68" y="68" width="207.79" height="15" rx="2" fill="#2CA3FF" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
+<text x="69.68" dx="4" y="79.25">geqrt! in lapack.jl:722</text>
+<rect x="69.68" y="53" width="207.79" height="15" rx="2" fill="#6FDC91" data-dinfo="/cache/build/builder-amdci5-6/julialang/julia-release-1-dot-10/usr/share/julia/stdlib/v1.10/LinearAlgebra/src/"/>
+<text x="69.68" dx="4" y="64.25">geqrt! in lapack.jl:456</text>
+<rect x="277.47" y="143" width="2.21" height="15" rx="2" fill="#6FDC91" data-dinfo="./compiler/"/>
+<text x="277.47" dx="4" y="154.25">typeinf_ext_toplevel in typeinfer.jl:1078</text>
+<rect x="277.47" y="128" width="2.21" height="15" rx="2" fill="#00B58B" data-dinfo="./compiler/"/>
+<text x="277.47" dx="4" y="139.25">typeinf_ext_toplevel in typeinfer.jl:1082</text>
+<rect x="277.47" y="113" width="2.21" height="15" rx="2" fill="#E1B2FF" data-dinfo="./compiler/"/>
+<text x="277.47" dx="4" y="124.25">typeinf_ext in typeinfer.jl:1051</text>
+<rect x="277.47" y="98" width="2.21" height="15" rx="2" fill="#00B58B" data-dinfo="./compiler/"/>
+<text x="277.47" dx="4" y="109.25">typeinf in typeinfer.jl:216</text>
+<rect x="277.47" y="83" width="2.21" height="15" rx="2" fill="#E1B2FF" data-dinfo="./compiler/"/>
+<text x="277.47" dx="4" y="94.25">_typeinf in typeinfer.jl:247</text>
+<rect x="277.47" y="68" width="2.21" height="15" rx="2" fill="#00B58B" data-dinfo="./compiler/"/>
+<text x="277.47" dx="4" y="79.25">typeinf_nocycle in abstractinterpretation.jl:3201</text>
+<rect x="277.47" y="53" width="2.21" height="15" rx="2" fill="#E1B2FF" data-dinfo="./compiler/"/>
+<text x="277.47" dx="4" y="64.25">typeinf_local in abstractinterpretation.jl:3065</text>
 </g></g>
 <script><![CDATA[
 // Snap.svg 0.3.0
@@ -1503,10 +1479,10 @@ f+=g+"]",i[b]=f}return Function("val","return Snap.path.toString.call(["+i+"])")
 <script><![CDATA[
 if (typeof require === 'function' && define.amd) {
     require(['ProfileSVG'], function (ProfileSVG) {
-        ProfileSVG.initialize("fig-c9d3cdc6eebe4ecc91a3469103c96226");
+        ProfileSVG.initialize("fig-a82a40d916054e23b0c37de5eb3baf30");
     });
 } else {
-    ProfileSVG.initialize("fig-c9d3cdc6eebe4ecc91a3469103c96226");
+    ProfileSVG.initialize("fig-a82a40d916054e23b0c37de5eb3baf30");
 }
 ]]></script>
 </svg>

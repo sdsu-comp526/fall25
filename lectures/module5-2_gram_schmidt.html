@@ -210,6 +210,14 @@
 <li class="toctree-l2"><a class="reference internal" href="module5-3_householder.html">18) Householder QR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module5-4_cholesky_qr.html">19) Cholesky QR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module5-5_solving_systems.html">20) Solving Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-6_matrix_conditioning_and_svd.html">21) Matrix condition number and SVD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-7_hw2_review.html">22) HW2 Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-8_svd_and_conditioning.html">23) SVD Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-9_low_rank.html">24) Low Rank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-10_hw3_review.html">25) HW3 Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-1_interpolation.html">26) Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-2_chebyshev_poly.html">27) Chebyshev Polynomials and Piecewise Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-3_splines.html">28) Spline Interpolation</a></li>
 </ul>
 </details></li>
 </ul>
@@ -768,8 +776,8 @@ norm(Q * R - A) = 8.268821431611631e-16
 <section id="a-variant-with-more-parallelism">
 <h3>A variant with more parallelism<a class="headerlink" href="#a-variant-with-more-parallelism" title="Link to this heading">#</a></h3>
 <p>We are performing the following (from right to left):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-437abfd8-9c00-496d-bec1-e5c8d49dc894">
-<span class="eqno">(3)<a class="headerlink" href="#equation-437abfd8-9c00-496d-bec1-e5c8d49dc894" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f85a240d-e4c9-4ff2-aae5-cde0d4fe4258">
+<span class="eqno">(3)<a class="headerlink" href="#equation-f85a240d-e4c9-4ff2-aae5-cde0d4fe4258" title="Permalink to this equation">#</a></span>\[\begin{align}
 w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
 &amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
 \end{align}\]</div>
@@ -825,8 +833,8 @@ norm(Q * R - A) = 7.350692433565389e-16
 <section id="why-does-the-order-of-operations-matter">
 <h4>Why does the order of operations matter?<a class="headerlink" href="#why-does-the-order-of-operations-matter" title="Link to this heading">#</a></h4>
 <p>We are performing the following (from right to left):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d7b86059-30be-4841-960b-fde5642e58a3">
-<span class="eqno">(4)<a class="headerlink" href="#equation-d7b86059-30be-4841-960b-fde5642e58a3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fd615fe8-2ea8-4f00-aaa4-cceaba613f54">
+<span class="eqno">(4)<a class="headerlink" href="#equation-fd615fe8-2ea8-4f00-aaa4-cceaba613f54" title="Permalink to this equation">#</a></span>\[\begin{align}
 w = (I - q_2 q_2^T) (I - q_1 q_1^T) v &amp;= (I - q_1 q_1^T - q_2 q_2^T + q_2 q_2^T q_1 q_1^T) v \\
 &amp;= \Bigg( I - \Big[ q_1 \Big| q_2 \Big] \begin{bmatrix} q_1^T \\ q_2^T \end{bmatrix} \Bigg) v
 \end{align}\]</div>

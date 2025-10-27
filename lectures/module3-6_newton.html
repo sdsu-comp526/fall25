@@ -210,6 +210,14 @@
 <li class="toctree-l2"><a class="reference internal" href="module5-3_householder.html">18) Householder QR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module5-4_cholesky_qr.html">19) Cholesky QR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module5-5_solving_systems.html">20) Solving Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-6_matrix_conditioning_and_svd.html">21) Matrix condition number and SVD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-7_hw2_review.html">22) HW2 Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-8_svd_and_conditioning.html">23) SVD Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-9_low_rank.html">24) Low Rank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module5-10_hw3_review.html">25) HW3 Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-1_interpolation.html">26) Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-2_chebyshev_poly.html">27) Chebyshev Polynomials and Piecewise Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-3_splines.html">28) Spline Interpolation</a></li>
 </ul>
 </details></li>
 </ul>
@@ -707,8 +715,8 @@ Suppose that there exists a fixed point <span class="math notranslate nohighligh
 \[ g(x_k) = g(x_*) + g'(x_*)(x_k - x_*) + O((x_k-x_*)^2) \]</div>
 
 and thus</p>
-<div class="amsmath math notranslate nohighlight" id="equation-68cc2e8f-5b02-4a14-ae17-9176feeb27ad">
-<span class="eqno">(1)<a class="headerlink" href="#equation-68cc2e8f-5b02-4a14-ae17-9176feeb27ad" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a3dff746-fe12-4f46-b83c-fdccfc3d1038">
+<span class="eqno">(1)<a class="headerlink" href="#equation-a3dff746-fe12-4f46-b83c-fdccfc3d1038" title="Permalink to this equation">#</a></span>\[\begin{align}
 x_{k+1} - x_* &amp;= g(x_k) - g(x_*) \\
 &amp;= g'(x_*) (x_k - x_*) + O((x_k - x_*)^2).
 \end{align}\]</div>
@@ -755,8 +763,8 @@ for some positive constants <span class="math notranslate nohighlight">\(c_1,c_2
 <div class="math notranslate nohighlight">
 \[ \lim_{h\to 0} \frac{\operatorname{term}(h)}{h^2} &lt; \infty . \]</div>
 <p>Big <span class="math notranslate nohighlight">\(O\)</span> terms can be manipulated as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5462f1b0-46f7-4e60-8fd0-c239c10475a2">
-<span class="eqno">(2)<a class="headerlink" href="#equation-5462f1b0-46f7-4e60-8fd0-c239c10475a2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-aebdd1f9-7d4a-46c4-9d9a-5666de89135f">
+<span class="eqno">(2)<a class="headerlink" href="#equation-aebdd1f9-7d4a-46c4-9d9a-5666de89135f" title="Permalink to this equation">#</a></span>\[\begin{align}
 h O(h^k) &amp;= O(h^{k+1}) \\
 O(h^k)/h &amp;= O(h^{k-1}) \\
 c O(h^k) &amp;= O(h^k) \\
