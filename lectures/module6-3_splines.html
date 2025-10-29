@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/SDSU-comp526_logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="29) Higher Dimensions" href="module6-4_higher_dimensions.html" />
     <link rel="prev" title="27) Chebyshev Polynomials and Piecewise Interpolation" href="module6-2_chebyshev_poly.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -217,6 +218,8 @@
 <li class="toctree-l2"><a class="reference internal" href="module6-1_interpolation.html">26) Interpolation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module6-2_chebyshev_poly.html">27) Chebyshev Polynomials and Piecewise Interpolation</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">28) Spline Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-4_higher_dimensions.html">29) Higher Dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module6-5_noisy_data.html">30) Noisy data</a></li>
 </ul>
 </details></li>
 </ul>
@@ -880,8 +883,8 @@ which reduces to
 \[ \delta_i c_i + 2(\delta_i + \delta_{i+1}) c_{i+1} + \delta_{i+1} c_{i+2} = 3\left(\frac{\Delta_{i+1}}{\delta_{i+1}} - \frac{\Delta_i}{\delta_i}\right) . \]</div>
 
 To impose boundary conditions, we add a dummy interval on the right end (the actual value of <span class="math notranslate nohighlight">\(x_{n+1}&gt;x_n\)</span> cancels out) so that the equation above is valid for <span class="math notranslate nohighlight">\(i = 0,\dotsc,n-2\)</span> and the right boundary condition <span class="math notranslate nohighlight">\(s_{n-1}''(x_n) = s_n''(x_n)\)</span> becomes <span class="math notranslate nohighlight">\(c_n = 0\)</span>. The left boundary condition <span class="math notranslate nohighlight">\(s_0''(x_0) = 0\)</span> yields <span class="math notranslate nohighlight">\(c_0 = 0\)</span>, so we must solve</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aae7643e-91ce-4525-b39f-da7f43b72eaf">
-<span class="eqno">(11)<a class="headerlink" href="#equation-aae7643e-91ce-4525-b39f-da7f43b72eaf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-db6445ec-4deb-423a-bee2-a8dc6cb2d2d7">
+<span class="eqno">(11)<a class="headerlink" href="#equation-db6445ec-4deb-423a-bee2-a8dc6cb2d2d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{bmatrix}
 1 &amp; &amp; &amp; &amp; &amp; &amp; \\
 \delta_0 &amp; 2(\delta_0+\delta_1) &amp; \delta_1 &amp; &amp; &amp; &amp; \\
@@ -1007,6 +1010,9 @@ To impose boundary conditions, we add a dummy interval on the right end (the act
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">    Updating</span> registry at `~/.julia/registries/General.toml`
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
 </pre></div>
 </div>
@@ -1114,6 +1120,15 @@ To impose boundary conditions, we add a dummy interval on the right end (the act
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">27) Chebyshev Polynomials and Piecewise Interpolation</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="module6-4_higher_dimensions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">29) Higher Dimensions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
