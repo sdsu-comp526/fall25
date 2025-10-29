@@ -35,10 +35,8 @@ chapters:
   - file: lectures/module6-1_interpolation.ipynb
   - file: lectures/module6-2_chebyshev_poly.ipynb
   - file: lectures/module6-3_splines.ipynb
-  # # - file: lectures/module6-4_midterm_sol.md
-  # # - file: lectures/module6-5_hw3_solution.ipynb
-  # - file: lectures/module6-6_higher_dimensions.ipynb
-  # - file: lectures/module6-7_noisy_data.ipynb
+  - file: lectures/module6-4_higher_dimensions.ipynb
+  - file: lectures/module6-5_noisy_data.ipynb
   # - file: lectures/module7-1_integration.ipynb
   # - file: lectures/module7-2_quadrature.ipynb
   # - file: lectures/module7-3_quadrature_transforms.ipynb
