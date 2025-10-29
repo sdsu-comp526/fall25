@@ -814,14 +814,14 @@ T_{n+1}(x) &amp;= 2 x T_n(x) - T_{n-1}(x)
 </section>
 <section id="solving-a-bvp-with-chebyshev-collocation">
 <h3>Solving a BVP with Chebyshev collocation<a class="headerlink" href="#solving-a-bvp-with-chebyshev-collocation" title="Link to this heading">#</a></h3>
-<p>In our Midterm Project, we already saw a boundary value problem (BVP). We asked ourselves to find a function <span class="math notranslate nohighlight">\(u(x)\)</span> satisfying an equation like:</p>
+<p>In our <a class="reference external" href="https://sdsu-comp526.github.io/fall25/lectures/module5-5_solving_systems.html">Solving Systems lecture</a>, we already saw a boundary value problem (BVP). We asked ourselves to find a function <span class="math notranslate nohighlight">\(u(x)\)</span> satisfying an equation like:</p>
 <div class="math notranslate nohighlight">
 \[ -u_{xx}(x) = f(x) \]</div>
 <p>subject to <strong>Boundary Conditions</strong>. This time, let’s use the following boundary conditions:
 <div class="math notranslate nohighlight">
 \[u(-1) = a \quad \textrm{ and } \quad u'(1) = b\]</div>
 </p>
-<p>The above Boundary Conditions are mixed: at the left endpoint of the interval, we have the Dirichelet Boundary Condition (which imposes a condition on the function <span class="math notranslate nohighlight">\(u\)</span> itself). At the right endpoint of the interval, we have a Neumann Boundary Condition (which imposes a condition on the first derivative of the function).</p>
+<p>The above Boundary Conditions are <strong>mixed</strong>: at the left endpoint of the interval, we have the Dirichelet Boundary Condition (which imposes a condition on the function <span class="math notranslate nohighlight">\(u\)</span> itself). At the right endpoint of the interval, we have a Neumann Boundary Condition (which imposes a condition on the first derivative of the function).</p>
 <p>We’ll use the “<strong>method of manufactured solutions</strong>”:</p>
 <p>Choose <span class="math notranslate nohighlight">\(u(x) = \tanh(2x)\)</span> and solve with the corresponding <span class="math notranslate nohighlight">\(f(x)\)</span>. In practice, <span class="math notranslate nohighlight">\(f(x)\)</span> comes from the physics of the problem or observations, and you need to solve for the unknown <span class="math notranslate nohighlight">\(u(x)\)</span>.</p>
 <div class="cell docutils container">
