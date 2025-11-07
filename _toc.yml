@@ -39,7 +39,7 @@ chapters:
   - file: lectures/module6-5_noisy_data.ipynb
   - file: lectures/module7-1_integration.ipynb
   - file: lectures/module7-2_quadrature.ipynb
-  # - file: lectures/module7-3_quadrature_transforms.ipynb
+  - file: lectures/module7-3_quadrature_transforms.ipynb
   # - file: lectures/module7-4_beyond_linear_models.ipynb
   # - file: lectures/module7-5_gradient_descent.ipynb
   # - file: lectures/module8-1_differentiation.ipynb
