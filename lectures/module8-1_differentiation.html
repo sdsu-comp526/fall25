@@ -227,6 +227,8 @@
 <li class="toctree-l2"><a class="reference internal" href="module7-5_gradient_descent.html">35) Gradient Descent</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">36) Differentiation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module8-2_diffeq.html">37) Differential Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module8-3_stiff_equations.html">38) Stiff Equations</a></li>
+
 </ul>
 </details></li>
 </ul>
@@ -739,8 +741,8 @@ This error becomes large (relative to <span class="math notranslate nohighlight"
 <section id="we-can-go-the-other-way">
 <h3>We can go the other way<a class="headerlink" href="#we-can-go-the-other-way" title="Link to this heading">#</a></h3>
 <p>We can differentiate a composition <span class="math notranslate nohighlight">\(h(g(f(x)))\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a05a3539-1408-4b1a-9f51-9da8e25a8b6f">
-<span class="eqno">(19)<a class="headerlink" href="#equation-a05a3539-1408-4b1a-9f51-9da8e25a8b6f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0c9e0117-2248-4704-ab83-a3c383088fe4">
+<span class="eqno">(19)<a class="headerlink" href="#equation-0c9e0117-2248-4704-ab83-a3c383088fe4" title="Permalink to this equation">#</a></span>\[\begin{align}
   \operatorname{d} h &amp;= h' \operatorname{d} g \\
   \operatorname{d} g &amp;= g' \operatorname{d} f \\
   \operatorname{d} f &amp;= f' \operatorname{d} x.
@@ -830,109 +832,6 @@ This error becomes large (relative to <span class="math notranslate nohighlight"
 <span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.10/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Precompilation will be skipped for dependencies in this cycle:
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.10/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Cyan">[ Info: </span>Precompiling SymbolicsPreallocationToolsExt [d479e226-fb54-5ebe-a75e-a7af7f39127f]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Module SymbolicsPreallocationToolsExt with build ID ffffffff-ffff-ffff-bb0b-672036cca05d is missing from the cache.
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>This may mean SymbolicsPreallocationToolsExt [d479e226-fb54-5ebe-a75e-a7af7f39127f] does not support precompilation but is imported by a module that does.
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Base loading.jl:2018
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">┌ Error: </span>Error during loading of extension SymbolicsPreallocationToolsExt of Symbolics, use `Base.retry_load_extensions()` to retry.
-<span class=" -Color -Color-Bold">│ </span>  exception =
-<span class=" -Color -Color-Bold">│ </span>   1-element ExceptionStack:
-<span class=" -Color -Color-Bold">│ </span>   Declaring __precompile__(false) is not allowed in files that are being precompiled.
-<span class=" -Color -Color-Bold">│ </span>   Stacktrace:
-<span class=" -Color -Color-Bold">│ </span>     [1] <span class=" -Color -Color-Bold">_require(</span>pkg::Base.PkgId, env::Nothing<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:2022
-<span class=" -Color -Color-Bold">│ </span>     [2] <span class=" -Color -Color-Bold">__require_prelocked(</span>uuidkey::Base.PkgId, env::Nothing<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:1882
-<span class=" -Color -Color-Bold">│ </span>     [3] <span class=" -Color -Color-Bold">#invoke_in_world#3</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./essentials.jl:926 [inlined]
-<span class=" -Color -Color-Bold">│ </span>     [4] <span class=" -Color -Color-Bold">invoke_in_world</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./essentials.jl:923 [inlined]
-<span class=" -Color -Color-Bold">│ </span>     [5] <span class=" -Color -Color-Bold">_require_prelocked</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./loading.jl:1873 [inlined]
-<span class=" -Color -Color-Bold">│ </span>     [6] <span class=" -Color -Color-Bold">_require_prelocked</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./loading.jl:1872 [inlined]
-<span class=" -Color -Color-Bold">│ </span>     [7] <span class=" -Color -Color-Bold">run_extension_callbacks(</span>extid::Base.ExtensionId<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:1365
-<span class=" -Color -Color-Bold">│ </span>     [8] <span class=" -Color -Color-Bold">run_extension_callbacks(</span>pkgid::Base.PkgId<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:1400
-<span class=" -Color -Color-Bold">│ </span>     [9] <span class=" -Color -Color-Bold">run_package_callbacks(</span>modkey::Base.PkgId<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:1224
-<span class=" -Color -Color-Bold">│ </span>    [10] <span class=" -Color -Color-Bold">__require_prelocked(</span>uuidkey::Base.PkgId, env::String<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:1889
-<span class=" -Color -Color-Bold">│ </span>    [11] <span class=" -Color -Color-Bold">#invoke_in_world#3</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./essentials.jl:926 [inlined]
-<span class=" -Color -Color-Bold">│ </span>    [12] <span class=" -Color -Color-Bold">invoke_in_world</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./essentials.jl:923 [inlined]
-<span class=" -Color -Color-Bold">│ </span>    [13] <span class=" -Color -Color-Bold">_require_prelocked(</span>uuidkey::Base.PkgId, env::String<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:1873
-<span class=" -Color -Color-Bold">│ </span>    [14] <span class=" -Color -Color-Bold">macro expansion</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./loading.jl:1860 [inlined]
-<span class=" -Color -Color-Bold">│ </span>    [15] <span class=" -Color -Color-Bold">macro expansion</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./lock.jl:267 [inlined]
-<span class=" -Color -Color-Bold">│ </span>    [16] <span class=" -Color -Color-Bold">__require(</span>into::Module, mod::Symbol<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:1823
-<span class=" -Color -Color-Bold">│ </span>    [17] <span class=" -Color -Color-Bold">#invoke_in_world#3</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./essentials.jl:926 [inlined]
-<span class=" -Color -Color-Bold">│ </span>    [18] <span class=" -Color -Color-Bold">invoke_in_world</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./essentials.jl:923 [inlined]
-<span class=" -Color -Color-Bold">│ </span>    [19] <span class=" -Color -Color-Bold">require(</span>into::Module, mod::Symbol<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:1816
-<span class=" -Color -Color-Bold">│ </span>    [20] <span class=" -Color -Color-Bold">include</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./Base.jl:495 [inlined]
-<span class=" -Color -Color-Bold">│ </span>    [21] <span class=" -Color -Color-Bold">include_package_for_output(</span>pkg::Base.PkgId, input::String, depot_path::Vector{String}, dl_load_path::Vector{String}, load_path::Vector{String}, concrete_deps::Vector{Pair{Base.PkgId, UInt128}}, source::String<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:2292
-<span class=" -Color -Color-Bold">│ </span>    [22] top-level scope
-<span class=" -Color -Color-Bold">│ </span>       @ stdin:4
-<span class=" -Color -Color-Bold">│ </span>    [23] <span class=" -Color -Color-Bold">eval</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./boot.jl:385 [inlined]
-<span class=" -Color -Color-Bold">│ </span>    [24] <span class=" -Color -Color-Bold">include_string(</span>mapexpr::typeof(identity), mod::Module, code::String, filename::String<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./loading.jl:2146
-<span class=" -Color -Color-Bold">│ </span>    [25] <span class=" -Color -Color-Bold">include_string</span>
-<span class=" -Color -Color-Bold">│ </span>       @ ./loading.jl:2156 [inlined]
-<span class=" -Color -Color-Bold">│ </span>    [26] <span class=" -Color -Color-Bold">exec_options(</span>opts::Base.JLOptions<span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./client.jl:321
-<span class=" -Color -Color-Bold">│ </span>    [27] <span class=" -Color -Color-Bold">_start()</span>
-<span class=" -Color -Color-Bold">│ </span>       @ Base ./client.jl:557
-<span class=" -Color -Color-Bold">└ </span>@ Base loading.jl:1371
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Precompilation will be skipped for dependencies in this cycle:
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.10/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">Precompiling</span> packages...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   1975.4 ms<span class=" -Color -Color-Green">  ✓ </span>RecursiveArrayTools → RecursiveArrayToolsZygoteExt
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1 dependency successfully precompiled in 3 seconds. 78 already precompiled. 2 skipped due to circular dependency.
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Circular dependency detected.
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Precompilation will be skipped for dependencies in this cycle:
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> ┌ Symbolics → SymbolicsForwardDiffExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span> └─ Symbolics → SymbolicsPreallocationToolsExt
-<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ Pkg.API.Precompilation ~/julia-1.10.10/share/julia/stdlib/v1.10/Pkg/src/precompilation.jl:583
-<span class=" -Color -Color-Bold -Color-Bold-Green">Precompiling</span> packages...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   1915.5 ms<span class=" -Color -Color-Green">  ✓ </span>SciMLBase → SciMLBaseZygoteExt
-  1 dependency successfully precompiled in 2 seconds. 102 already precompiled. 2 skipped due to circular dependency.
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -956,7 +855,7 @@ This error becomes large (relative to <span class="math notranslate nohighlight"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:152 within `gradient`
-define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4472<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4251<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:153 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:94 within `pullback` @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:96
@@ -965,7 +864,7 @@ top:
 ; │││┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface2.jl within `macro expansion`
 ; ││││┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/chainrules.jl:234 within `chain_rrule`
 ; │││││┌ @ /home/vbarra/.julia/packages/ChainRulesCore/Vsbj9/src/rules.jl:138 within `rrule` @ /home/vbarra/.julia/packages/ChainRules/14CDN/src/rulesets/Base/fastmath_able.jl:56
-        %1 = <span class=" -Color -Color-Bold">call</span> <span class=" -Color -Color-Cyan">double</span> @j_exp_4474<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span>
+        %1 = <span class=" -Color -Color-Bold">call</span> <span class=" -Color -Color-Cyan">double</span> @j_exp_4253<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span>
 ; └└└└└└
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:154 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:97 within `#88`
@@ -998,7 +897,7 @@ top:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ In[12]:1 within `square`
-define <span class=" -Color -Color-Cyan">double</span> @julia_square_4493<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Cyan">double</span> @julia_square_4272<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ; ┌ @ intfuncs.jl:332 within `literal_pow`
 ; │┌ @ float.jl:411 within `*`
@@ -1018,7 +917,7 @@ top:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:152 within `gradient`
-define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4497<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4276<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:154 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:97 within `#88`
