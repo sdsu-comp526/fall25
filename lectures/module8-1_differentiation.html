@@ -634,9 +634,6 @@ diff_wp(sin, x) - cos(x) = -4.139506408429305e-6
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">    Updating</span> registry at `~/.julia/registries/General.toml`
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">   Resolving</span> package versions...
 </pre></div>
 </div>
@@ -757,8 +754,8 @@ diff_wp(sin, x) - cos(x) = -4.139506408429305e-6
 <section id="forward-vs-reverse-mode">
 <h3>Forward Vs reverse mode<a class="headerlink" href="#forward-vs-reverse-mode" title="Link to this heading">#</a></h3>
 <p>We can differentiate a composition <span class="math notranslate nohighlight">\(h(g(f(x)))\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c88451e4-c5a6-4cf7-9336-4dafe9e7971f">
-<span class="eqno">(19)<a class="headerlink" href="#equation-c88451e4-c5a6-4cf7-9336-4dafe9e7971f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6e70a206-d421-4223-adfa-9693e2ca78d8">
+<span class="eqno">(19)<a class="headerlink" href="#equation-6e70a206-d421-4223-adfa-9693e2ca78d8" title="Permalink to this equation">#</a></span>\[\begin{align}
   \operatorname{d} h &amp;= h' \operatorname{d} g \\
   \operatorname{d} g &amp;= g' \operatorname{d} f \\
   \operatorname{d} f &amp;= f' \operatorname{d} x.
@@ -904,7 +901,7 @@ diff_wp(sin, x) - cos(x) = -4.139506408429305e-6
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:152 within `gradient`
-define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4357<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4263<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:153 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:94 within `pullback` @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:96
@@ -913,7 +910,7 @@ top:
 ; │││┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface2.jl within `macro expansion`
 ; ││││┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/chainrules.jl:234 within `chain_rrule`
 ; │││││┌ @ /home/vbarra/.julia/packages/ChainRulesCore/Vsbj9/src/rules.jl:138 within `rrule` @ /home/vbarra/.julia/packages/ChainRules/14CDN/src/rulesets/Base/fastmath_able.jl:56
-        %1 = <span class=" -Color -Color-Bold">call</span> <span class=" -Color -Color-Cyan">double</span> @j_exp_4359<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span>
+        %1 = <span class=" -Color -Color-Bold">call</span> <span class=" -Color -Color-Cyan">double</span> @j_exp_4265<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span>
 ; └└└└└└
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:154 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:97 within `#88`
@@ -948,7 +945,7 @@ top:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ In[12]:1 within `square`
-define <span class=" -Color -Color-Cyan">double</span> @julia_square_4378<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Cyan">double</span> @julia_square_4284<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ; ┌ @ intfuncs.jl:332 within `literal_pow`
 ; │┌ @ float.jl:411 within `*`
@@ -968,7 +965,7 @@ top:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:152 within `gradient`
-define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4382<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
+define <span class=" -Color -Color-Yellow">[1</span> x <span class=" -Color -Color-Cyan">double</span><span class=" -Color -Color-Yellow">]</span> @julia_gradient_4288<span class=" -Color -Color-Yellow">(</span><span class=" -Color -Color-Cyan">double</span> %0<span class=" -Color -Color-Yellow">)</span> #0 <span class=" -Color -Color-Yellow">{</span>
 top:
 ;  @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:154 within `gradient`
 ; ┌ @ /home/vbarra/.julia/packages/Zygote/55SqB/src/compiler/interface.jl:97 within `#88`
