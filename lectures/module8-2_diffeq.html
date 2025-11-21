@@ -229,6 +229,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">37) Differential Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module8-3_stiff_equations.html">38) Stiff Equations</a></li>
 
+<li class="toctree-l2"><a class="reference internal" href="module8-4_cfd.html">39) CFD examples</a></li>
 </ul>
 </details></li>
 </ul>
@@ -762,7 +763,8 @@ y^{n+1} = \left(1 + h \lambda \right)^{n+1} y^0 .
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is a parameter controlling the rate at which the solution <span class="math notranslate nohighlight">\(y(t)\)</span> is pulled toward the curve <span class="math notranslate nohighlight">\(\cos t\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">ode_euler</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">;</span><span class="w"> </span><span class="n">tfinal</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Forward Euler ODE time-stepper</span>
+<span class="k">function</span><span class="w"> </span><span class="n">ode_euler</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">;</span><span class="w"> </span><span class="n">tfinal</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">y0</span><span class="p">)</span>
 <span class="w">    </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
 <span class="w">    </span><span class="n">thist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
@@ -770,7 +772,7 @@ y^{n+1} = \left(1 + h \lambda \right)^{n+1} y^0 .
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">tfinal</span>
 <span class="w">        </span><span class="n">tnext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">tfinal</span><span class="p">)</span>
 <span class="w">        </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tnext</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t</span>
-<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="c"># explicit step</span>
 <span class="w">        </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tnext</span>
 <span class="w">        </span><span class="n">push!</span><span class="p">(</span><span class="n">thist</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
 <span class="w">        </span><span class="n">push!</span><span class="p">(</span><span class="n">yhist</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
@@ -808,8 +810,8 @@ y^{n+1} = \left(1 + h \lambda \right)^{n+1} y^0 .
 \dot{\mathbf{y}} = A \mathbf{y}
 \]</div>
 <p>For example, a system of two first-order linear ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-88dc9b09-ea03-45eb-9b61-d4a9ee46c9d0">
-<span class="eqno">(20)<a class="headerlink" href="#equation-88dc9b09-ea03-45eb-9b61-d4a9ee46c9d0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-92279c5c-ae26-41d7-ae4f-82ae139b2b20">
+<span class="eqno">(20)<a class="headerlink" href="#equation-92279c5c-ae26-41d7-ae4f-82ae139b2b20" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_1' &amp;= y_2\\
 y_2' &amp;= - y_1\\
 \end{align}\]</div>
