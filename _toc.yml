@@ -45,9 +45,7 @@ chapters:
   - file: lectures/module8-1_differentiation.ipynb
   - file: lectures/module8-2_diffeq.ipynb
   - file: lectures/module8-3_stiff_equations.ipynb
-  - file: lectures/module8-4_review_odes.ipynb
-  - file: lectures/module8-5_review_pdes.ipynb
-  - file: lectures/module8-6_cfd.ipynb
+  - file: lectures/module8-4_cfd.ipynb
   # - file: lectures/module8-5_fem.ipynb
   # - file: lectures/module8-6_careers.md
   # - file: lectures/module8-7_extra_sparse_la.ipynb
