@@ -2,6 +2,7 @@
 _build/
 re
 lectures/.ipynb_checkpoints/
+lectures/*.gif
 sys
 edoras.md
 grading-fall25/*
