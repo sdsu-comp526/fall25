@@ -47,7 +47,7 @@ chapters:
   - file: lectures/module8-3_stiff_equations.ipynb
   - file: module8-4_hw4_solution.ipynb
   - file: lectures/module8-5_cfd.ipynb
-  # - file: lectures/module8-5_fem.ipynb
-  # - file: lectures/module8-6_careers.md
-  # - file: lectures/module8-7_extra_sparse_la.ipynb
-  # - file: lectures/module8-8_extra-fast_transforms.ipynb
+  - file: lectures/module8-6_careers.md
+  - file: lectures/module8-7_fem.ipynb
+  - file: lectures/module8-8_extra_sparse_la.ipynb
+  - file: lectures/module8-9_extra-fast_transforms.ipynb
