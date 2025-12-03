@@ -229,6 +229,12 @@
 <li class="toctree-l2"><a class="reference internal" href="module8-2_diffeq.html">37) Differential Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="module8-3_stiff_equations.html">38) Stiff Equations</a></li>
 
+<li class="toctree-l2"><a class="reference internal" href="module8-4_hw4_solution.html">39) HW 4 Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module8-5_cfd.html">40) CFD examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module8-6_careers.html">41) Careers in computational science and scientific computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module8-7_fem.html">42) FEM/SEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module8-8_extra_sparse_la.html">43) Extra: Sparse Linear Algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module8-9_extra-fast_transforms.html">44) Extra: Fast transforms</a></li>
 </ul>
 </details></li>
 </ul>
@@ -754,8 +760,8 @@ diff_wp(sin, x) - cos(x) = -4.139506408429305e-6
 <section id="forward-vs-reverse-mode">
 <h3>Forward Vs reverse mode<a class="headerlink" href="#forward-vs-reverse-mode" title="Link to this heading">#</a></h3>
 <p>We can differentiate a composition <span class="math notranslate nohighlight">\(h(g(f(x)))\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6e70a206-d421-4223-adfa-9693e2ca78d8">
-<span class="eqno">(19)<a class="headerlink" href="#equation-6e70a206-d421-4223-adfa-9693e2ca78d8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-82b7590a-f6a5-4b1e-901e-66a5c2b16724">
+<span class="eqno">(19)<a class="headerlink" href="#equation-82b7590a-f6a5-4b1e-901e-66a5c2b16724" title="Permalink to this equation">#</a></span>\[\begin{align}
   \operatorname{d} h &amp;= h' \operatorname{d} g \\
   \operatorname{d} g &amp;= g' \operatorname{d} f \\
   \operatorname{d} f &amp;= f' \operatorname{d} x.
@@ -1073,7 +1079,7 @@ u_{i-1} = u(x_i - \Delta x) \approx u(x_i) - \Delta x \partial_x u \bigg\rvert_i
 <p>We can now define a second-order derivative, at the point <span class="math notranslate nohighlight">\(x_i\)</span> using a centered difference formula:</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial^2 u^C_i}{\partial x^2} = \frac{\frac{\partial u_{i+\frac{i}{2}}^F}{\partial x} -\frac{ \partial u_{i-\frac{i}{2}}^B}{\partial x} }{\Delta x} \approx  \frac{u_{i-1} -2 u_i + u_{i+1}}{\Delta x^2} + O(\Delta x^2)\]</div>
+\frac{\partial^2 u^C_i}{\partial x^2} = \frac{\frac{\partial u_{i+\frac{1}{2}}^F}{\partial x} -\frac{ \partial u_{i-\frac{1}{2}}^B}{\partial x} }{\Delta x} \approx  \frac{u_{i-1} -2 u_i + u_{i+1}}{\Delta x^2} + O(\Delta x^2)\]</div>
 </section>
 </section>
 <section id="ill-conditioned-optimization">
