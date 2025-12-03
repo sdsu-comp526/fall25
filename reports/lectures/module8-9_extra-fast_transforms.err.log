@@ -25,14 +25,30 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-fhat = FastTransforms.fft(f) # built-in Julia function int the FastTransforms package
-scatter([abs.(fhat), abs.(fftshift(fhat))], marker=[:square :circle])
+function chebfft(y)
+    # Adapted from Trefethen's Spectral Methods in Matlab
+    n = length(y) - 1
+    x = CosRange(-1, 1, n+1)
+    Y = [y; reverse(y[2:n])]
+    ii = 0:n-1
+    U = real.(fft(Y))
+    W = real.(ifft(1im * [ii; 0; 1-n:-1] .* U))
+    w = zeros(n + 1)
+    w[2:n] = -W[2:n] ./ sqrt.(1 .- x[2:n] .^ 2)
+    w[1] = sum(ii .^ 2 .* U[ii .+ 1]) / n + .5 * n * U[n+1]
+    w[n+1] = sum((-1) .^ (ii .+ 1) .* ii .^ 2 .* U[ii .+ 1]) / n + .5 * (-1) ^ (n+1) * n * U[n+1]
+    w
+end
+
+chebfft([1,2,0,3])
 ------------------
 
 
-UndefVarError: `fftshift` not defined
+UndefVarError: `fft` not defined
 
 Stacktrace:
- [1] top-level scope
-[90m   @[39m [90m[4mIn[7]:2[24m[39m
+ [1] [0m[1mchebfft[22m[0m[1m([22m[90my[39m::[0mVector[90m{Int64}[39m[0m[1m)[22m
+[90m   @[39m [35mMain[39m [90m./[39m[90m[4mIn[11]:7[24m[39m
+ [2] top-level scope
+[90m   @[39m [90m[4mIn[11]:16[24m[39m
 
