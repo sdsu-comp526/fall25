@@ -24,6 +24,9 @@
   * Fluid and structural mechanics for safe, reliable, efficient flight (includes partnerships with the Federal Aviation Administration (FAA))
   * Materials science and engineering (overlapping scope with industry)
 
+### Private companies that "feel" like a National Lab (or closely collaborate with federal agencies)
+* [General Atomics](https://www.ga.com/about/): GA is the principal private sector participant in thermonuclear fusion research through its internationally recognized DIII-D and inertial confinement programs for the US Department of Energy, among other things (e.g., unmanned aircrafts, radars, tc)
+
 ### Examples of lab/agency-led software
 
 * HPC Middleware (MPI implementations, resource managers)
@@ -56,6 +59,7 @@
 * Research faculty/research software engineer
   * Usually reliant on external grants, often a "center"
   * There are some "research software engineering" facility/service groups (e.g., [Princeton](https://researchcomputing.princeton.edu/news/2022/princeton-bets-big-research-software-engineering)) that may serve several projects. On the other hand, there are positions that are project specifc. See a few examples below:
+  * SDSU [CSRC](https://www.csrc.sdsu.edu/)
   * The [Institute of Computing for Climate Science (ICCS)](https://iccs.cam.ac.uk/) at the University of Cambridge
   * [CU Institutes](https://www.colorado.edu/research/research-institutes) (CIRES, INSTAAR, LASP, JILA, BioFrontiers, ...)
   * [CliMA](https://clima.caltech.edu/)
