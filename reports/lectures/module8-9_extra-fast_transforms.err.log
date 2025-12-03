@@ -25,14 +25,14 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-fhat = fft(f) # built-in Julia function int the FastTransforms package
+fhat = FastTransforms.fft(f) # built-in Julia function int the FastTransforms package
 scatter([abs.(fhat), abs.(fftshift(fhat))], marker=[:square :circle])
 ------------------
 
 
-UndefVarError: `fft` not defined
+UndefVarError: `fftshift` not defined
 
 Stacktrace:
  [1] top-level scope
-[90m   @[39m [90m[4mIn[7]:1[24m[39m
+[90m   @[39m [90m[4mIn[7]:2[24m[39m
 
