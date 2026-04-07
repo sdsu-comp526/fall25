@@ -28,10 +28,8 @@ chapters:
   - file: lectures/module5-4_cholesky_qr.ipynb
   - file: lectures/module5-5_solving_systems.ipynb
   - file: lectures/module5-6_matrix_conditioning_and_svd.ipynb
-  - file: lectures/module5-7_hw2_review.ipynb
   - file: lectures/module5-8_svd_and_conditioning.ipynb
   - file: lectures/module5-9_low_rank.ipynb
-  - file: lectures/module5-10_hw3_review.md
   - file: lectures/module6-1_interpolation.ipynb
   - file: lectures/module6-2_chebyshev_poly.ipynb
   - file: lectures/module6-3_splines.ipynb
@@ -45,7 +43,6 @@ chapters:
   - file: lectures/module8-1_differentiation.ipynb
   - file: lectures/module8-2_diffeq.ipynb
   - file: lectures/module8-3_stiff_equations.ipynb
-  - file: lectures/module8-4_hw4_solution.ipynb
   - file: lectures/module8-5_cfd.ipynb
   - file: lectures/module8-6_careers.md
   - file: lectures/module8-7_fem.ipynb
